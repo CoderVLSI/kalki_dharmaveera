@@ -19,6 +19,7 @@ var kills: int = 0
 var finished: bool = false
 var restored: Array = []
 var demo: bool = false
+var skip_title: bool = false   # set on restart so the title only shows once
 
 
 func _ready() -> void:

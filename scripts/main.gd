@@ -33,6 +33,13 @@ func _ready() -> void:
 	_spawn_narayana()
 	for i in 3:
 		_spawn("raider", 26.0 + i * 4.0)
+	if not Game.demo and not Game.skip_title:
+		get_tree().paused = true
+		var title := TitleScreen.new()
+		add_child(title)
+		await title.started
+		get_tree().paused = false
+	Game.skip_title = true
 	await get_tree().create_timer(0.8).timeout
 	Game.say("narayana_intro")
 	await get_tree().create_timer(7.0).timeout
