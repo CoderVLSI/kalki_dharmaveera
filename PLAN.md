@@ -187,6 +187,8 @@ A single `WorldState` resource tracks the Dharma level per region. A rule table 
 
 Both will be wired through a project-level `.mcp.json` so the setup is reproducible.
 
+**Installed and smoke-tested in the session (M0):** Godot 4.7.2 (official build, SHA-512 verified), Blender 4.0.2 (from apt, because `download.blender.org` is blocked by the sandbox network policy), Godot MCP 0.1.1 (14 tools), and MCP for Blender (the renamed `blender-mcp`, 9 tools, with the add-on installed). Blender MCP telemetry is switched off in `.mcp.json`. `tools/setup_env.sh` rebuilds all of this, and `tools/blender_mcp_launcher.py` starts Blender's socket server under Xvfb.
+
 **Honest constraints:**
 
 - This Claude session runs in a **cloud container with no display or GPU**. Godot can run **headless** (import, script checks, tests, export) and Blender can run **in background mode**, but **interactive editing and visual playtesting must happen on your machine.** I can still do the code, scene files, and pipeline work here.
@@ -217,6 +219,30 @@ You will upload the Kalki model to the repo. To save a round of conversion, plea
 | Extras | Separate meshes for sword, crown/ornaments, and cloth if possible | Single mesh is fine |
 
 Also useful if you have them: the **horse Devadatta** and **Shuka the parrot**; otherwise I will block them out in Blender with the MCP and you can replace them later.
+
+### 8.1 What you uploaded (release `kalki`), as inspected
+
+Source: the GitHub release <https://github.com/CoderVLSI/kalki_dharmaveera/releases/tag/kalki>. `tools/fetch_assets.sh` downloads and SHA-256-verifies it into `assets/source/kalki/` (git-ignored; the release stays the source of truth, so the repo stays small).
+
+| File | What it is |
+|---|---|
+| `glb/base_basic_pbr.glb` (21 MB) | One mesh, 150k triangles, 2K PBR textures (diffuse, normal, metallic-roughness) |
+| `glb/base_basic_shaded.glb` (13 MB) | Same mesh with a single baked "shaded" texture |
+| `obj_pbr/base.obj` (54 MB) + 2K texture maps | Same model as OBJ, for Blender work |
+
+Findings (preview: `docs/design/kalki_model_preview.png`):
+
+- **Kalki and the white horse Devadatta are one fused mesh**, in a mounted pose with the sword raised. It looks AI-generated.
+- **No skeleton, no animations**, and the sword, rider, and horse are not separate objects.
+- Size is about 0.9 x 1.9 x 1.6 m, and it imports cleanly into Godot 4.7.2 (verified headless).
+
+**What this means:** it is excellent as the **mounted hero model** (Devadatta charge sequences, cutscenes, the title screen), but it cannot be animated for on-foot gameplay as it stands. Options, in order of my preference:
+
+1. Keep it as the mounted model and **generate a separate standing Kalki** (and optionally a separate Devadatta) in the same art style from reference renders. Higgsfield's 3D tools are available to me for this, and the result gets rigged in Blender.
+2. **Cut the rider off the horse in Blender** (sculpt/retopo to fill the gaps), then rig both. This is more work and gives worse results at the cut.
+3. Use it **static only** (statue, shrine, cutscene prop).
+
+I recommend option 1. Your call (see question 9 in section 12).
 
 **File size:** GitHub rejects single files over 100 MB. If the model is bigger, we will turn on **Git LFS** for `*.glb`, `*.fbx`, `*.blend`, and large textures. I'll set that up on request. I have not enabled it yet, to avoid breaking your first push if LFS isn't installed on your side.
 
@@ -286,13 +312,15 @@ Each milestone ends with a commit on the working branch and a short written stat
 5. **Platform:** PC only for now?
 6. **Mahabharata:** include the Vana Parva Kalki passage as an extra source?
 7. **ElevenLabs:** do you already have an account and API key? Which voices do you want?
-8. **Is the 3D model already rigged?** And how large are the files (is Git LFS needed)?
+8. ~~Is the 3D model rigged / do we need Git LFS?~~ **Answered by inspection:** it is unrigged, and the files are kept in the release, so no LFS is needed for now.
+9. **Fused Kalki + horse model:** do you want a separate standing Kalki generated (my recommendation), or should I cut the rider from the horse, or is the model only for the mounted form?
 
 ---
 
 ## 13. Immediate next steps
 
-1. Commit this plan to the repo. **(this commit)**
-2. Install Godot, the Godot MCP, Blender, and the Blender MCP in the session environment, and commit a reproducible `tools/setup_env.sh` and `.mcp.json`.
-3. You upload the Kalki model to `assets/source/kalki/`.
-4. I begin M1 (canon research) in parallel with M2 (importing the model).
+1. ~~Commit this plan to the repo.~~ Done.
+2. ~~Install Godot, Godot MCP, Blender, Blender MCP; commit `tools/setup_env.sh` and `.mcp.json`.~~ Done and smoke-tested.
+3. ~~You upload the Kalki model.~~ Done via the `kalki` release, inspected in 8.1.
+4. **You:** answer the open questions in section 12, especially 9 (standing Kalki) and 1 to 3.
+5. **Me, next:** M1 (canon research and `CANON_INDEX.md`) in parallel with M2 (Godot project skeleton, import the mounted model into a test scene).

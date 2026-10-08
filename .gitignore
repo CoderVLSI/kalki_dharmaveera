@@ -1,0 +1,25 @@
+# Godot
+.godot/
+.import/
+*.translation
+export_presets.cfg
+*.tmp
+
+# Secrets
+.env
+*.key
+
+# Blender
+*.blend1
+*.blend2
+
+# Exports / OS
+/build/
+/exports/
+.DS_Store
+Thumbs.db
+
+# Large model drops live in the `kalki` GitHub release; fetch with tools/fetch_assets.sh
+assets/source/kalki/*
+!assets/source/kalki/.gitkeep
+!assets/source/kalki/README.md
