@@ -6,7 +6,6 @@ signal started
 
 var _done: bool = false
 var _root: Control
-var _root: Control
 
 
 func _ready() -> void:
