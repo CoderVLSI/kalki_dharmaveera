@@ -6,7 +6,7 @@ Blender coords: Z up, horse faces -Y, sword arm on the -X side.
 Weights are distance-to-bone-segment based with hard region rules for the
 rider/sword/tail, because the mesh is one fused AI-generated surface.
 """
-import bpy, sys, math, mathutils
+import bpy, sys, math, os, mathutils
 from mathutils import Vector
 
 args = sys.argv[sys.argv.index("--") + 1:]
@@ -185,9 +185,10 @@ def gait(amp_leg, amp_knee, body_pitch, bob, tail_amp, phases):
         w = t * 2 * math.pi
         for k, ph in phases.items():
             up, lo = P(f"leg_{k}_up"), P(f"leg_{k}_lo")
-            rot(up, X, amp_leg * math.sin(w + ph))
-            # knee bends (folds toward back) while leg swings forward
-            rot(lo, X, -amp_knee * max(0.0, math.sin(w + ph + 0.9)))
+            # +X rotation swings the hoof toward the tail (horse faces -Y), so the
+            # forward swing is negative. Fold the hoof back/up while it swings forward.
+            rot(up, X, -amp_leg * math.sin(w + ph))
+            rot(lo, X, amp_knee * max(0.0, math.cos(w + ph)))
         P("root").location = (0, 0, bob * abs(math.sin(w * 2 if bob_double else w)))
         rot(P("spine_front"), X, body_pitch * math.sin(w + 0.6))
         rot(P("neck"), X, -body_pitch * 1.2 * math.sin(w + 0.9))
@@ -200,11 +201,11 @@ def gait(amp_leg, amp_knee, body_pitch, bob, tail_amp, phases):
 
 bob_double = False
 # diagonal walk: fl, hr, fr, hl
-make_action("walk-loop", 32, gait(18, 22, 1.5, 0.012, 3, {"fl": 0, "hr": math.pi / 2, "fr": math.pi, "hl": 3 * math.pi / 2}))
+make_action("walk-loop", 32, gait(18, 55, 1.5, 0.012, 3, {"fl": 0, "hr": math.pi / 2, "fr": math.pi, "hl": 3 * math.pi / 2}))
 bob_double = True
-make_action("trot-loop", 20, gait(26, 30, 2.0, 0.025, 4, {"fl": 0, "hr": 0, "fr": math.pi, "hl": math.pi}))
+make_action("trot-loop", 20, gait(26, 70, 2.0, 0.025, 4, {"fl": 0, "hr": 0, "fr": math.pi, "hl": math.pi}))
 bob_double = False
-make_action("gallop-loop", 16, gait(42, 50, 5.0, 0.05, 6, {"fl": 0, "fr": 0.5, "hr": 2.2, "hl": 2.7}))
+make_action("gallop-loop", 16, gait(42, 85, 5.0, 0.05, 6, {"fl": 0, "fr": 0.5, "hr": 2.2, "hl": 2.7}))
 make_action("idle-loop", 48, idle)
 
 def slash(t, f):
@@ -250,6 +251,30 @@ def victory(t, f):
 make_action("victory-loop", 48, victory)
 
 reset()
+
+# ---- diagnostic: front-left hoof path in the body frame (y: -forward, +back)
+if os.environ.get("RIG_DIAG"):
+    for name in ("gallop-loop", "trot-loop"):
+        arm.animation_data.action = bpy.data.actions[name]
+        rows = []
+        n = int(bpy.data.actions[name].frame_range[1])
+        for f in range(1, n + 1):
+            bpy.context.scene.frame_set(f); bpy.context.view_layer.update()
+            h = arm.matrix_world @ arm.pose.bones["leg_fl_lo"].tail
+            rows.append((f, round(h.y, 3), round(h.z, 3)))
+        low = min(r[2] for r in rows)
+        top = max(r[2] for r in rows)
+        swing_dy = stance_dy = 0.0
+        for k in range(len(rows)):
+            a, b = rows[k], rows[(k + 1) % len(rows)]
+            dy = b[1] - a[1]
+            if (a[2] + b[2]) / 2 > low + 0.4 * (top - low):
+                swing_dy += dy          # raised hoof: should travel forward (negative y)
+            else:
+                stance_dy += dy         # grounded hoof: should travel backward (positive y)
+        ok = swing_dy < 0 < stance_dy
+        print("DIAG", name, "hoof lift %.2f m | raised-phase dy=%.2f (want <0) | ground-phase dy=%.2f (want >0) ->" % (top - low, swing_dy, stance_dy), "GAIT OK" if ok else "GAIT REVERSED")
+
 bpy.ops.object.mode_set(mode="OBJECT")
 
 # ---------------------------------------------------------------- previews
