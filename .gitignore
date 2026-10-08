@@ -2,7 +2,6 @@
 .godot/
 .import/
 *.translation
-export_presets.cfg
 *.tmp
 
 # Secrets
@@ -23,3 +22,6 @@ Thumbs.db
 assets/source/kalki/*
 !assets/source/kalki/.gitkeep
 !assets/source/kalki/README.md
+
+# Narayana drop (see tools/fetch_assets.sh)
+assets/source/narayana/

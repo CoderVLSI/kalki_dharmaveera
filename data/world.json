@@ -1,0 +1,15 @@
+{
+  "_note": "World-state rule table. Dharma 0..100 drives sky/fog/ground/tree presentation (lerp from Kali-Yuga to Satya-Yuga). Pillars per Bhagavata 1.17 [VERIFY]: tapas, shaucha, daya, satya.",
+  "pillars": [
+    {"id": "tapas",  "name": "Tapas",  "meaning": "Austerity",  "threshold": 25,  "line": "pillar_tapas"},
+    {"id": "shaucha","name": "Shaucha","meaning": "Purity",     "threshold": 50,  "line": "pillar_shaucha"},
+    {"id": "daya",   "name": "Daya",   "meaning": "Compassion", "threshold": 75,  "line": "pillar_daya"},
+    {"id": "satya",  "name": "Satya",  "meaning": "Truth",      "threshold": 100, "line": "pillar_satya"}
+  ],
+  "spawn_table": [
+    {"from": 0,  "max_alive": 4,  "interval": 3.0, "weights": {"raider": 1}},
+    {"from": 15, "max_alive": 6,  "interval": 2.6, "weights": {"raider": 3, "archer": 1}},
+    {"from": 40, "max_alive": 8,  "interval": 2.4, "weights": {"raider": 3, "archer": 2, "banner": 1}},
+    {"from": 70, "max_alive": 10, "interval": 2.0, "weights": {"raider": 3, "archer": 2, "banner": 1}}
+  ]
+}

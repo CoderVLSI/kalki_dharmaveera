@@ -12,6 +12,9 @@ ASSETS=(
   "c35be06a-4ae5-4b71-b85a-241815f88fca.zip|844d360347de931ba6a7db513ca7368edb99176181e11b14e31ea11f060bff00|glb"
   "528ef542-5708-41da-a5cd-19858fcfb159.2.zip|3e34c463303ae996168b77a2d891ef13189c20a49e5acee9b49399411e2a518a|obj_pbr"
 )
+# Narayana (four-armed Vishnu) lives in the `narayana` release.
+NARAYANA_BASE="https://github.com/CoderVLSI/kalki_dharmaveera/releases/download/narayana"
+NARAYANA="c96e8423-011d-4062-907f-02d7cd31d505.zip|3f7ffe47b434ea2cd05d47066aee34df38e3dd17aaeb0c3e979e7e3f585cad48|../narayana"
 
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
 for entry in "${ASSETS[@]}"; do
@@ -22,4 +25,9 @@ for entry in "${ASSETS[@]}"; do
   mkdir -p "$DEST/$sub"
   unzip -oq "$tmp/$name" -d "$DEST/$sub"
 done
+IFS='|' read -r name sha sub <<<"$NARAYANA"
+echo "==> $name -> $sub/"
+curl -fsSL -o "$tmp/$name" "$NARAYANA_BASE/$name"
+echo "$sha  $tmp/$name" | sha256sum -c -
+mkdir -p "$DEST/$sub" && unzip -oq "$tmp/$name" -d "$DEST/$sub"
 echo "Done. Files in $DEST"
