@@ -25,3 +25,5 @@ assets/source/kalki/*
 
 # Narayana drop (see tools/fetch_assets.sh)
 assets/source/narayana/
+
+!assets/source/.gdignore

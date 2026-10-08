@@ -20,6 +20,11 @@ func _ready() -> void:
 	add_child(cam)
 
 
+func drag(rel: Vector2) -> void:
+	yaw -= rel.x * 0.006
+	pitch = clampf(pitch - rel.y * 0.004, deg_to_rad(-60.0), deg_to_rad(-5.0))
+
+
 func add_shake(a: float) -> void:
 	shake_amt = maxf(shake_amt, a)
 

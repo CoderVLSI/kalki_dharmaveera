@@ -115,6 +115,7 @@ func _ready() -> void:
 	help.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 	help.position = Vector2(16, -28)
 	help.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	help.visible = not (DisplayServer.is_touchscreen_available() or OS.has_feature("mobile") or OS.get_environment("KALKI_TOUCH") != "")
 	root.add_child(help)
 
 	fps_label = Label.new()

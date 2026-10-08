@@ -30,6 +30,12 @@ func _ready() -> void:
 	hud.player = player
 	add_child(hud)
 
+	if DisplayServer.is_touchscreen_available() or OS.has_feature("mobile") or OS.get_environment("KALKI_TOUCH") != "":
+		var touch := TouchControls.new()
+		add_child(touch)
+		touch.camera_drag.connect(rig.drag)
+		world.sun.shadow_enabled = false   # keep phones smooth
+		rig.distance = 11.0
 	_spawn_narayana()
 	for i in 3:
 		_spawn("raider", 26.0 + i * 4.0)
