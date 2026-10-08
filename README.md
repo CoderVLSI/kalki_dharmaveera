@@ -22,7 +22,8 @@ Run: open the folder in Godot 4.7 (or `godot --path .`). First open imports the 
 Rule tables live in `data/*.json` (enemies, world state, spawn table, dialogue with canon tiers). Debug env vars: `KALKI_DEMO=1` (auto-cycles animations), `KALKI_DHARMA=100` (preview the Satya Yuga world).
 
 ## Android (phone) test build
-`dist/KalkiDharmaveera-v0.1.0-android.apk`: arm64, debug-keystore signed, sideload only. On the phone: download the file from GitHub, allow "install unknown apps" for your browser, install, play in landscape.
+`dist/KalkiDharmaveera-v0.2.0-android.apk`: arm64, debug-keystore signed, sideload only. On the phone: download the file from GitHub, allow "install unknown apps" for your browser, install, play in landscape.
+Sound: procedural SFX + ambience (Kali drone to Satya tanpura as Dharma rises), ElevenLabs voices for Narayana, Shuka and the Narrator (M or the panel button mutes).
 Touch controls: drag the left side to move, drag the right side to turn the camera, SLASH / ASTRA / DASH buttons, RUN toggles gallop. Rebuild with `tools/build_android.sh`.
 
 ## Assets and tools

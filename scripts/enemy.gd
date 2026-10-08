@@ -292,6 +292,7 @@ func _strike(dist: float) -> void:
 		if dist <= float(cfg["attack_range"]) * 1.4:
 			player.take_damage(float(cfg["damage"]), global_position)
 	elif kind == "archer":
+		Sfx.play("twang", -4.0, 0.1)
 		var arrow := Projectile.new()
 		get_parent().add_child(arrow)
 		var from := global_position + Vector3(0, 1.8, 0)
@@ -330,6 +331,7 @@ func take_damage(amount: float, from: Vector3, knockback: float = 6.0, stun_time
 		state = "chase"
 	_hit_flash()
 	_sparks()
+	Sfx.play("hit", -1.0, 0.1)
 	_update_label()
 	if hp <= 0.0:
 		_die()
@@ -370,6 +372,7 @@ func _sparks() -> void:
 
 func _die() -> void:
 	state = "dead"
+	Sfx.play("die", -2.0, 0.12)
 	remove_from_group("enemies")
 	label.visible = false
 	aim_marker.visible = false

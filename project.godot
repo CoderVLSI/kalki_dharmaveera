@@ -15,6 +15,7 @@ boot_splash/fullsize=true
 [autoload]
 
 Game="*res://scripts/game.gd"
+Sfx="*res://scripts/sfx.gd"
 
 [display]
 

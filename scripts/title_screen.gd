@@ -60,6 +60,7 @@ func _start() -> void:
 	if _done:
 		return
 	_done = true
+	Sfx.play("click")
 	var tw := create_tween()
 	tw.tween_property(_root, "modulate:a", 0.0, 0.6)
 	await tw.finished

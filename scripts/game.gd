@@ -8,6 +8,7 @@ signal message(speaker: String, text: String, tier: String)
 signal pillar_restored(id: String)
 signal enemy_killed(kind: String)
 signal victory
+signal voice_line(line_id: String)
 signal player_died
 
 var enemies_cfg: Dictionary = {}
@@ -19,6 +20,8 @@ var kills: int = 0
 var finished: bool = false
 var restored: Array = []
 var demo: bool = false
+var last_said: Dictionary = {}
+const MIN_GAP := {"player_hurt": 12.0, "banner_down": 5.0}
 var skip_title: bool = false   # set on restart so the title only shows once
 
 
@@ -69,4 +72,9 @@ func say(line_id: String) -> void:
 	var line: Dictionary = dialogue.get(line_id, {})
 	if line.is_empty():
 		return
+	var now := Time.get_ticks_msec() / 1000.0
+	if MIN_GAP.has(line_id) and now - float(last_said.get(line_id, -999.0)) < float(MIN_GAP[line_id]):
+		return
+	last_said[line_id] = now
 	message.emit(line["speaker"], line["text"], line["tier"])
+	voice_line.emit(line_id)

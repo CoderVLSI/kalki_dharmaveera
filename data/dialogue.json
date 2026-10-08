@@ -1,21 +1,66 @@
 {
   "_note": "Tier = canon | canon-adapted | invented. Refs are from memory and must be checked (PLAN.md section 3).",
-  "narayana_intro": {"speaker": "Narayana", "tier": "canon-adapted", "ref": "Bhagavata 12.2 [VERIFY]; Kalki Purana: gods petition Vishnu",
-    "text": "Dharma stands on a single leg and Kali rules the age. Go, Kalki. Ride out from Shambhala and end it."},
-  "shuka_start": {"speaker": "Shuka", "tier": "canon-adapted", "ref": "Kalki Purana (Shuka the parrot) [VERIFY]",
-    "text": "Raiders of Kali's host, my Lord! Ride them down. Q and E turn the camera."},
-  "pillar_tapas": {"speaker": "Narrator", "tier": "canon-adapted", "ref": "Bhagavata 1.17 [VERIFY]",
-    "text": "TAPAS is restored. Austerity returns to the land."},
-  "pillar_shaucha": {"speaker": "Narrator", "tier": "canon-adapted", "ref": "Bhagavata 1.17 [VERIFY]",
-    "text": "SHAUCHA is restored. The rivers run clean."},
-  "pillar_daya": {"speaker": "Narrator", "tier": "canon-adapted", "ref": "Bhagavata 1.17 [VERIFY]",
-    "text": "DAYA is restored. Compassion returns to the hearts of men."},
-  "pillar_satya": {"speaker": "Narrator", "tier": "canon-adapted", "ref": "Bhagavata 1.17 [VERIFY]",
-    "text": "SATYA is restored. Dharma stands on all four legs."},
-  "banner_down": {"speaker": "Shuka", "tier": "invented", "ref": "",
-    "text": "The banner falls! Their host loses heart."},
-  "player_hurt": {"speaker": "Shuka", "tier": "invented", "ref": "",
-    "text": "Mind your guard, my Lord! Dash with SPACE."},
-  "victory": {"speaker": "Narayana", "tier": "canon-adapted", "ref": "Bhagavata 12.2 [VERIFY]",
-    "text": "Kali is cast down. The Satya Yuga dawns."}
+  "narayana_intro": {
+    "speaker": "Narayana",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 12.2 [VERIFY]; Kalki Purana: gods petition Vishnu",
+    "text": "Dharma stands on a single leg and Kali rules the age. Go, Kalki. Ride out from Shambhala and end it.",
+    "voice_text": "Dharma stands on a single leg, and Kali rules the age. Go, Kalki. Ride out from Shambhala, and end it."
+  },
+  "shuka_start": {
+    "speaker": "Shuka",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana (Shuka the parrot) [VERIFY]",
+    "text": "Raiders of Kali's host, my Lord! Ride them down. Q and E turn the camera.",
+    "voice_text": "Raiders of Kali's host, my Lord! Ride them down!"
+  },
+  "pillar_tapas": {
+    "speaker": "Narrator",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 1.17 [VERIFY]",
+    "text": "TAPAS is restored. Austerity returns to the land.",
+    "voice_text": "Tapas is restored. Austerity returns to the land."
+  },
+  "pillar_shaucha": {
+    "speaker": "Narrator",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 1.17 [VERIFY]",
+    "text": "SHAUCHA is restored. The rivers run clean.",
+    "voice_text": "Shaucha is restored. The rivers run clean."
+  },
+  "pillar_daya": {
+    "speaker": "Narrator",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 1.17 [VERIFY]",
+    "text": "DAYA is restored. Compassion returns to the hearts of men.",
+    "voice_text": "Daya is restored. Compassion returns to the hearts of men."
+  },
+  "pillar_satya": {
+    "speaker": "Narrator",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 1.17 [VERIFY]",
+    "text": "SATYA is restored. Dharma stands on all four legs.",
+    "voice_text": "Satya is restored. Dharma stands on all four legs."
+  },
+  "banner_down": {
+    "speaker": "Shuka",
+    "tier": "invented",
+    "ref": "",
+    "text": "The banner falls! Their host loses heart.",
+    "voice_text": "The banner falls! Their host loses heart."
+  },
+  "player_hurt": {
+    "speaker": "Shuka",
+    "tier": "invented",
+    "ref": "",
+    "text": "Mind your guard, my Lord! Dash with SPACE.",
+    "voice_text": "Mind your guard, my Lord!"
+  },
+  "victory": {
+    "speaker": "Narayana",
+    "tier": "canon-adapted",
+    "ref": "Bhagavata 12.2 [VERIFY]",
+    "text": "Kali is cast down. The Satya Yuga dawns.",
+    "voice_text": "Kali is cast down. The Satya Yuga dawns."
+  }
 }

@@ -27,3 +27,5 @@ assets/source/kalki/*
 assets/source/narayana/
 
 !assets/source/.gdignore
+
+assets/source/sketchfab/

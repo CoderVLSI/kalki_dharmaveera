@@ -37,6 +37,7 @@ var anim_names: Dictionary = {}
 var cam: Camera3D
 var dust: CPUParticles3D
 var demo_t: float = 0.0
+var step_t: float = 0.0
 var _flash_mats: Array[StandardMaterial3D] = []
 
 
@@ -214,6 +215,12 @@ func _state_free(delta: float) -> void:
 	else:
 		_play(gait, 0.18, clampf(speed / float(SPEEDS[gait]), 0.6, 1.3))
 	dust.emitting = speed > 9.0
+	if speed > 1.5:
+		step_t += speed * delta
+		var stride := 2.2 if gait == "walk" else (3.2 if gait == "trot" else 4.4)
+		if step_t >= stride:
+			step_t = 0.0
+			Sfx.play("hoof", -7.0, 0.15)
 	if Input.is_action_just_pressed("attack"):
 		start_slash()
 	elif Input.is_action_just_pressed("special"):
@@ -232,6 +239,7 @@ func start_slash() -> void:
 	if anim:
 		anim.stop()
 	_play("slash", 0.06, 1.7)
+	Sfx.play("swish", -2.0)
 
 
 func _state_slash(delta: float) -> void:
@@ -285,6 +293,7 @@ func _state_rear(delta: float) -> void:
 			if d < SPECIAL_RADIUS:
 				e.take_damage(SPECIAL_DAMAGE, global_position, 14.0, 1.6)
 		_ring(SPECIAL_RADIUS, Color(1.0, 0.9, 0.5, 0.9), 0.7, 0.2)
+		Sfx.play("boom", -4.0, 0.03)
 		shake.emit(0.7)
 	if state_time >= state_len:
 		state = "free"
@@ -299,6 +308,7 @@ func start_dash() -> void:
 	dash_cd = 1.2
 	invuln = maxf(invuln, 0.45)
 	_play("gallop", 0.05, 1.8)
+	Sfx.play("dash", -3.0)
 
 
 func _state_dash(delta: float) -> void:
@@ -318,6 +328,7 @@ func take_damage(amount: float, _from: Vector3) -> void:
 	invuln = 0.55
 	Game.player_hp_changed.emit(hp, max_hp)
 	shake.emit(0.35)
+	Sfx.play("hurt", 0.0)
 	if randf() < 0.25:
 		Game.say("player_hurt")
 	if hp <= 0.0:

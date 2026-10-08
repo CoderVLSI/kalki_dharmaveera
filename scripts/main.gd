@@ -14,6 +14,7 @@ var seed_counter: int = 100
 func _ready() -> void:
 	Player.ensure_input()
 	Game.reset()
+	Sfx.refresh()
 	rng.seed = 7
 	world = WorldBuilder.new()
 	add_child(world)

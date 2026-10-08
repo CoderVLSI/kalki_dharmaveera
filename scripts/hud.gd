@@ -82,6 +82,13 @@ func _ready() -> void:
 		b.focus_mode = Control.FOCUS_NONE
 		b.pressed.connect(func(): if player: player.test_play(a))
 		av.add_child(b)
+	var snd := Button.new()
+	snd.text = "Sound: ON  (M)"
+	snd.focus_mode = Control.FOCUS_NONE
+	snd.pressed.connect(func():
+		Sfx.set_muted(not Sfx.muted)
+		snd.text = "Sound: OFF (M)" if Sfx.muted else "Sound: ON  (M)")
+	av.add_child(snd)
 	var free := Button.new()
 	free.text = "Back to play"
 	free.focus_mode = Control.FOCUS_NONE
