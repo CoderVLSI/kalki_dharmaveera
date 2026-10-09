@@ -24,6 +24,8 @@ Playable prototype in Godot 4.7.2 (GL Compatibility, GDScript):
 - Latest APK: `dist/KalkiDharmaveera-v0.6.0-android.apk` (~59 MB, arm64, debug-signed, sideload only).
 - Canon index draft: `docs/sources/CANON_INDEX.md` (UNVERIFIED rows exist; primary-text sites were blocked).
 
+Windows build: `tools/build_windows.sh` -> `dist/KalkiDharmaveera-v<ver>-windows.zip` (single unsigned .exe, ~88 MB zipped; GitHub's hard limit is 100 MB per file, so if it grows past that, host it in a release asset instead).
+
 ## Rebuild the environment (cloud container is ephemeral)
 ```
 tools/setup_env.sh                 # Godot 4.7.2, Blender (apt) + numpy/requests, Godot MCP, Blender MCP add-on
