@@ -18,3 +18,4 @@ Auto-appended by tools/sketchfab_fetch.py (CC-BY requires attribution).
 - "Low Poly mountain" by lifekors (https://sketchfab.com/3d-models/low-poly-mountain-17f304ac1d314e19a81af0e643bf9ecd), licence CC Attribution, fetched 2026-10-09
 - "Earth" by Gravity Jack (https://sketchfab.com/3d-models/earth-e7499c9024444299afb9a01107f97523), licence CC Attribution, fetched 2026-10-09
 - "Column Pillar Gameready" by persnetto (https://sketchfab.com/3d-models/column-pillar-gameready-f3e121de64734df4ab24325b3140716a), licence CC Attribution, fetched 2026-10-09
+- "parrot rebuilt" by kenchoo (https://sketchfab.com/3d-models/parrot-rebuilt-adf292ed43964e229bf75d58ae750388), licence CC Attribution, fetched 2026-10-09 (recoloured in-engine as the stand-in Shuka)

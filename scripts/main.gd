@@ -22,6 +22,10 @@ func _ready() -> void:
 
 	player = Player.new()
 	add_child(player)
+	var shuka := Companion.new()
+	shuka.target = player
+	add_child(shuka)
+	shuka.global_position = player.global_position + Vector3(-1.4, 2.4, 0.6)
 	rig = CameraRig.new()
 	add_child(rig)
 	rig.target = player

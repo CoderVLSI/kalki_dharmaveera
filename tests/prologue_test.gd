@@ -17,6 +17,11 @@ func _ready() -> void:
 	for f in ["missions", "characters"]:
 		check(not Game._load_json("res://data/%s.json" % f).is_empty(), "data/%s.json loads" % f)
 	check(Game._load_json("res://data/missions.json")["missions"].size() == 18, "18 missions M00-M17")
+	var sh := Companion.new()
+	add_child(sh)
+	await get_tree().process_frame
+	check(sh.model != null and sh.anim != null, "Shuka companion loads and animates")
+	sh.queue_free()
 	var p := Prologue.new()
 	add_child(p)
 	var done := [false]
