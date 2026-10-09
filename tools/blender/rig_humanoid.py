@@ -13,18 +13,21 @@ from mathutils import Vector, Matrix
 a = sys.argv[sys.argv.index("--") + 1:]
 IN, OUT = a[0], a[1]
 PROFILE = a[2] if len(a) > 2 else "default"   # "brahma": gentler blessing so the book arm does not smear
+RIGID = PROFILE == "robot"   # hard armour plates: every vertex follows exactly one bone, so panels never stretch
 BLESS = 0.4 if PROFILE in ("brahma", "parashurama") else 1.0
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=IN)
-mesh = [o for o in bpy.data.objects if o.type == "MESH"][0]
-mesh.parent = None
-pts = [mesh.matrix_world @ v.co for v in mesh.data.vertices]
+MESHES = [o for o in bpy.data.objects if o.type == "MESH"]   # one body, or separate armour parts (robot)
+for _m in MESHES:
+    _m.parent = None
+pts = [m.matrix_world @ v.co for m in MESHES for v in m.data.vertices]
 H = max(p.z for p in pts)
 
 P = {   # per-profile landmarks, fractions of H; unknown profile names use the default body
     "parashurama": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.07, ex=0.10, wx=0.12, ez=0.66, wz=0.52, hz=0.45, leg=0.045),
     "slim": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.07, ex=0.10, wx=0.12, ez=0.66, wz=0.52, hz=0.45, leg=0.045),
     "kalki": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.12, ex=0.20, wx=0.18, ez=0.62, wz=0.49, hz=0.44, leg=0.07),
+    "robot": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.12, ex=0.20, wx=0.18, ez=0.62, wz=0.49, hz=0.44, leg=0.07),
 }.get(PROFILE, None) or {
     "default": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.13, ex=0.19, wx=0.23, ez=0.66, wz=0.52, hz=0.45, leg=0.09),
 }["default"]
@@ -69,11 +72,6 @@ bpy.ops.object.mode_set(mode="OBJECT")
 
 # skin: inverse-distance weights to the bone segments (top 4 per vertex). Rodin meshes are not
 # watertight, so Blender's heat-diffusion auto weights fail; this blends smoothly and never fails.
-mesh.parent = arm
-mesh.matrix_parent_inverse = arm.matrix_world.inverted()
-mod = mesh.modifiers.new("Armature", "ARMATURE"); mod.object = arm
-for bn in arm.data.bones:
-    mesh.vertex_groups.new(name=bn.name)
 segs = [(bn.name, bn.head_local.copy(), bn.tail_local.copy()) for bn in arm.data.bones]
 
 
@@ -83,50 +81,77 @@ def seg_dist(pt, h, t):
     return (pt - (h + d * u)).length
 
 
-# Red cloth (sashes, drapes) must not ride up with the arms even when it hangs right beside a hand:
-# sample the colour map at each vertex and keep red, low-hanging vertices off the arm bones.
-import array
-tex = None
-for node in mesh.active_material.node_tree.nodes if mesh.active_material and mesh.active_material.use_nodes else []:
-    if node.type == "BSDF_PRINCIPLED" and node.inputs["Base Color"].is_linked:
-        src = node.inputs["Base Color"].links[0].from_node
-        if src.type == "TEX_IMAGE" and src.image:
-            tex = src.image
-tex_px = None
-if tex:
-    tw, th = tex.size
-    tex_px = array.array("f", tex.pixels[:])
-uv = mesh.data.uv_layers.active
-vert_uv = {}
-if uv and tex_px:
-    for loop in mesh.data.loops:
-        vert_uv.setdefault(loop.vertex_index, uv.data[loop.index].uv)
+
+def skin_mesh(mesh):
+    mesh.parent = arm
+    mesh.matrix_parent_inverse = arm.matrix_world.inverted()
+    mod = mesh.modifiers.new("Armature", "ARMATURE"); mod.object = arm
+    for bn in arm.data.bones:
+        mesh.vertex_groups.new(name=bn.name)
+    # Red cloth (sashes, drapes) must not ride up with the arms even when it hangs right beside a hand:
+    # sample the colour map at each vertex and keep red, low-hanging vertices off the arm bones.
+    import array
+    tex = None
+    for node in mesh.active_material.node_tree.nodes if mesh.active_material and mesh.active_material.use_nodes else []:
+        if node.type == "BSDF_PRINCIPLED" and node.inputs["Base Color"].is_linked:
+            src = node.inputs["Base Color"].links[0].from_node
+            if src.type == "TEX_IMAGE" and src.image:
+                tex = src.image
+    tex_px = None
+    if tex:
+        tw, th = tex.size
+        tex_px = array.array("f", tex.pixels[:])
+    uv = mesh.data.uv_layers.active
+    vert_uv = {}
+    if uv and tex_px:
+        for loop in mesh.data.loops:
+            vert_uv.setdefault(loop.vertex_index, uv.data[loop.index].uv)
 
 
-def is_red(vi):
-    if vi not in vert_uv or not tex_px:
-        return False
-    u, vv = vert_uv[vi]
-    x, y = int(max(0, min(1, u)) * (tw - 1)), int(max(0, min(1, vv)) * (th - 1))
-    i = (y * tw + x) * 4
-    r, g, b = tex_px[i], tex_px[i + 1], tex_px[i + 2]
-    return r > 0.45 and g < 0.22 and b < 0.22 and r > 2.2 * max(g, b)
+    def is_red(vi):
+        if vi not in vert_uv or not tex_px:
+            return False
+        u, vv = vert_uv[vi]
+        x, y = int(max(0, min(1, u)) * (tw - 1)), int(max(0, min(1, vv)) * (th - 1))
+        i = (y * tw + x) * 4
+        r, g, b = tex_px[i], tex_px[i + 1], tex_px[i + 2]
+        return r > 0.45 and g < 0.22 and b < 0.22 and r > 2.2 * max(g, b)
 
 
-for v in mesh.data.vertices:
-    pt = mesh.matrix_world @ v.co
-    red_low = pt.z < 0.66 * H and is_red(v.index)
-    # inside an arm's thickness (0.05H) the arm bone wins outright; beyond it the influence falls off
-    # fast, so hip sashes and robes that hang beside the hands do not ride up with the arm
-    def eff(n, d):
-        if n.startswith(("Hand", "ForeArm", "UpperArm")):
-            return 99.0 if red_low else max(0.0, d - 0.05 * H) * 3.0
-        return d
-    ds = sorted(((eff(n, seg_dist(pt, h, t)), n) for n, h, t in segs))[:4]
-    ws = [1.0 / (d + 0.02 * H) ** 4 for d, n in ds]
-    tot = sum(ws)
-    for (d, n), w in zip(ds, ws):
-        mesh.vertex_groups[n].add([v.index], w / tot, "REPLACE")
+    part_bone = None
+    if RIGID and len(MESHES) > 1:   # a separate armour part moves as one solid piece with the bone most of it sits on
+        votes = {}
+        for v in mesh.data.vertices:
+            q = mesh.matrix_world @ v.co
+            n0 = min(((seg_dist(q, h, t), n) for n, h, t in segs))[1]
+            votes[n0] = votes.get(n0, 0) + 1
+        top = max(votes, key=votes.get)
+        if votes[top] >= 0.6 * len(mesh.data.vertices):
+            part_bone = top
+    for v in mesh.data.vertices:
+        pt = mesh.matrix_world @ v.co
+        red_low = pt.z < 0.66 * H and is_red(v.index)
+        # inside an arm's thickness (0.05H) the arm bone wins outright; beyond it the influence falls off
+        # fast, so hip sashes and robes that hang beside the hands do not ride up with the arm
+        def eff(n, d):
+            if n.startswith(("Hand", "ForeArm", "UpperArm")):
+                return 99.0 if red_low else max(0.0, d - 0.05 * H) * 3.0
+            return d
+        ds = sorted(((eff(n, seg_dist(pt, h, t)), n) for n, h, t in segs))[:4]
+        ws = [1.0 / (d + 0.02 * H) ** 4 for d, n in ds]
+        if RIGID:   # near-rigid: two bones with a steep falloff, so panels stay solid but joints do not tear
+            ds = ds[:2]
+            ws = [1.0 / (d + 0.01 * H) ** 10 for d, n in ds]
+        if part_bone:
+            ds, ws = [(0.0, part_bone)], [1.0]
+        tot = sum(ws)
+        for (d, n), w in zip(ds, ws):
+            mesh.vertex_groups[n].add([v.index], w / tot, "REPLACE")
+
+
+
+for _m in MESHES:
+    skin_mesh(_m)
 
 # ---------- procedural animation (armature-space rotations about each bone head) ----------
 bpy.context.view_layer.objects.active = arm
@@ -135,7 +160,8 @@ rest = {b.name: b.matrix_local.copy() for b in arm.data.bones}
 order = ["Hips", "Spine", "Chest", "Neck", "Head"] + [f"{k}_{s}" for s in "LR" for k in ("Thigh", "Shin", "Foot", "UpperArm", "ForeArm", "Hand")]
 for pb in arm.pose.bones:
     pb.rotation_mode = "QUATERNION"
-mesh.hide_viewport = True
+for _m in MESHES:
+    _m.hide_viewport = True
 
 
 def pose(d, hips_dz=0.0):
@@ -236,7 +262,8 @@ make("bless", 72, bless, loop=False)
 if PROFILE == "kalki":
     make("slash", 24, slash, loop=False)
 bpy.ops.object.mode_set(mode="OBJECT")
-mesh.hide_viewport = False
+for _m in MESHES:
+    _m.hide_viewport = False
 bpy.context.scene.frame_set(1)
 bpy.ops.export_scene.gltf(filepath=OUT, export_format="GLB", export_image_format="JPEG", export_jpeg_quality=85,
                           export_animations=True, export_animation_mode="NLA_TRACKS", export_skins=True)
