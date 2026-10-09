@@ -12,16 +12,16 @@ A mythic action game: **Kalki** (10th avatar of Vishnu) destroys **Kali's host (
 - Casual tone ("bro"); keep replies short and plain. They interrupt tool calls often; that is not rejection of the goal.
 - Never print or commit secrets. Never ask them to paste tokens into chat.
 
-## Current state (v0.5.0)
+## Current state (v0.5.1)
 Playable prototype in Godot 4.7.2 (GL Compatibility, GDScript):
 - Player: Kalki on Devadatta (`assets/models/kalki_devadatta_rigged.glb`, rigged/animated by `tools/blender/rig_kalki.py`; animations idle/walk/trot/gallop/slash/rear/victory). Gaits, slash, Astra (rear-up shockwave), dash.
 - Enemies from `data/enemies.json` (raider, archer, banner-bearer) and the **Koka and Vikoka twin boss** (spawns at 80% Dharma; each revives after 6 s unless both are down together; Dharma capped at 95 until both die).
 - World flips Kali Yuga to Satya Yuga with Dharma; pillars Tapas/Shaucha/Daya/Satya at 25/50/75/100.
 - Audio: `Sfx` autoload; procedural SFX/music (`tools/audio/make_sfx.py`, free) + 12 ElevenLabs voice lines (`tools/audio/gen_voice.py`, `data/voices.json`, model eleven_flash_v2_5, ~0.5 credit/char).
 - Touch controls (`scripts/touch_controls.gd`), title screen (key art), Narayana cameo (`assets/models/narayana.glb`).
-- Enemies now use rigged CC-BY Sketchfab models (v0.5.0): raider = Zombie Warrior (idle/walk/run), archer = Low Poly Goblin, banner-bearer = 3DRT Fantasy Warrior (single long take sliced into idle/attack_a/attack_b by `tools/blender/prep_character.py`), Koka/Vikoka = Armored King tinted purple/blue. Bound in `data/enemies.json` (`model`, `height`, `turn`, `lift`, `anims`); `Enemy._build_model` loads them, capsule is the fallback. Credits in `docs/ATTRIBUTION.md`. Test: `res://tests/enemy_models_test.tscn`.
-- Prologue (v0.5.0, `scripts/prologue.gd`, plays after the title; skippable; `KALKI_NOPROLOGUE=1` skips it): Brahma and the devatas petition Narayana, he vows to be born as Kalki in Shambhala, cut to a placeholder cradle for the newborn (no Bala Kalki model yet). Lines `prologue_plea/vow/birth` in `data/dialogue.json` (canon-adapted, [VERIFY]); voiced for ~183 credits (Brahma = ElevenLabs Daniel). Tests: `res://tests/prologue_test.tscn`; capture helper `prologue_view.tscn`.
-- Latest APK: `dist/KalkiDharmaveera-v0.5.0-android.apk` (~59 MB, arm64, debug-signed, sideload only).
+- Enemies now use rigged CC-BY Sketchfab models (v0.5.1): raider = Zombie Warrior (idle/walk/run), archer = Low Poly Goblin, banner-bearer = 3DRT Fantasy Warrior (single long take sliced into idle/attack_a/attack_b by `tools/blender/prep_character.py`), Koka/Vikoka = Armored King tinted purple/blue. Bound in `data/enemies.json` (`model`, `height`, `turn`, `lift`, `anims`); `Enemy._build_model` loads them, capsule is the fallback. Credits in `docs/ATTRIBUTION.md`. Test: `res://tests/enemy_models_test.tscn`.
+- Prologue (v0.5.1, `scripts/prologue.gd`, plays after the title; skippable; `KALKI_NOPROLOGUE=1` skips it): Brahma and the devatas petition Narayana, he vows to be born as Kalki in Shambhala, cut to a placeholder cradle for the newborn (no Bala Kalki model yet). Lines `prologue_plea/vow/birth` in `data/dialogue.json` (canon-adapted, [VERIFY]); voiced for ~183 credits (Brahma = ElevenLabs Daniel). Tests: `res://tests/prologue_test.tscn`; capture helper `prologue_view.tscn`.
+- Latest APK: `dist/KalkiDharmaveera-v0.5.1-android.apk` (~59 MB, arm64, debug-signed, sideload only).
 - Canon index draft: `docs/sources/CANON_INDEX.md` (UNVERIFIED rows exist; primary-text sites were blocked).
 
 ## Rebuild the environment (cloud container is ephemeral)
@@ -55,6 +55,11 @@ Visual check without a GPU: `KALKI_DEMO=1 [KALKI_TOUCH=1] [KALKI_DHARMA=82] xvfb
 - Autoloads are not available to `--script` SceneTree scripts; run tests as scenes.
 - `SendUserFile` limit is 30 MB (APK is 48 MB), so the user downloads the APK from the GitHub file page.
 - Sandbox network allowlist blocks most text/asset sites; GitHub, npm, PyPI, apt, conda are open.
+
+## Models: what is real and what is stand-in (v0.5.x)
+- Enemies, trees (dead/alive crossfade by Dharma), mountains, Shambhala village + shrine, four Dharma pillars (rise when restored), Earth, cradle, newborn, lotus: CC-BY Sketchfab models (`tools/blender/prep_prop.py`, `prep_character.py`; credits in `docs/ATTRIBUTION.md`). Helpers in `scripts/props.gd`.
+- **No vigrahas for devatas** (user: idols make no sense; devatas are living beings). Sketchfab has only statues of them, so the prologue shows them as columns of rising light until the user's own models arrive.
+- **The user generates the character models with Hyper3D Rodin** (Brahma, Shiva, baby Kalki, Kalki at 4-5 yr, teen Kalki, adult/on-foot Kalki). Do not search for these. Slots: drop `assets/models/char_<slot>.glb` (`brahma`, `shiva`, `kalki_baby`, `kalki_child`, `kalki_teen`, `kalki`); `Props.character(slot, height)` fits them (static meshes) and the prologue picks up `brahma`, `shiva`, `kalki_baby` automatically. Child/teen/adult slots are not wired to gameplay yet (Shambhala boyhood chapter).
 
 ## Pending / next (in priority order)
 1. **More Sketchfab assets**: token and downloads work (`api.sketchfab.com` and media hosts reachable; `python3 -I tools/sketchfab_fetch.py search/get`). Done: enemy models (above). Still wanted: a proper on-foot Kalki (none of the found models fit; search for a rigged hero/prince with walk+run+attack), temple/ruin props, weapons. Models need `prep_character.py` (it normalises to 1 m tall, feet at 0; then tune `height`/`turn`/`lift` in enemies.json by eye with `KALKI_LINEUP=1` on the enemy test, since skinned bounds cannot be measured in Godot). Never leave render captures inside the project (they get packed into the APK); write to /tmp.

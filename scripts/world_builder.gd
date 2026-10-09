@@ -20,9 +20,10 @@ var env: Environment
 var sky_mat: ProceduralSkyMaterial
 var sun: DirectionalLight3D
 var ground_mat: StandardMaterial3D
-var crown_mat: StandardMaterial3D
 var mountain_mat: StandardMaterial3D
-var crowns: Array = []     # [MeshInstance3D, base_scale: float]
+var tree_spots: Array = []   # [Vector3 position, yaw, scale, is_dead]
+var tree_multis: Array = []  # [MultiMesh, Transform3D part_xf, is_dead]
+var pillars: Dictionary = {}  # id -> Node3D
 var level: float = 0.0
 var rng := RandomNumberGenerator.new()
 
@@ -33,6 +34,8 @@ func _ready() -> void:
 	_build_ground()
 	_build_trees()
 	_build_mountains()
+	_build_village()
+	_build_pillars()
 	Game.dharma_changed.connect(_on_dharma)
 	apply(Game.dharma)
 
@@ -78,54 +81,104 @@ func _build_ground() -> void:
 	add_child(body)
 
 
+## Dead (ash) and living trees scattered on the same seeded spots; Dharma crossfades them by
+## scale. MultiMesh keeps it cheap on phones.
 func _build_trees() -> void:
-	var trunk_mat := StandardMaterial3D.new()
-	trunk_mat.albedo_color = Color(0.25, 0.17, 0.12)
-	crown_mat = StandardMaterial3D.new()
-	var trunk_mesh := CylinderMesh.new()
-	trunk_mesh.top_radius = 0.18
-	trunk_mesh.bottom_radius = 0.3
-	trunk_mesh.height = 3.0
-	trunk_mesh.material = trunk_mat
-	var crown_mesh := SphereMesh.new()
-	crown_mesh.radius = 1.0
-	crown_mesh.height = 2.0
-	crown_mesh.material = crown_mat
-	for i in 170:
+	for i in 70:
 		var a := rng.randf() * TAU
-		var r := rng.randf_range(14.0, 150.0)
-		var t := Node3D.new()
-		t.position = Vector3(cos(a) * r, 0, sin(a) * r)
-		var s := rng.randf_range(0.8, 1.7)
-		t.scale = Vector3.ONE * s
-		var trunk := MeshInstance3D.new()
-		trunk.mesh = trunk_mesh
-		trunk.position.y = 1.5
-		t.add_child(trunk)
-		var crown := MeshInstance3D.new()
-		crown.mesh = crown_mesh
-		crown.position.y = 3.6
-		t.add_child(crown)
-		add_child(t)
-		crowns.append([crown, rng.randf_range(1.5, 2.4), rng.randf_range(-0.08, 0.08)])
+		var r := rng.randf_range(14.0, 120.0)
+		tree_spots.append([Vector3(cos(a) * r, 0, sin(a) * r), rng.randf() * TAU, rng.randf_range(0.8, 1.5), i % 2 == 0])
+	for dead in [true, false]:
+		var model := "tree_dead" if dead else "tree_alive"
+		for part in Props.parts(model):
+			var mm := MultiMesh.new()
+			mm.transform_format = MultiMesh.TRANSFORM_3D
+			mm.mesh = part[0]
+			mm.instance_count = tree_spots.size()
+			var node := MultiMeshInstance3D.new()
+			node.multimesh = mm
+			node.custom_aabb = AABB(Vector3(-160, -2, -160), Vector3(320, 40, 320))
+			add_child(node)
+			tree_multis.append([mm, part[1], dead])
+
+
+func _place_trees(dharma: float) -> void:
+	var alive := smoothstep(10.0, 70.0, dharma)
+	for tm in tree_multis:
+		var mm: MultiMesh = tm[0]
+		var dead: bool = tm[2]
+		var f := (1.0 - alive) if dead else alive
+		for i in tree_spots.size():
+			var sp: Array = tree_spots[i]
+			var sc: float = float(sp[2]) * maxf(f, 0.001)
+			var basis := Basis(Vector3.UP, float(sp[1])).scaled(Vector3.ONE * sc)
+			mm.set_instance_transform(i, Transform3D(basis, sp[0]) * (tm[1] as Transform3D))
 
 
 func _build_mountains() -> void:
 	mountain_mat = StandardMaterial3D.new()
-	var cone := CylinderMesh.new()
-	cone.top_radius = 0.0
-	cone.bottom_radius = 1.0
-	cone.height = 1.0
-	cone.material = mountain_mat
-	for i in 18:
-		var a := float(i) / 18.0 * TAU + rng.randf_range(-0.1, 0.1)
-		var m := MeshInstance3D.new()
-		m.mesh = cone
-		var h := rng.randf_range(60.0, 130.0)
-		var w := rng.randf_range(60.0, 110.0)
-		m.scale = Vector3(w, h, w)
-		m.position = Vector3(cos(a) * 300.0, h * 0.5 - 2.0, sin(a) * 300.0)
-		add_child(m)
+	mountain_mat.roughness = 1.0
+	for part in Props.parts("prop_mountain"):
+		var mm := MultiMesh.new()
+		mm.transform_format = MultiMesh.TRANSFORM_3D
+		mm.mesh = part[0]
+		mm.instance_count = 18
+		for i in 18:
+			var a := float(i) / 18.0 * TAU + rng.randf_range(-0.1, 0.1)
+			var sc := rng.randf_range(0.9, 1.7)
+			var basis := Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(sc * 1.4, sc, sc * 1.4))
+			mm.set_instance_transform(i, Transform3D(basis, Vector3(cos(a) * 300.0, -3.0, sin(a) * 300.0)) * (part[1] as Transform3D))
+		var node := MultiMeshInstance3D.new()
+		node.multimesh = mm
+		node.material_override = mountain_mat
+		node.custom_aabb = AABB(Vector3(-400, -10, -400), Vector3(800, 220, 800))
+		add_child(node)
+
+
+## Shambhala: a small village with a shrine, drawn from real models.
+func _build_village() -> void:
+	var spots := [
+		["prop_hut_b", Vector3(-30, 0, -34), 0.3], ["prop_hut_b", Vector3(-38, 0, -30), 1.2],
+		["prop_hut_b", Vector3(-26, 0, -42), -0.5], ["prop_hut_b", Vector3(-40, 0, -40), 2.0],
+		["prop_candi", Vector3(-48, 0, -50), 0.6], ["prop_temple_wall", Vector3(-33, 0, -52), 0.0],
+		["prop_bell", Vector3(-42, 0, -44), 0.0], ["prop_lotus", Vector3(-36, 0, -36), 0.0],
+		["prop_lotus", Vector3(-34, 0, -38), 1.0], ["prop_lotus", Vector3(-38, 0, -35), 2.0],
+	]
+	for sp in spots:
+		var n := Props.spawn(sp[0])
+		if n == null:
+			continue
+		n.position = sp[1]
+		n.rotation.y = sp[2]
+		add_child(n)
+
+
+## The four legs of Dharma return as standing columns when each pillar is restored.
+func _build_pillars() -> void:
+	var ids: Array = []
+	for p in Game.world_cfg.get("pillars", []):
+		ids.append(p["id"])
+	for i in ids.size():
+		var n := Props.spawn("prop_pillar")
+		if n == null:
+			return
+		var a := TAU * (float(i) + 0.5) / float(ids.size())
+		n.position = Vector3(cos(a) * 17.0, 0, sin(a) * 17.0)
+		n.scale = Vector3.ONE * 0.001
+		n.visible = false
+		add_child(n)
+		pillars[ids[i]] = n
+	Game.pillar_restored.connect(_raise_pillar)
+	for id in Game.restored:
+		_raise_pillar(id)
+
+
+func _raise_pillar(id: String) -> void:
+	var n: Node3D = pillars.get(id)
+	if n == null:
+		return
+	n.visible = true
+	create_tween().tween_property(n, "scale", Vector3.ONE * 1.6, 1.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
 func _on_dharma(value: float) -> void:
@@ -147,11 +200,5 @@ func apply(dharma: float) -> void:
 	sun.light_color = lerp_c.call("light")
 	sun.light_energy = lerpf(DEAD["light_energy"], ALIVE["light_energy"], t)
 	ground_mat.albedo_color = lerp_c.call("ground")
-	crown_mat.albedo_color = lerp_c.call("crown")
 	mountain_mat.albedo_color = lerp_c.call("mountain")
-	for c in crowns:
-		var mesh: MeshInstance3D = c[0]
-		var base: float = c[1]
-		# dead trees keep a sparse dark crown; living trees leaf out
-		var s := lerpf(0.25, base, t)
-		mesh.scale = Vector3(s, s * 0.8, s)
+	_place_trees(dharma)

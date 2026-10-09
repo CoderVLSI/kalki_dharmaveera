@@ -8,6 +8,8 @@ func check(c: bool, m: String) -> void:
 func _ready() -> void:
 	for id in Prologue.LINES:
 		check(Game.dialogue.has(id) and ResourceLoader.exists(Sfx.VOICE_DIR % id), "line + voice for " + id)
+	check(Props.character("nonexistent_slot", 1.8) == null, "empty character slot falls back to null")
+	check(Props.parts("tree_dead").size() > 0 and Props.parts("tree_alive").size() > 0, "tree models load")
 	var p := Prologue.new()
 	add_child(p)
 	var done := [false]

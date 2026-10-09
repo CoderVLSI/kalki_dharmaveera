@@ -17,7 +17,9 @@ var _tier: Label
 var _panel: PanelContainer
 var _narayana: Node3D
 var _nlight: OmniLight3D
-var _earth: MeshInstance3D
+var _earth: Node3D
+var _earth_mats: Array = []
+var _dim: StandardMaterial3D
 var _devas: Array[Node3D] = []
 var _cradle: Node3D
 var _done: bool = false
@@ -105,20 +107,19 @@ func _build_world() -> void:
 	stars.mesh = sm
 	_vp.add_child(stars)
 
-	# dim, ash-grey earth that the vow warms
-	_earth = MeshInstance3D.new()
-	var em := SphereMesh.new()
-	em.radius = 1.3
-	em.height = 2.6
-	var emat := StandardMaterial3D.new()
-	emat.albedo_color = Color(0.3, 0.3, 0.34)
-	emat.emission_enabled = true
-	emat.emission = Color(0.3, 0.05, 0.05)
-	emat.emission_energy_multiplier = 0.4
-	em.material = emat
-	_earth.mesh = em
-	_earth.position = Vector3(0, -0.5, 3.2)
+	# the Earth, ash-grey and dim until the vow warms it
+	_earth = Props.spawn("prop_earth")
+	_earth.scale = Vector3.ONE * 0.6
+	_earth.position = Vector3(0, 0.9, 3.6)
 	_vp.add_child(_earth)
+	for mi in _earth.find_children("*", "MeshInstance3D", true, false):
+		_earth_mats.append(mi)
+		var dim := StandardMaterial3D.new()
+		dim.albedo_color = Color(0.35, 0.33, 0.36)
+		(mi as MeshInstance3D).material_overlay = dim
+		_dim = dim
+	_dim.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_dim.albedo_color = Color(0.45, 0.4, 0.4, 0.5)
 
 	# Narayana, far and still
 	var scn: PackedScene = load("res://assets/models/narayana.glb")
@@ -132,16 +133,38 @@ func _build_world() -> void:
 	_nlight.omni_range = 18.0
 	_nlight.position = Vector3(0, 3.2, -2.5)
 	_vp.add_child(_nlight)
+	var fill := OmniLight3D.new()   # keeps the Earth readable in the dark
+	fill.light_energy = 1.6
+	fill.omni_range = 9.0
+	fill.position = Vector3(0, 2.5, 7.0)
+	_vp.add_child(fill)
 
-	# Brahma and the devatas, kneeling in an arc (simple glowing figures: invented placeholders)
-	var cols := [Color(1.0, 0.55, 0.45), Color(0.9, 0.9, 0.95), Color(1.0, 0.7, 0.3), Color(0.7, 0.85, 1.0), Color(0.6, 1.0, 0.8)]
-	var xs := [-4.6, -3.0, 3.0, 4.6, 6.0]   # leave the centre line clear for the Lord; Brahma (white) at -3.0
-	for i in cols.size():
-		var f := _figure(cols[i], 1.15 if i == 1 else 1.0)
-		f.position = Vector3(xs[i], 0, 1.0 - absf(xs[i]) * 0.12)
-		f.look_at(Vector3(0, 0, -5))
-		_devas.append(f)
-		_vp.add_child(f)
+	# the devatas are living, radiant beings, not idols: a column of rising light each
+	# (Brahma, Indra, Lakshmi...). No CC-licensed living models of them exist yet.
+	var hues := [Color(1.0, 0.75, 0.35), Color(0.7, 0.85, 1.0), Color(1.0, 0.6, 0.7), Color(0.75, 1.0, 0.85), Color(0.95, 0.95, 1.0)]
+	var xs := [-6.0, -4.4, -2.8, 2.8, 4.4]
+	var slots := {2: ["brahma", 1.9], 3: ["shiva", 2.0]}   # xs index -> hand-made model, if present
+	for i in xs.size():
+		var pos := Vector3(xs[i], 0.0, 1.0 - absf(xs[i]) * 0.1)
+		var made: Node3D = null
+		if slots.has(i):
+			made = Props.character(slots[i][0], slots[i][1])
+		if made:
+			made.position = pos
+			_vp.add_child(made)
+			made.look_at(Vector3(0, 0, -5))   # +Z front, so turn it back to face the Lord
+			made.rotate_y(PI)
+			_devas.append(made)
+		else:
+			_vp.add_child(_presence(hues[i], pos))
+
+	for lx in [-1.6, 1.6]:
+		var lotus := Props.spawn("prop_lotus")
+		if lotus:
+			lotus.position = Vector3(lx, 0, -4.2)
+			lotus.scale = Vector3.ONE * 2.0
+			_vp.add_child(lotus)
+			_devas.append(lotus)
 
 	var floor_mesh := MeshInstance3D.new()
 	var disc := CylinderMesh.new()
@@ -156,52 +179,29 @@ func _build_world() -> void:
 	floor_mesh.position = Vector3(0, -0.06, -1)
 	_vp.add_child(floor_mesh)
 
-	# the newborn: placeholder cradle + swaddled infant in golden light (hidden until the last beat)
+	# the newborn in Shambhala: a real cradle, a real infant, lotuses, golden light
 	_cradle = Node3D.new()
 	_cradle.position = Vector3(0, 0, 4.5)
 	_cradle.visible = false
-	var bed := MeshInstance3D.new()
-	var bm := BoxMesh.new()
-	bm.size = Vector3(1.3, 0.3, 0.8)
-	var wood := StandardMaterial3D.new()
-	wood.albedo_color = Color(0.45, 0.3, 0.18)
-	bm.material = wood
-	bed.mesh = bm
-	bed.position.y = 0.35
-	_cradle.add_child(bed)
-	var cloth := MeshInstance3D.new()
-	var cm := CapsuleMesh.new()
-	cm.radius = 0.2
-	cm.height = 0.8
-	var cmat := StandardMaterial3D.new()
-	cmat.albedo_color = Color(1.0, 0.9, 0.6)
-	cmat.emission_enabled = true
-	cmat.emission = Color(1.0, 0.8, 0.3)
-	cmat.emission_energy_multiplier = 0.6
-	cm.material = cmat
-	cloth.mesh = cm
-	cloth.rotation_degrees.z = 90
-	cloth.position.y = 0.62
-	_cradle.add_child(cloth)
-	var head := MeshInstance3D.new()
-	var hm := SphereMesh.new()
-	hm.radius = 0.2
-	hm.height = 0.4
-	var skin := StandardMaterial3D.new()
-	skin.albedo_color = Color(0.45, 0.6, 0.85)   # Vishnu's dark-blue hue, soft
-	hm.material = skin
-	head.mesh = hm
-	head.position = Vector3(-0.5, 0.7, 0)
-	_cradle.add_child(head)
-	var halo := MeshInstance3D.new()
-	var tm := TorusMesh.new()
-	tm.inner_radius = 0.55
-	tm.outer_radius = 0.6
-	tm.material = _glow(Color(1.0, 0.85, 0.4))
-	halo.mesh = tm
-	halo.position = Vector3(-0.5, 0.7, 0)
-	halo.rotation_degrees.x = 90
-	_cradle.add_child(halo)
+	var cr := Props.spawn("prop_cradle")
+	if cr:
+		cr.scale = Vector3.ONE * 1.6
+		_cradle.add_child(cr)
+	var baby := Props.character("kalki_baby", 0.5)   # hand-made newborn, if provided
+	if baby:
+		baby.position = Vector3(0, 0.6, 0)
+	else:
+		baby = Props.spawn("prop_infant_b")
+		if baby:
+			baby.scale = Vector3.ONE * 2.4
+			baby.position = Vector3(0, 0.55, 0)
+	if baby:
+		_cradle.add_child(baby)
+	for lx in [-0.9, 0.9]:
+		var l := Props.spawn("prop_lotus")
+		if l:
+			l.position = Vector3(lx, 0, 0.5)
+			_cradle.add_child(l)
 	var cl := OmniLight3D.new()
 	cl.light_color = Color(1.0, 0.85, 0.5)
 	cl.light_energy = 2.2
@@ -211,6 +211,36 @@ func _build_world() -> void:
 	_vp.add_child(_cradle)
 
 
+func _presence(c: Color, pos: Vector3) -> Node3D:
+	var n := Node3D.new()
+	n.position = pos
+	var sparks := CPUParticles3D.new()
+	sparks.amount = 90
+	sparks.lifetime = 3.0
+	sparks.preprocess = 3.0
+	sparks.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	sparks.emission_sphere_radius = 0.35
+	sparks.direction = Vector3.UP
+	sparks.spread = 6.0
+	sparks.initial_velocity_min = 0.5
+	sparks.initial_velocity_max = 1.1
+	sparks.gravity = Vector3.ZERO
+	var m := SphereMesh.new()
+	m.radius = 0.035
+	m.height = 0.07
+	m.material = _glow(c)
+	sparks.mesh = m
+	n.add_child(sparks)
+	var l := OmniLight3D.new()
+	l.light_color = c
+	l.light_energy = 1.4
+	l.omni_range = 5.0
+	l.position.y = 1.4
+	n.add_child(l)
+	_devas.append(n)
+	return n
+
+
 func _glow(c: Color) -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
 	m.albedo_color = c
@@ -218,42 +248,6 @@ func _glow(c: Color) -> StandardMaterial3D:
 	m.emission = c
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	return m
-
-
-func _figure(c: Color, s: float) -> Node3D:
-	var n := Node3D.new()
-	n.scale = Vector3.ONE * s
-	var body := MeshInstance3D.new()
-	var cap := CapsuleMesh.new()
-	cap.radius = 0.38
-	cap.height = 1.3
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = c * 0.55
-	mat.emission_enabled = true
-	mat.emission = c
-	mat.emission_energy_multiplier = 0.5
-	cap.material = mat
-	body.mesh = cap
-	body.position.y = 0.65
-	n.add_child(body)
-	var head := MeshInstance3D.new()
-	var sp := SphereMesh.new()
-	sp.radius = 0.24
-	sp.height = 0.48
-	sp.material = mat
-	head.mesh = sp
-	head.position.y = 1.5
-	n.add_child(head)
-	var ring := MeshInstance3D.new()
-	var tm := TorusMesh.new()
-	tm.inner_radius = 0.34
-	tm.outer_radius = 0.38
-	tm.material = _glow(c)
-	ring.mesh = tm
-	ring.position.y = 1.5
-	ring.rotation_degrees.x = 90
-	n.add_child(ring)
-	return n
 
 
 func _say(id: String) -> float:
@@ -288,8 +282,7 @@ func _run() -> void:
 	d = _say(LINES[1])
 	var glow := create_tween().set_parallel(true)
 	glow.tween_property(_nlight, "light_energy", 4.5, 2.5)
-	glow.tween_property(_earth.mesh.material, "emission", Color(1.0, 0.7, 0.25), 3.0)
-	glow.tween_property(_earth.mesh.material, "albedo_color", Color(0.75, 0.65, 0.4), 3.0)
+	glow.tween_property(_dim, "albedo_color", Color(1.0, 0.8, 0.3, 0.0), 3.0)
 	await get_tree().create_timer(d).timeout
 	if _done:
 		return
