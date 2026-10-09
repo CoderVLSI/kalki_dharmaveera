@@ -13,7 +13,7 @@ from mathutils import Vector, Matrix
 a = sys.argv[sys.argv.index("--") + 1:]
 IN, OUT = a[0], a[1]
 PROFILE = a[2] if len(a) > 2 else "default"   # "brahma": gentler blessing so the book arm does not smear
-BLESS = 0.4 if PROFILE == "brahma" else 1.0
+BLESS = 0.4 if PROFILE in ("brahma", "parashurama") else 1.0
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=IN)
 mesh = [o for o in bpy.data.objects if o.type == "MESH"][0]
@@ -23,7 +23,8 @@ H = max(p.z for p in pts)
 
 P = {   # per-profile landmarks, fractions of H
     "default": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.13, ex=0.19, wx=0.23, ez=0.66, wz=0.52, hz=0.45, leg=0.09),
-}[("default")]
+    "parashurama": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.07, ex=0.10, wx=0.12, ez=0.66, wz=0.52, hz=0.45, leg=0.045),
+}[PROFILE if PROFILE in ("parashurama",) else "default"]
 
 
 def V(x, z, y=0.0):

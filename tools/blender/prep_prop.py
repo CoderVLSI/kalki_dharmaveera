@@ -11,6 +11,15 @@ TEX = int(a[4]) if len(a) > 4 else 512
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=IN)
 meshes = [o for o in bpy.data.objects if o.type == "MESH"]
+for o in meshes:   # Rodin exports a 2-bone stub rig and morph targets; drop both (we rig ourselves)
+    for m in [m for m in o.modifiers if m.type == "ARMATURE"]:
+        o.modifiers.remove(m)
+    if o.data.shape_keys:
+        for k in list(o.data.shape_keys.key_blocks)[::-1]:
+            o.shape_key_remove(k)
+    o.parent = None
+for ob in [ob for ob in bpy.data.objects if ob.type == "ARMATURE"]:
+    bpy.data.objects.remove(ob)
 tris = sum(len(p.vertices) - 2 for o in meshes for p in o.data.polygons)
 ratio = min(1.0, MAXT / max(tris, 1))
 if ratio < 1.0:

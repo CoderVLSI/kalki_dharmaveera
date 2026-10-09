@@ -17,7 +17,7 @@ func _ready() -> void:
 	for f in ["missions", "characters"]:
 		check(not Game._load_json("res://data/%s.json" % f).is_empty(), "data/%s.json loads" % f)
 	check(Game._load_json("res://data/missions.json")["missions"].size() == 18, "18 missions M00-M17")
-	for slot in ["shiva", "brahma"]:
+	for slot in ["shiva", "brahma", "parashurama"]:
 		var c := Props.character(slot, 2.0)
 		add_child(c)
 		var aps := c.find_children("*", "AnimationPlayer", true, false)
