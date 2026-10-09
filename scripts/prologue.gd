@@ -87,7 +87,7 @@ func _build_world() -> void:
 	env.environment.glow_enabled = true
 	_vp.add_child(env)
 	_cam = Camera3D.new()
-	_cam.position = Vector3(0, 2.4, 9.5)
+	_cam.position = Vector3(0, 2.2, 8.0)
 	_vp.add_child(_cam)
 	_cam.look_at(Vector3(0, 2.4, -5))
 
@@ -113,13 +113,16 @@ func _build_world() -> void:
 	_earth.position = Vector3(0, 0.9, 3.6)
 	_vp.add_child(_earth)
 	for mi in _earth.find_children("*", "MeshInstance3D", true, false):
+		if not mi.name.begins_with("earth"):
+			mi.visible = false   # the shipping-routes shell renders as an opaque grey ball
+			continue
 		_earth_mats.append(mi)
 		var dim := StandardMaterial3D.new()
 		dim.albedo_color = Color(0.35, 0.33, 0.36)
-		(mi as MeshInstance3D).material_overlay = dim
+		(mi as MeshInstance3D).material_overlay = dim if mi.name.begins_with("earth") else null
 		_dim = dim
 	_dim.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_dim.albedo_color = Color(0.45, 0.4, 0.4, 0.5)
+	_dim.albedo_color = Color(0.25, 0.22, 0.22, 0.45)
 
 	# Narayana, far and still
 	var scn: PackedScene = load("res://assets/models/narayana.glb")
@@ -142,8 +145,8 @@ func _build_world() -> void:
 	# the devatas are living, radiant beings, not idols: a column of rising light each
 	# (Brahma, Indra, Lakshmi...). No CC-licensed living models of them exist yet.
 	var hues := [Color(1.0, 0.75, 0.35), Color(0.7, 0.85, 1.0), Color(1.0, 0.6, 0.7), Color(0.75, 1.0, 0.85), Color(0.95, 0.95, 1.0)]
-	var xs := [-6.0, -4.4, -2.8, 2.8, 4.4]
-	var slots := {2: ["brahma", 1.9], 3: ["shiva", 2.0]}   # xs index -> hand-made model, if present
+	var xs := [-5.2, -3.8, -2.3, 2.3, 3.8]
+	var slots := {2: ["brahma", 2.4], 3: ["shiva", 2.6]}   # xs index -> hand-made model, if present
 	for i in xs.size():
 		var pos := Vector3(xs[i], 0.0, 1.0 - absf(xs[i]) * 0.1)
 		var made: Node3D = null
@@ -152,7 +155,7 @@ func _build_world() -> void:
 		if made:
 			made.position = pos
 			_vp.add_child(made)
-			made.look_at(Vector3(0, 0, -5))   # +Z front, so turn it back to face the Lord
+			made.look_at(Vector3(0, 0, 0.4))   # +Z front; side-on to the camera, turned toward the Lord and the Earth
 			made.rotate_y(PI)
 			_devas.append(made)
 		else:
@@ -185,11 +188,11 @@ func _build_world() -> void:
 	_cradle.visible = false
 	var cr := Props.spawn("prop_cradle")
 	if cr:
-		cr.scale = Vector3.ONE * 1.6
+		cr.scale = Vector3.ONE * 1.2
 		_cradle.add_child(cr)
-	var baby := Props.character("kalki_baby", 0.5)   # hand-made newborn, if provided
+	var baby := Props.character("kalki_baby", 0.8)   # hand-made newborn, if provided
 	if baby:
-		baby.position = Vector3(0, 0.6, 0)
+		baby.position = Vector3(0, 0.45, 0)
 	else:
 		baby = Props.spawn("prop_infant_b")
 		if baby:
@@ -309,7 +312,7 @@ func _run() -> void:
 func _process(delta: float) -> void:
 	_t += delta
 	if _push:
-		_cam.position.z = maxf(7.0, 9.5 - _t * 0.12)   # slow dolly toward the Lord
+		_cam.position.z = maxf(6.4, 8.0 - _t * 0.12)   # slow dolly toward the Lord
 	elif _cradle.visible:
 		_cam.position.z = maxf(6.2, 7.5 - (_t - 20.0) * 0.0)
 
