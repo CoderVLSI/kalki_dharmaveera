@@ -12,11 +12,11 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 OK_LICENSES = {"cc0", "by"}          # CC0 and CC-BY only (slugs from the API)
 
 
-def call(url):
+def call(url, need_token=True):
     tok = os.environ.get("SKETCHFAB_API_TOKEN")
-    if not tok:
+    if need_token and not tok:
         sys.exit("SKETCHFAB_API_TOKEN is not set")
-    req = urllib.request.Request(url, headers={"Authorization": f"Token {tok}"})
+    req = urllib.request.Request(url, headers={"Authorization": f"Token {tok}"} if tok else {})
     with urllib.request.urlopen(req, timeout=60) as r:
         return json.load(r)
 
@@ -25,9 +25,11 @@ def search(a):
     q = {"q": a.query, "type": "models", "downloadable": "true", "count": 24, "sort_by": "-likeCount"}
     if a.animated: q["animated"] = "true"
     if a.max_faces: q["max_face_count"] = a.max_faces
-    res = call(f"{API}/search?{urllib.parse.urlencode(q)}")
+    res = call(f"{API}/search?{urllib.parse.urlencode(q)}", need_token=False)   # search works anonymously
     for m in res.get("results", []):
-        lic = (m.get("license") or {}).get("slug", "?")
+        # search results omit the licence: look each model up (also anonymous)
+        meta = call(f"{API}/models/{m['uid']}", need_token=False)
+        lic = (meta.get("license") or {}).get("slug", "?")
         flag = "OK " if lic in OK_LICENSES else "NO "
         print(f'{flag}{m["uid"]}  {lic:6} faces={m.get("faceCount")}  anim={m.get("animationCount", 0)}  "{m["name"]}" by {m["user"]["displayName"]}')
 
