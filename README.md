@@ -25,7 +25,7 @@ Rule tables live in `data/*.json` (enemies, world state, spawn table, dialogue w
 At 80% Dharma, **Koka and Vikoka** (Kalki Purana, invented stats) march out. Per the canon, each revives unless both are brought down together: knock one down, then strike the other before he rises (6 s). Dharma is capped at 95% until both are slain; then Satya Yuga returns.
 
 ## Android (phone) test build
-`dist/KalkiDharmaveera-v0.6.0-android.apk`: arm64, debug-keystore signed, sideload only. On the phone: download the file from GitHub, allow "install unknown apps" for your browser, install, play in landscape.
+`dist/KalkiDharmaveera-v0.6.1-android.apk`: arm64, debug-keystore signed, sideload only. On the phone: download the file from GitHub, allow "install unknown apps" for your browser, install, play in landscape.
 Sound: procedural SFX + ambience (Kali drone to Satya tanpura as Dharma rises), ElevenLabs voices for Narayana, Shuka and the Narrator (M or the panel button mutes).
 Touch controls: drag the left side to move, drag the right side to turn the camera, SLASH / ASTRA / DASH buttons, RUN toggles gallop. Rebuild with `tools/build_android.sh`.
 

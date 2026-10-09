@@ -158,6 +158,10 @@ func _build_world() -> void:
 			made.look_at(Vector3(0, 0, 0.4))   # +Z front; side-on to the camera, turned toward the Lord and the Earth
 			made.rotate_y(PI)
 			_devas.append(made)
+			for ap in made.find_children("*", "AnimationPlayer", true, false):   # rigged: breathe
+				if (ap as AnimationPlayer).has_animation("idle"):
+					(ap as AnimationPlayer).get_animation("idle").loop_mode = Animation.LOOP_LINEAR
+					(ap as AnimationPlayer).play("idle")
 		else:
 			_vp.add_child(_presence(hues[i], pos))
 
