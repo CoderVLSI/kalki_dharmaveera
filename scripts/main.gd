@@ -46,6 +46,10 @@ func _ready() -> void:
 		var title := TitleScreen.new()
 		add_child(title)
 		await title.started
+		if OS.get_environment("KALKI_NOPROLOGUE") == "":
+			var pro := Prologue.new()
+			add_child(pro)
+			await pro.finished
 		get_tree().paused = false
 	Game.skip_title = true
 	await get_tree().create_timer(0.8).timeout

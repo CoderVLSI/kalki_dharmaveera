@@ -83,5 +83,26 @@
     "ref": "Kalki Purana [VERIFY]",
     "text": "Both are slain, and for good! Kali stands alone, my Lord.",
     "voice_text": "Both are slain, and for good! Kali stands alone, my Lord."
+  },
+  "prologue_plea": {
+    "speaker": "Brahma",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana 1.2-1.3 (devas and Earth petition Vishnu; he vows to be born in Shambhala to Vishnuyasha and Sumati) [VERIFY]",
+    "text": "Lord, Kali has seized the age. Dharma totters, the earth groans under Kali's host, and the devatas have no refuge but You.",
+    "voice_text": "Lord, Kali has seized the age. Dharma totters, the earth groans under Kali's host, and the devatas have no refuge but You."
+  },
+  "prologue_vow": {
+    "speaker": "Narayana",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana 1.2-1.3 (devas and Earth petition Vishnu; he vows to be born in Shambhala to Vishnuyasha and Sumati) [VERIFY]",
+    "text": "Fear not. I shall descend to the earth in Shambhala, born as Kalki, son of Vishnuyasha and Sumati, and with the sword I shall end Kali's reign.",
+    "voice_text": "Fear not. I shall descend to the earth in Shambhala, born as Kalki, son of Vishnuyasha and Sumati. With the sword, I shall end Kali's reign."
+  },
+  "prologue_birth": {
+    "speaker": "Narrator",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana 1.2 (birth in Shambhala) [VERIFY]",
+    "text": "And so, in the village of Shambhala, a child was born, and the age of Kali began to count its last days.",
+    "voice_text": "And so, in the village of Shambhala, a child was born, and the age of Kali began to count its last days."
   }
 }

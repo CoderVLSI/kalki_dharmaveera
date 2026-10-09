@@ -12,15 +12,16 @@ A mythic action game: **Kalki** (10th avatar of Vishnu) destroys **Kali's host (
 - Casual tone ("bro"); keep replies short and plain. They interrupt tool calls often; that is not rejection of the goal.
 - Never print or commit secrets. Never ask them to paste tokens into chat.
 
-## Current state (v0.4.0)
+## Current state (v0.5.0)
 Playable prototype in Godot 4.7.2 (GL Compatibility, GDScript):
 - Player: Kalki on Devadatta (`assets/models/kalki_devadatta_rigged.glb`, rigged/animated by `tools/blender/rig_kalki.py`; animations idle/walk/trot/gallop/slash/rear/victory). Gaits, slash, Astra (rear-up shockwave), dash.
 - Enemies from `data/enemies.json` (raider, archer, banner-bearer) and the **Koka and Vikoka twin boss** (spawns at 80% Dharma; each revives after 6 s unless both are down together; Dharma capped at 95 until both die).
 - World flips Kali Yuga to Satya Yuga with Dharma; pillars Tapas/Shaucha/Daya/Satya at 25/50/75/100.
 - Audio: `Sfx` autoload; procedural SFX/music (`tools/audio/make_sfx.py`, free) + 12 ElevenLabs voice lines (`tools/audio/gen_voice.py`, `data/voices.json`, model eleven_flash_v2_5, ~0.5 credit/char).
 - Touch controls (`scripts/touch_controls.gd`), title screen (key art), Narayana cameo (`assets/models/narayana.glb`).
-- Enemies now use rigged CC-BY Sketchfab models (v0.4.0): raider = Zombie Warrior (idle/walk/run), archer = Low Poly Goblin, banner-bearer = 3DRT Fantasy Warrior (single long take sliced into idle/attack_a/attack_b by `tools/blender/prep_character.py`), Koka/Vikoka = Armored King tinted purple/blue. Bound in `data/enemies.json` (`model`, `height`, `turn`, `lift`, `anims`); `Enemy._build_model` loads them, capsule is the fallback. Credits in `docs/ATTRIBUTION.md`. Test: `res://tests/enemy_models_test.tscn`.
-- Latest APK: `dist/KalkiDharmaveera-v0.4.0-android.apk` (59 MB, arm64, debug-signed, sideload only).
+- Enemies now use rigged CC-BY Sketchfab models (v0.5.0): raider = Zombie Warrior (idle/walk/run), archer = Low Poly Goblin, banner-bearer = 3DRT Fantasy Warrior (single long take sliced into idle/attack_a/attack_b by `tools/blender/prep_character.py`), Koka/Vikoka = Armored King tinted purple/blue. Bound in `data/enemies.json` (`model`, `height`, `turn`, `lift`, `anims`); `Enemy._build_model` loads them, capsule is the fallback. Credits in `docs/ATTRIBUTION.md`. Test: `res://tests/enemy_models_test.tscn`.
+- Prologue (v0.5.0, `scripts/prologue.gd`, plays after the title; skippable; `KALKI_NOPROLOGUE=1` skips it): Brahma and the devatas petition Narayana, he vows to be born as Kalki in Shambhala, cut to a placeholder cradle for the newborn (no Bala Kalki model yet). Lines `prologue_plea/vow/birth` in `data/dialogue.json` (canon-adapted, [VERIFY]); voiced for ~183 credits (Brahma = ElevenLabs Daniel). Tests: `res://tests/prologue_test.tscn`; capture helper `prologue_view.tscn`.
+- Latest APK: `dist/KalkiDharmaveera-v0.5.0-android.apk` (~59 MB, arm64, debug-signed, sideload only).
 - Canon index draft: `docs/sources/CANON_INDEX.md` (UNVERIFIED rows exist; primary-text sites were blocked).
 
 ## Rebuild the environment (cloud container is ephemeral)
@@ -40,6 +41,7 @@ godot --headless --path . --quit-after 300                 # must print no SCRIP
 godot --headless --path . res://tests/move_test.tscn       # camera-relative movement/facing
 godot --headless --path . res://tests/boss_test.tscn       # twin rule, expects RESULT failures=0
 godot --headless --path . res://tests/enemy_models_test.tscn  # enemy models/clips, expects RESULT failures=0
+godot --headless --path . res://tests/prologue_test.tscn      # prologue plays + skips, expects RESULT failures=0
 godot --headless --path . --script tests/facing_test.gd    # model faces -Z (it prints; needs no autoload)
 ```
 Visual check without a GPU: `KALKI_DEMO=1 [KALKI_TOUCH=1] [KALKI_DHARMA=82] xvfb-run -a godot --path . --rendering-driver opengl3 --write-movie /tmp/out/f.png --fixed-fps 10 --quit-after 40`. (`KALKI_DEMO` cycles animations and skips the title.)
@@ -62,4 +64,4 @@ Visual check without a GPU: `KALKI_DEMO=1 [KALKI_TOUCH=1] [KALKI_DHARMA=82] xvfb
 5. Verify canon refs once text sites are reachable (`docs/sources/CANON_INDEX.md` section 4).
 
 ## Credits spent so far (ElevenLabs)
-About 340 credits (12 lines). Account: Creator tier, ~88k credits were left at the start of audio work.
+About 520 credits (15 lines). Account: Creator tier, ~88k credits were left at the start of audio work.
