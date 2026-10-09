@@ -151,7 +151,7 @@ func _build_world() -> void:
 	# (Brahma, Indra, Lakshmi...). No CC-licensed living models of them exist yet.
 	var hues := [Color(1.0, 0.75, 0.35), Color(0.7, 0.85, 1.0), Color(1.0, 0.6, 0.7), Color(0.75, 1.0, 0.85), Color(0.95, 0.95, 1.0)]
 	var xs := [-5.2, -3.8, -2.3, 2.3, 3.8]
-	var slots := {2: ["brahma", 2.4], 3: ["shiva", 2.6]}   # xs index -> hand-made model, if present
+	var slots := {1: ["indra", 2.5], 2: ["brahma", 2.4], 3: ["shiva", 2.6], 4: ["parvati", 2.4]}   # xs index -> hand-made model, if present
 	for i in xs.size():
 		var pos := Vector3(xs[i], 0.0, 1.0 - absf(xs[i]) * 0.1)
 		var made: Node3D = null

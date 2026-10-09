@@ -41,7 +41,7 @@
       "name": "Parvati",
       "role": "Divine presence beside Shiva",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "parvati"
     },
     {
       "id": "MOUNT_DEVADATTA",
@@ -231,6 +231,13 @@
       "role": "Teacher of Maya narrative; not automatically Shesha",
       "tier": "B",
       "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_INDRA",
+      "name": "Indra",
+      "role": "King of the devas; joins the petition in the prologue (game-cast addition, tier G: the PDF roster lists Brahma but not Indra by name)",
+      "tier": "G",
+      "model_slot_or_asset": "indra"
     }
   ],
   "regions": [
