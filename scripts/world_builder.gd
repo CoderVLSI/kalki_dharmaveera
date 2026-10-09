@@ -50,6 +50,13 @@ func _build_environment() -> void:
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	env.tonemap_white = 6.0
+	env.glow_enabled = true            # soft bloom on golden light and highlights
+	env.glow_intensity = 0.5
+	env.glow_bloom = 0.04
+	env.adjustment_enabled = true      # slightly richer colour and contrast
+	env.adjustment_contrast = 1.07
+	env.adjustment_saturation = 1.12
 	env.fog_enabled = true
 	var we := WorldEnvironment.new()
 	we.environment = env
@@ -75,6 +82,21 @@ func _build_ground() -> void:
 	tex.height = 512
 	ground_mat.albedo_texture = tex
 	ground_mat.uv1_scale = Vector3(60, 60, 1)
+	# fine bump so the ground reads as earth, not a flat colour wash
+	var bump := FastNoiseLite.new()
+	bump.frequency = 0.09
+	bump.fractal_octaves = 4
+	var nt := NoiseTexture2D.new()
+	nt.noise = bump
+	nt.seamless = true
+	nt.as_normal_map = true
+	nt.bump_strength = 6.0
+	nt.width = 512
+	nt.height = 512
+	ground_mat.normal_enabled = true
+	ground_mat.normal_texture = nt
+	ground_mat.normal_scale = 0.8
+	ground_mat.uv2_scale = Vector3(1, 1, 1)
 	ground_mat.roughness = 1.0
 	plane.material = ground_mat
 	body.mesh = plane

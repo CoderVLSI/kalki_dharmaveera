@@ -36,6 +36,8 @@ func _ready() -> void:
 	add_child(box)
 	_vp = SubViewport.new()
 	_vp.own_world_3d = true
+	_vp.msaa_3d = Viewport.MSAA_4X
+	_vp.anisotropic_filtering_level = Viewport.ANISOTROPY_8X
 	_vp.size = get_viewport().get_visible_rect().size
 	box.add_child(_vp)
 	_build_world()
@@ -86,11 +88,13 @@ func _build_world() -> void:
 	env.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.environment.ambient_light_color = Color(0.25, 0.22, 0.35)
 	env.environment.glow_enabled = true
+	env.environment.glow_intensity = 0.6
+	env.environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	_vp.add_child(env)
 	_cam = Camera3D.new()
-	_cam.position = Vector3(0, 2.2, 8.0)
+	_cam.position = Vector3(0, 2.3, 7.4)
 	_vp.add_child(_cam)
-	_cam.look_at(Vector3(0, 2.4, -5))
+	_cam.look_at(Vector3(0, 2.0, -5))
 
 	# stars
 	var stars := CPUParticles3D.new()
@@ -110,8 +114,8 @@ func _build_world() -> void:
 
 	# the Earth, ash-grey and dim until the vow warms it
 	_earth = Props.spawn("prop_earth")
-	_earth.scale = Vector3.ONE * 0.6
-	_earth.position = Vector3(0, 0.9, 3.6)
+	_earth.scale = Vector3.ONE * 0.42
+	_earth.position = Vector3(0, 0.55, 3.8)
 	_vp.add_child(_earth)
 	for mi in _earth.find_children("*", "MeshInstance3D", true, false):
 		if not mi.name.begins_with("earth"):
@@ -305,8 +309,9 @@ func _run() -> void:
 	_nlight.visible = false
 	_cradle.visible = true
 	_push = false
-	_cam.position = Vector3(1.2, 1.5, 7.5)
-	_cam.look_at(Vector3(0, 0.9, 4.5))
+	_cam.fov = 38.0
+	_cam.position = Vector3(0.7, 1.15, 6.9)   # close on the newborn
+	_cam.look_at(Vector3(0, 0.85, 4.5))
 	var inn := create_tween()
 	inn.tween_property(_fade, "color:a", 0.0, 1.2)
 	d = _say(LINES[2])
@@ -317,9 +322,8 @@ func _run() -> void:
 func _process(delta: float) -> void:
 	_t += delta
 	if _push:
-		_cam.position.z = maxf(6.4, 8.0 - _t * 0.12)   # slow dolly toward the Lord
-	elif _cradle.visible:
-		_cam.position.z = maxf(6.2, 7.5 - (_t - 20.0) * 0.0)
+		_cam.position.z = maxf(6.3, 7.4 - _t * 0.08)   # slow dolly toward the Lord
+
 
 
 func _unhandled_input(event: InputEvent) -> void:

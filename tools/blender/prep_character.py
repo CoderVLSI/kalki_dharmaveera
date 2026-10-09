@@ -54,6 +54,10 @@ if CLIPS and arm and arm.animation_data and arm.animation_data.action:
     arm.animation_data.action = None
     bpy.data.actions.remove(src)
 
+for img in bpy.data.images:          # scale again: rebuilt materials can reference unscaled copies
+    if max(img.size) > TEX:
+        img.scale(TEX, TEX)
+
 # Normalise: evaluate the skinned meshes at the first frame, then scale to 1 m tall with the feet
 # on z=0 and the body centred, via a parent empty. The game then only multiplies by a height.
 import mathutils
