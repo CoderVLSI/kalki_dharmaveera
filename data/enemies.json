@@ -17,7 +17,15 @@
       0.45,
       0.12,
       0.1
-    ]
+    ],
+    "model": "enemy_demon",
+    "height": 4.0,
+    "anims": {
+      "idle": "idle",
+      "walk": "walk",
+      "run": "run"
+    },
+    "lift": -0.35
   },
   "archer": {
     "name": "Archer of Kali",
@@ -37,7 +45,14 @@
       0.3,
       0.16,
       0.34
-    ]
+    ],
+    "model": "enemy_goblin",
+    "height": 1.5,
+    "anims": {
+      "idle": "Take 001",
+      "walk": "Take 001",
+      "run": "Take 001"
+    }
   },
   "banner": {
     "name": "Banner-bearer",
@@ -58,7 +73,14 @@
       0.55,
       0.05,
       0.05
-    ]
+    ],
+    "model": "enemy_warrior",
+    "height": 3.1,
+    "anims": {
+      "idle": "idle",
+      "attack": "attack_a"
+    },
+    "lift": -0.55
   },
   "koka": {
     "tier": "canon-adapted",
@@ -79,7 +101,16 @@
       0.32,
       0.08,
       0.4
-    ]
+    ],
+    "model": "enemy_general",
+    "height": 1.9,
+    "anims": {
+      "idle": "FIGHTIDLE_Root",
+      "walk": "WALK_player_Root",
+      "run": "run_player_Root"
+    },
+    "tint_alpha": 0.3,
+    "turn": 0.0
   },
   "vikoka": {
     "tier": "canon-adapted",
@@ -100,6 +131,15 @@
       0.08,
       0.22,
       0.38
-    ]
+    ],
+    "model": "enemy_general",
+    "height": 1.9,
+    "anims": {
+      "idle": "FIGHTIDLE_Root",
+      "walk": "WALK_player_Root",
+      "run": "run_player_Root"
+    },
+    "tint_alpha": 0.3,
+    "turn": 0.0
   }
 }

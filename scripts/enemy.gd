@@ -30,6 +30,12 @@ var base_color: Color
 var strike_done: bool = false
 var twin: Enemy
 var down_t: float = 0.0
+var weapon: MeshInstance3D
+var anim: AnimationPlayer
+var anim_cur: String = ""
+var last_pos: Vector3
+var moved_speed: float = 0.0
+var model_h: float = 0.0
 
 
 func setup(k: String, pos: Vector3, p: Node3D, seed_value: int) -> void:
@@ -54,13 +60,83 @@ func _ready() -> void:
 
 func _build_visual() -> void:
 	var c: Array = cfg["color"]
-	base_color = Color(c[0], c[1], c[2])
+	base_color = Color(c[0], c[1], c[2], float(cfg.get("tint_alpha", 1.0)))
 	visual = Node3D.new()
 	visual.scale = Vector3.ONE * float(cfg["scale"])
 	add_child(visual)
 	body_mat = StandardMaterial3D.new()
 	body_mat.albedo_color = base_color
 	body_mat.roughness = 0.8
+	var rig := _build_model()
+	if rig == null:
+		_build_placeholder()
+	else:
+		arm_pivot = Node3D.new()   # no weapon arm on a real model; windup is read from its clip
+		visual.add_child(arm_pivot)
+	if kind == "banner":
+		var aura_only := rig != null
+		var cloth := MeshInstance3D.new()
+		var cb := BoxMesh.new()
+		cb.size = Vector3(0.9, 0.9, 0.04)
+		var cm := StandardMaterial3D.new()
+		cm.albedo_color = Color(0.7, 0.05, 0.05)
+		cm.emission_enabled = true
+		cm.emission = Color(0.6, 0.0, 0.0)
+		cb.material = cm
+		cloth.mesh = cb
+		cloth.position = Vector3(0.5, 1.4, 0)
+		if not aura_only:
+			weapon.add_child(cloth)
+		else:   # model case: plant the war banner beside the bearer
+			var pole := MeshInstance3D.new()
+			var pb := BoxMesh.new()
+			pb.size = Vector3(0.08, 3.0, 0.08)
+			var pm := StandardMaterial3D.new()
+			pm.albedo_color = Color(0.18, 0.18, 0.2)
+			pb.material = pm
+			pole.mesh = pb
+			pole.position = Vector3(0.75, 1.5, -0.1)
+			visual.add_child(pole)
+			cloth.position = Vector3(0.5, 1.1, 0)
+			pole.add_child(cloth)
+		var aura := MeshInstance3D.new()
+		var tm := TorusMesh.new()
+		tm.inner_radius = float(cfg["buff_radius"]) - 0.15
+		tm.outer_radius = float(cfg["buff_radius"])
+		var am := StandardMaterial3D.new()
+		am.albedo_color = Color(0.9, 0.1, 0.1, 0.35)
+		am.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		am.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		tm.material = am
+		aura.mesh = tm
+		aura.position.y = 0.05
+		add_child(aura)
+
+	aim_marker = MeshInstance3D.new()
+	var ab := SphereMesh.new()
+	ab.radius = 0.22
+	ab.height = 0.44
+	var amat := StandardMaterial3D.new()
+	amat.albedo_color = Color(1.0, 0.9, 0.2)
+	amat.emission_enabled = true
+	amat.emission = Color(1.0, 0.8, 0.1)
+	amat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	ab.material = amat
+	aim_marker.mesh = ab
+	aim_marker.position.y = 3.0
+	aim_marker.visible = false
+	add_child(aim_marker)
+
+	label = Label3D.new()
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.position.y = 3.2 * float(cfg["scale"]) + float(get_instance_id() % 3) * 0.55
+	label.pixel_size = 0.012
+	label.font_size = 28
+	label.outline_size = 8
+	add_child(label)
+
+
+func _build_placeholder() -> void:
 	var skin := StandardMaterial3D.new()
 	skin.albedo_color = Color(0.22, 0.14, 0.12)
 	var metal := StandardMaterial3D.new()
@@ -113,7 +189,7 @@ func _build_visual() -> void:
 	arm_pivot = Node3D.new()
 	arm_pivot.position = Vector3(0.5, 1.5, 0)
 	visual.add_child(arm_pivot)
-	var weapon := MeshInstance3D.new()
+	weapon = MeshInstance3D.new()
 	var wb := BoxMesh.new()
 	match kind:
 		"archer": wb.size = Vector3(0.06, 1.3, 0.2)   # bow
@@ -124,53 +200,79 @@ func _build_visual() -> void:
 	weapon.position = Vector3(0, -0.2, -0.45) if kind != "banner" else Vector3(0, 0.4, 0)
 	weapon.rotation.x = deg_to_rad(80) if kind != "banner" else 0.0
 	arm_pivot.add_child(weapon)
-	if kind == "banner":
-		var cloth := MeshInstance3D.new()
-		var cb := BoxMesh.new()
-		cb.size = Vector3(0.9, 0.9, 0.04)
-		var cm := StandardMaterial3D.new()
-		cm.albedo_color = Color(0.7, 0.05, 0.05)
-		cm.emission_enabled = true
-		cm.emission = Color(0.6, 0.0, 0.0)
-		cb.material = cm
-		cloth.mesh = cb
-		cloth.position = Vector3(0.5, 1.4, 0)
-		weapon.add_child(cloth)
-		var aura := MeshInstance3D.new()
-		var tm := TorusMesh.new()
-		tm.inner_radius = float(cfg["buff_radius"]) - 0.15
-		tm.outer_radius = float(cfg["buff_radius"])
-		var am := StandardMaterial3D.new()
-		am.albedo_color = Color(0.9, 0.1, 0.1, 0.35)
-		am.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-		am.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		tm.material = am
-		aura.mesh = tm
-		aura.position.y = 0.05
-		add_child(aura)
 
-	aim_marker = MeshInstance3D.new()
-	var ab := SphereMesh.new()
-	ab.radius = 0.22
-	ab.height = 0.44
-	var amat := StandardMaterial3D.new()
-	amat.albedo_color = Color(1.0, 0.9, 0.2)
-	amat.emission_enabled = true
-	amat.emission = Color(1.0, 0.8, 0.1)
-	amat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	ab.material = amat
-	aim_marker.mesh = ab
-	aim_marker.position.y = 3.0
-	aim_marker.visible = false
-	add_child(aim_marker)
 
-	label = Label3D.new()
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.position.y = 3.2 * float(cfg["scale"]) + float(get_instance_id() % 3) * 0.55
-	label.pixel_size = 0.012
-	label.font_size = 28
-	label.outline_size = 8
-	add_child(label)
+## Loads the rigged model named in enemies.json, fits it to cfg.height with its feet on y=0
+## and facing -Z. Returns null (placeholder capsule is used) if the file is missing.
+func _build_model() -> Node3D:
+	if not cfg.has("model"):
+		return null
+	var path := "res://assets/models/%s.glb" % cfg["model"]
+	if not ResourceLoader.exists(path):
+		return null
+	var m: Node3D = (load(path) as PackedScene).instantiate()
+	var holder := Node3D.new()
+	visual.add_child(holder)
+	holder.add_child(m)
+	# prep_character.py exports models 1 m tall, feet on the ground, centred; cfg.turn is the yaw
+	# (degrees) that points the model's front at -Z (glTF default fronts +Z, so 180)
+	var h := float(cfg["height"])
+	holder.transform = Transform3D(Basis(Vector3.UP, deg_to_rad(float(cfg.get("turn", 180.0)))).scaled(Vector3.ONE * h), Vector3(0, float(cfg.get("lift", 0.0)) * h, 0))
+	model_h = float(cfg["height"])
+	# tint / hit-flash / windup glow: a translucent overlay on every mesh, driven through body_mat
+	body_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	base_color.a = float(cfg.get("tint_alpha", 0.0))
+	body_mat.albedo_color = base_color
+	for mi in m.find_children("*", "MeshInstance3D", true, false):
+		mi.material_overlay = body_mat
+	var ap := m.find_children("*", "AnimationPlayer", true, false)
+	if ap.size() > 0:
+		anim = ap[0]
+		var anims: Dictionary = cfg.get("anims", {})
+		for k in anims:
+			var n: String = anims[k]
+			if anim.has_animation(n):
+				anim.get_animation(n).loop_mode = Animation.LOOP_LINEAR if k != "attack" else Animation.LOOP_NONE
+		_play("idle")
+	last_pos = global_position
+	return holder
+
+
+func _play(key: String, speed: float = 1.0) -> void:
+	if anim == null:
+		return
+	var anims: Dictionary = cfg.get("anims", {})
+	if not anims.has(key):
+		key = "walk" if key == "run" and anims.has("walk") else "idle"
+	if not anims.has(key):
+		return
+	var n: String = anims[key]
+	if not anim.has_animation(n):
+		return
+	anim.speed_scale = speed
+	if anim_cur != key or (key == "attack" and not anim.is_playing()):
+		anim_cur = key
+		anim.play(n, 0.15)
+
+
+func _process(delta: float) -> void:
+	if anim == null or state == "dead":
+		return
+	var v := (global_position - last_pos).length() / maxf(delta, 0.0001)
+	last_pos = global_position
+	moved_speed = lerpf(moved_speed, v, 0.3)
+	match state:
+		"windup":
+			_play("attack", 1.6 if cfg.get("anims", {}).has("attack") else 1.0)
+		"downed":
+			_play("idle", 0.0)
+		_:
+			if moved_speed > float(cfg["speed"]) * 0.8:
+				_play("run", 1.0)
+			elif moved_speed > 0.4:
+				_play("walk", clampf(moved_speed / 2.0, 0.6, 1.6))
+			else:
+				_play("idle")
 
 
 func _update_label() -> void:
@@ -393,7 +495,7 @@ func _downed(delta: float) -> void:
 
 
 func _hit_flash() -> void:
-	body_mat.albedo_color = Color(1, 1, 1)
+	body_mat.albedo_color = Color(1, 1, 1, 0.7)
 	var tw := create_tween()
 	tw.tween_property(body_mat, "albedo_color", base_color, 0.2)
 

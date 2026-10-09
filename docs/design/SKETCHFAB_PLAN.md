@@ -1,6 +1,6 @@
 # Plan: sourcing 3D assets from Sketchfab
 
-**Status:** blocked on two things only the account owner can change (see "Unblock"). Everything else is ready: `tools/sketchfab_fetch.py` does search + download + attribution once unblocked.
+**Status (9 Oct 2026):** unblocked; token set and downloads work. Enemy models imported (see HANDOFF). Everything else is ready: `tools/sketchfab_fetch.py` does search + download + attribution once unblocked.
 Probe on 8 Oct 2026: `sketchfab.com` is reachable, but `api.sketchfab.com`, `media.sketchfab.com`, `static.sketchfab.com`, `cdn.sketchfab.com` return 403 from the sandbox, and the site's search page is a JavaScript shell that returns no model data without the API.
 
 ## 1. What we need (priority order)
