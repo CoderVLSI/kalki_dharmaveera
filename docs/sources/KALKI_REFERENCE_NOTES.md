@@ -5,7 +5,7 @@ Source of truth: `docs/sources/Kalki_Purana_Game_Reference.pdf` (research editio
 ## Rules to obey (PDF sections 0, 10, 11)
 - Tiers: **A** Bhagavata/Vishnu/Agni (verified), **B** Kalki Purana expanded account, **C** epic parallel, **G** game adaptation (never presented as scripture), **U** unverified. Only Bhagavata, Vishnu and Agni passages are verified; the other 15 Mahapuranas are NOT VERIFIED, so do not invent verses for them.
 - Every cutscene/lore claim carries source tier + locator. Newly composed dialogue is `DRAMATIZED_ADAPTATION` and is shown as **ADAPTED DIALOGUE - NOT A VERSE** (done in `Game.tier_label`). Sanskrit lines are only voiced after manual proofreading against the chosen edition (none used yet).
-- Enemies are identified by **deeds**, never by religion, ethnicity, caste, nationality, language or dress. No present-day people, dates or politicians. Kali (the personified age) is not the goddess Kali. Do not make Parashurama, Shiva, Vishnu or Narayana enemies. Shiva is a giver.
+- Enemies are identified by **deeds**, never by religion, ethnicity, caste, nationality, language or dress. No present-day people, dates or politicians. Kali (the personified age) is not the goddess Kali. Parashurama is the guru, Mahadeva the revered giver of the gifts, and Vishnu/Narayana the Lord himself; they appear only in those roles, always with reverence.
 - Finale must show **renewal** (dharma restored, Krita/Satya Yuga beginning), not only defeated enemies. Do not assign a Gregorian date to the end of the age.
 - Devadatta is "swift"; white is traditional, not stated in Bhagavata 12.2.19-20. Four companions vs three elder brothers (Kavi, Prajna, Sumantra) is an edition tension in the text.
 
