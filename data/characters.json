@@ -20,7 +20,7 @@
       "name": "Sumati",
       "role": "Mother",
       "tier": "B",
-      "model_slot_or_asset": "sumati (pending; the user's next model may be Kalki's mother)"
+      "model_slot_or_asset": "sumati (delivered, rigged; second lotus-bearing woman, best guess, confirm)"
     },
     {
       "id": "CHAR_PARASHURAMA",
@@ -62,7 +62,7 @@
       "name": "Padma / Padmavati",
       "role": "Lakshmi manifestation / consort",
       "tier": "B",
-      "model_slot_or_asset": "padmavati (pending from user)"
+      "model_slot_or_asset": "padmavati (delivered, rigged; two-lotus crowned woman, best guess, confirm)"
     },
     {
       "id": "CHAR_BRHADRATHA",
@@ -252,6 +252,34 @@
       "role": "Arrived in the second batch without being listed; role to be confirmed by the user",
       "tier": "U",
       "model_slot_or_asset": "hanuman (delivered, rigged)"
+    },
+    {
+      "id": "CHAR_SURYA_GUESS",
+      "name": "Surya Deva on the seven-horse chariot",
+      "role": "Delivered final batch; fits Suryavamsa / Maru (M11) and the twin chariot gifts",
+      "tier": "G",
+      "model_slot_or_asset": "surya (static, 13 separate parts: chariot, horses, Surya)"
+    },
+    {
+      "id": "CHAR_ARCHER_UNCONFIRMED",
+      "name": "Dark-clad archer with bow and quiver",
+      "role": "Delivered final batch; identity unconfirmed (candidates: Maru, Devapi, a brother of Kalki, Shashidhvaja's champion)",
+      "tier": "U",
+      "model_slot_or_asset": "archer_dark (rigged)"
+    },
+    {
+      "id": "CHAR_BLUE_SAGE_UNCONFIRMED",
+      "name": "Blue-skinned grey-bearded sage with staff and scroll",
+      "role": "Delivered final batch; best guess Narada (sage and guide) or Sage Ananta",
+      "tier": "U",
+      "model_slot_or_asset": "blue_sage (rigged)"
+    },
+    {
+      "id": "BOSS_HORNED_WARLORD_UNCONFIRMED",
+      "name": "Horned armoured warlord with spiked mace",
+      "role": "Delivered final batch; best guess Koka or Vikoka (twin generals) or a general of Kali's host",
+      "tier": "U",
+      "model_slot_or_asset": "horned_warlord (rigged)"
     }
   ],
   "regions": [

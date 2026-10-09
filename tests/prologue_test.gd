@@ -17,13 +17,13 @@ func _ready() -> void:
 	for f in ["missions", "characters"]:
 		check(not Game._load_json("res://data/%s.json" % f).is_empty(), "data/%s.json loads" % f)
 	check(Game._load_json("res://data/missions.json")["missions"].size() == 18, "18 missions M00-M17")
-	for slot in ["shiva", "brahma", "parashurama", "kalki", "parvati", "robot", "kali", "hanuman", "yajnavalkya", "vishnuyashas", "ramadevi"]:
+	for slot in ["shiva", "brahma", "parashurama", "kalki", "parvati", "robot", "kali", "hanuman", "yajnavalkya", "vishnuyashas", "ramadevi", "padmavati", "sumati", "archer_dark", "blue_sage", "horned_warlord"]:
 		var c := Props.character(slot, 2.0)
 		add_child(c)
 		var aps := c.find_children("*", "AnimationPlayer", true, false)
 		check(aps.size() > 0 and (aps[0] as AnimationPlayer).has_animation("idle") and (aps[0] as AnimationPlayer).has_animation("walk") and (aps[0] as AnimationPlayer).has_animation("bless"), "%s is rigged (idle/walk/bless)" % slot)
 		c.queue_free()
-	check(Props.character("sword", 1.0) != null, "sword model loads")
+	check(Props.character("sword", 1.0) != null and Props.character("surya", 2.0) != null, "sword and Surya models load")
 	var sh := Companion.new()
 	add_child(sh)
 	await get_tree().process_frame
