@@ -93,24 +93,25 @@
     "recover": 1.0,
     "flee_hp_frac": 0.0,
     "dharma": 10,
-    "scale": 1.7,
+    "scale": 1.55,
     "revive_window": 6.0,
     "ref": "Koka and Vikoka are named adversaries in Kalki Purana III.6-8 [B]; the twin-revive rule and boss phases are G game design, not scripture",
     "name": "Koka",
     "color": [
-      0.32,
-      0.08,
-      0.4
+      0.55,
+      0.1,
+      0.16
     ],
-    "model": "enemy_general",
-    "height": 1.9,
+    "model": "char_horned_warlord",
+    "height": 2.0,
     "anims": {
-      "idle": "FIGHTIDLE_Root",
-      "walk": "WALK_player_Root",
-      "run": "run_player_Root"
+      "idle": "idle",
+      "walk": "walk",
+      "run": "run"
     },
-    "tint_alpha": 0.3,
-    "turn": 0.0
+    "tint_alpha": 0.38,
+    "turn": 180.0,
+    "lift": 0.0
   },
   "vikoka": {
     "tier": "canon-adapted",
@@ -123,23 +124,24 @@
     "recover": 1.0,
     "flee_hp_frac": 0.0,
     "dharma": 10,
-    "scale": 1.7,
+    "scale": 1.55,
     "revive_window": 6.0,
     "ref": "Koka and Vikoka are named adversaries in Kalki Purana III.6-8 [B]; the twin-revive rule and boss phases are G game design, not scripture",
     "name": "Vikoka",
     "color": [
-      0.08,
-      0.22,
-      0.38
+      0.1,
+      0.25,
+      0.6
     ],
-    "model": "enemy_general",
-    "height": 1.9,
+    "model": "char_horned_warlord",
+    "height": 2.0,
     "anims": {
-      "idle": "FIGHTIDLE_Root",
-      "walk": "WALK_player_Root",
-      "run": "run_player_Root"
+      "idle": "idle",
+      "walk": "walk",
+      "run": "run"
     },
-    "tint_alpha": 0.3,
-    "turn": 0.0
+    "tint_alpha": 0.38,
+    "turn": 180.0,
+    "lift": 0.0
   }
 }

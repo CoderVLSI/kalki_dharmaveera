@@ -5,7 +5,6 @@ Auto-appended by tools/sketchfab_fetch.py (CC-BY requires attribution).
 - "3DRT - Fantasy Warrior" by 3DRT.com (https://sketchfab.com/3d-models/3drt-fantasy-warrior-d39a0dee0f054c21b6751f7821aa7a8e), licence CC Attribution, fetched 2026-10-09
 - "Zombie Warrior" by Aleksandr (https://sketchfab.com/3d-models/zombie-warrior-2457028ac0ca4214bd1f5dc3b9d11129), licence CC Attribution, fetched 2026-10-09
 - "Low Poly Goblin (Rigged)" by Yanez Designs (https://sketchfab.com/3d-models/low-poly-goblin-rigged-7dc07eff136d4725ac6d1d5001656182), licence CC Attribution, fetched 2026-10-09
-- "Armored King" by Calviking073 (https://sketchfab.com/3d-models/armored-king-e3978fb660cf47278485d44eeba488ef), licence CC Attribution, fetched 2026-10-09
 - "Antique Medieval Cradle" by GetDeadEntertainment (https://sketchfab.com/3d-models/antique-medieval-cradle-1cc97e3fbeaf4376adbfc0f596cf33d8), licence CC Attribution, fetched 2026-10-09
 - "Newborn" by wozniakowski.smierdzi (https://sketchfab.com/3d-models/newborn-59f3a37662d24521b3e706c025c0fd9c), licence CC Attribution, fetched 2026-10-09
 - "Low poly India Temple Wall" by Mega 3D (https://sketchfab.com/3d-models/low-poly-india-temple-wall-e3604a8207d448338485fb164c8f30c1), licence CC Attribution, fetched 2026-10-09
