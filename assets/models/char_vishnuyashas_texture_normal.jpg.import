@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5b0h720ixqum"
-path="res://.godot/imported/char_woman_pink_texture_metallic-texture_roughness.jpg-becb19d8e12100753263e930b6503cde.ctex"
+uid="uid://wdmixwx6k6mi"
+path="res://.godot/imported/char_vishnuyashas_texture_normal.jpg-4a4fb45c353ad727e26aef64997819a7.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "e96f03b536fc0013a4b0c22b64501431"
+"md5": "5b665e757d62486015651b4c73d1502c"
 }
 
 [deps]
 
-source_file="res://assets/models/char_woman_pink_texture_metallic-texture_roughness.jpg"
-dest_files=["res://.godot/imported/char_woman_pink_texture_metallic-texture_roughness.jpg-becb19d8e12100753263e930b6503cde.ctex"]
+source_file="res://assets/models/char_vishnuyashas_texture_normal.jpg"
+dest_files=["res://.godot/imported/char_vishnuyashas_texture_normal.jpg-4a4fb45c353ad727e26aef64997819a7.ctex"]
 
 [params]
 

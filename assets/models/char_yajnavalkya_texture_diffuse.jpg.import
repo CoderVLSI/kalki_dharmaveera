@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dospiifbggv31"
-path="res://.godot/imported/char_elder_dark_texture_metallic-texture_roughness.jpg-5e1931768c9dbcdde915aa33e4f8446d.ctex"
+uid="uid://clwjt65yxnox0"
+path="res://.godot/imported/char_yajnavalkya_texture_diffuse.jpg-9471691e34938147ec91f07b67ec23d5.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "943027ceede98b72644dfbc5716c0cbc"
+"md5": "a659c0c3f636b00d611221e219002c38"
 }
 
 [deps]
 
-source_file="res://assets/models/char_elder_dark_texture_metallic-texture_roughness.jpg"
-dest_files=["res://.godot/imported/char_elder_dark_texture_metallic-texture_roughness.jpg-5e1931768c9dbcdde915aa33e4f8446d.ctex"]
+source_file="res://assets/models/char_yajnavalkya_texture_diffuse.jpg"
+dest_files=["res://.godot/imported/char_yajnavalkya_texture_diffuse.jpg-9471691e34938147ec91f07b67ec23d5.ctex"]
 
 [params]
 

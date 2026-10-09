@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjgcedx5232uv"
-path="res://.godot/imported/char_woman_pink_texture_normal.jpg-e7cc2c5c30956d10385d6b8877e9ee22.ctex"
+uid="uid://ca7j57s0d5pla"
+path="res://.godot/imported/char_ramadevi_texture_diffuse.jpg-ab5649e1792f9896c950fa1497b528d0.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "27bf857a2870a606ddaf31655cc3b32e"
+"md5": "53ea5687726349ff1f605603125fedf4"
 }
 
 [deps]
 
-source_file="res://assets/models/char_woman_pink_texture_normal.jpg"
-dest_files=["res://.godot/imported/char_woman_pink_texture_normal.jpg-e7cc2c5c30956d10385d6b8877e9ee22.ctex"]
+source_file="res://assets/models/char_ramadevi_texture_diffuse.jpg"
+dest_files=["res://.godot/imported/char_ramadevi_texture_diffuse.jpg-ab5649e1792f9896c950fa1497b528d0.ctex"]
 
 [params]
 

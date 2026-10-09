@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dy4k3i7sjm72y"
-path="res://.godot/imported/char_elder_white.glb-5a0863a1634204c11aa568e1ca4b4317.scn"
+uid="uid://byuudyv7sexic"
+path="res://.godot/imported/char_vishnuyashas.glb-2ce75fe969a2a7e0ee255610c0e370ce.scn"
 
 [deps]
 
-source_file="res://assets/models/char_elder_white.glb"
-dest_files=["res://.godot/imported/char_elder_white.glb-5a0863a1634204c11aa568e1ca4b4317.scn"]
+source_file="res://assets/models/char_vishnuyashas.glb"
+dest_files=["res://.godot/imported/char_vishnuyashas.glb-2ce75fe969a2a7e0ee255610c0e370ce.scn"]
 
 [params]
 

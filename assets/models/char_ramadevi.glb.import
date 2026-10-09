@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmwf12xfmsxc3"
-path="res://.godot/imported/char_elder_dark.glb-ccfea51339eb0474502b094fe2758997.scn"
+uid="uid://dwbaiq0yeecm7"
+path="res://.godot/imported/char_ramadevi.glb-eb675d50546cec03d379b64a254bc2b6.scn"
 
 [deps]
 
-source_file="res://assets/models/char_elder_dark.glb"
-dest_files=["res://.godot/imported/char_elder_dark.glb-ccfea51339eb0474502b094fe2758997.scn"]
+source_file="res://assets/models/char_ramadevi.glb"
+dest_files=["res://.godot/imported/char_ramadevi.glb-eb675d50546cec03d379b64a254bc2b6.scn"]
 
 [params]
 

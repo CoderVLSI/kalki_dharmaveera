@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddvvskbvi8q2j"
-path="res://.godot/imported/char_elder_dark_texture_diffuse.jpg-48de5d5ab08c6b23882a38d9fc74ef24.ctex"
+uid="uid://w6bf074pq2uy"
+path="res://.godot/imported/char_ramadevi_texture_metallic-texture_roughness.jpg-1ebb96b76528851bf80e8cc3bc8ec4e9.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "b68efa3226009dad0f3f558033b8a124"
+"md5": "e96f03b536fc0013a4b0c22b64501431"
 }
 
 [deps]
 
-source_file="res://assets/models/char_elder_dark_texture_diffuse.jpg"
-dest_files=["res://.godot/imported/char_elder_dark_texture_diffuse.jpg-48de5d5ab08c6b23882a38d9fc74ef24.ctex"]
+source_file="res://assets/models/char_ramadevi_texture_metallic-texture_roughness.jpg"
+dest_files=["res://.godot/imported/char_ramadevi_texture_metallic-texture_roughness.jpg-1ebb96b76528851bf80e8cc3bc8ec4e9.ctex"]
 
 [params]
 

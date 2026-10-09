@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ibfaaax26iem"
-path="res://.godot/imported/char_woman_pink.glb-abcda4afebeace1e8288cf415fc07f42.scn"
+uid="uid://bn0oj0o8p064r"
+path="res://.godot/imported/char_yajnavalkya.glb-ed066438660f4423ae57d0d356cdf4e6.scn"
 
 [deps]
 
-source_file="res://assets/models/char_woman_pink.glb"
-dest_files=["res://.godot/imported/char_woman_pink.glb-abcda4afebeace1e8288cf415fc07f42.scn"]
+source_file="res://assets/models/char_yajnavalkya.glb"
+dest_files=["res://.godot/imported/char_yajnavalkya.glb-ed066438660f4423ae57d0d356cdf4e6.scn"]
 
 [params]
 

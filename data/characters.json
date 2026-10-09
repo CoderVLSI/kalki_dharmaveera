@@ -13,14 +13,14 @@
       "name": "Vishnuyashas",
       "role": "Father / Vedic elder",
       "tier": "A+B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "vishnuyashas (delivered, rigged: Kalki's father)"
     },
     {
       "id": "CHAR_SUMATI",
       "name": "Sumati",
       "role": "Mother",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "sumati (pending; the user's next model may be Kalki's mother)"
     },
     {
       "id": "CHAR_PARASHURAMA",
@@ -62,7 +62,7 @@
       "name": "Padma / Padmavati",
       "role": "Lakshmi manifestation / consort",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "padmavati (pending from user)"
     },
     {
       "id": "CHAR_BRHADRATHA",
@@ -125,7 +125,7 @@
       "name": "Kali (personified age)",
       "role": "Main adversary; NOT the goddess Kali; embodies adharma as actions",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "kali (delivered, rigged: armoured demon-lord with spiked mace)"
     },
     {
       "id": "CHAR_DHARMA",
@@ -188,7 +188,7 @@
       "name": "Rama (Kalki's consort)",
       "role": "Shashidhvaja's daughter; distinguish from Lord Rama and Balarama",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "ramadevi (delivered, rigged: woman in pink saree with lotus)"
     },
     {
       "id": "CHAR_SULOCANA",
@@ -223,7 +223,7 @@
       "name": "Yajnavalkya",
       "role": "Priestly figure; Agni 16.8 only; cameo needs script review",
       "tier": "A",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "yajnavalkya (delivered, rigged: white-bearded sage with staff)"
     },
     {
       "id": "CHAR_ANANTA_RISHI",
@@ -238,6 +238,20 @@
       "role": "King of the devas; joins the petition in the prologue (game-cast addition, tier G: the PDF roster lists Brahma but not Indra by name)",
       "tier": "G",
       "model_slot_or_asset": "indra"
+    },
+    {
+      "id": "UNIT_ROBOT",
+      "name": "Android AI soldier",
+      "role": "Sci-fi host unit of Kali (game adaptation only; the PDF says the scripture needs no science fiction, so label it as G)",
+      "tier": "G",
+      "model_slot_or_asset": "robot (delivered, rigged)"
+    },
+    {
+      "id": "CHAR_HANUMAN_UNCONFIRMED",
+      "name": "Monkey-faced mace-bearer (looks like Hanuman)",
+      "role": "Arrived in the second batch without being listed; role to be confirmed by the user",
+      "tier": "U",
+      "model_slot_or_asset": "hanuman (delivered, rigged)"
     }
   ],
   "regions": [
