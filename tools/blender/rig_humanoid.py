@@ -21,10 +21,13 @@ mesh.parent = None
 pts = [mesh.matrix_world @ v.co for v in mesh.data.vertices]
 H = max(p.z for p in pts)
 
-P = {   # per-profile landmarks, fractions of H
-    "default": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.13, ex=0.19, wx=0.23, ez=0.66, wz=0.52, hz=0.45, leg=0.09),
+P = {   # per-profile landmarks, fractions of H; unknown profile names use the default body
     "parashurama": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.07, ex=0.10, wx=0.12, ez=0.66, wz=0.52, hz=0.45, leg=0.045),
-}[PROFILE if PROFILE in ("parashurama",) else "default"]
+    "slim": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.07, ex=0.10, wx=0.12, ez=0.66, wz=0.52, hz=0.45, leg=0.045),
+    "kalki": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.12, ex=0.20, wx=0.18, ez=0.62, wz=0.49, hz=0.44, leg=0.07),
+}.get(PROFILE, None) or {
+    "default": dict(hip=0.50, knee=0.27, ankle=0.05, chest=0.80, neck=0.87, sx=0.13, ex=0.19, wx=0.23, ez=0.66, wz=0.52, hz=0.45, leg=0.09),
+}["default"]
 
 
 def V(x, z, y=0.0):
@@ -80,10 +83,47 @@ def seg_dist(pt, h, t):
     return (pt - (h + d * u)).length
 
 
+# Red cloth (sashes, drapes) must not ride up with the arms even when it hangs right beside a hand:
+# sample the colour map at each vertex and keep red, low-hanging vertices off the arm bones.
+import array
+tex = None
+for node in mesh.active_material.node_tree.nodes if mesh.active_material and mesh.active_material.use_nodes else []:
+    if node.type == "BSDF_PRINCIPLED" and node.inputs["Base Color"].is_linked:
+        src = node.inputs["Base Color"].links[0].from_node
+        if src.type == "TEX_IMAGE" and src.image:
+            tex = src.image
+tex_px = None
+if tex:
+    tw, th = tex.size
+    tex_px = array.array("f", tex.pixels[:])
+uv = mesh.data.uv_layers.active
+vert_uv = {}
+if uv and tex_px:
+    for loop in mesh.data.loops:
+        vert_uv.setdefault(loop.vertex_index, uv.data[loop.index].uv)
+
+
+def is_red(vi):
+    if vi not in vert_uv or not tex_px:
+        return False
+    u, vv = vert_uv[vi]
+    x, y = int(max(0, min(1, u)) * (tw - 1)), int(max(0, min(1, vv)) * (th - 1))
+    i = (y * tw + x) * 4
+    r, g, b = tex_px[i], tex_px[i + 1], tex_px[i + 2]
+    return r > 0.45 and g < 0.22 and b < 0.22 and r > 2.2 * max(g, b)
+
+
 for v in mesh.data.vertices:
     pt = mesh.matrix_world @ v.co
-    ds = sorted(((seg_dist(pt, h, t), n) for n, h, t in segs))[:4]
-    ws = [1.0 / (d + 0.03 * H) ** 4 for d, n in ds]
+    red_low = pt.z < 0.66 * H and is_red(v.index)
+    # inside an arm's thickness (0.05H) the arm bone wins outright; beyond it the influence falls off
+    # fast, so hip sashes and robes that hang beside the hands do not ride up with the arm
+    def eff(n, d):
+        if n.startswith(("Hand", "ForeArm", "UpperArm")):
+            return 99.0 if red_low else max(0.0, d - 0.05 * H) * 3.0
+        return d
+    ds = sorted(((eff(n, seg_dist(pt, h, t)), n) for n, h, t in segs))[:4]
+    ws = [1.0 / (d + 0.02 * H) ** 4 for d, n in ds]
     tot = sum(ws)
     for (d, n), w in zip(ds, ws):
         mesh.vertex_groups[n].add([v.index], w / tot, "REPLACE")
@@ -162,6 +202,27 @@ def walk(t):
             0.012 * abs(math.sin(2 * math.pi * t)) - 0.006)
 
 
+def run(t):
+    s = sw(t, 46)
+    kneeL = 70 * max(0.0, math.cos(2 * math.pi * t))
+    kneeR = 70 * max(0.0, -math.cos(2 * math.pi * t))
+    return ({"Thigh_L": ("X", -s), "Thigh_R": ("X", s), "Shin_L": ("X", kneeL), "Shin_R": ("X", kneeR),
+             "UpperArm_L": ("X", 0.8 * s), "UpperArm_R": ("X", -0.8 * s),
+             "ForeArm_L": ("X", -40), "ForeArm_R": ("X", -40),
+             "Spine": ("X", -8), "Chest": ("Z", -sw(t, 5)), "Head": ("X", 4)},
+            0.03 * abs(math.sin(2 * math.pi * t)) - 0.01)
+
+
+def slash(t):                           # right arm (character's right, -X) cuts overhead to low; torso twists with it
+    def ease(a, b, u):
+        u = max(0.0, min(1.0, u)); u = u * u * (3 - 2 * u); return a + (b - a) * u
+    if t < 0.35:   up, tw = ease(0, -150, t / 0.35), ease(0, 22, t / 0.35)       # wind up
+    elif t < 0.6:  up, tw = ease(-150, -25, (t - 0.35) / 0.25), ease(22, -26, (t - 0.35) / 0.25)   # strike
+    else:          up, tw = ease(-25, 0, (t - 0.6) / 0.4), ease(-26, 0, (t - 0.6) / 0.4)          # recover
+    return ({"UpperArm_R": ("X", up), "ForeArm_R": ("X", up * 0.2), "Spine": ("Z", tw), "Chest": ("Z", tw * 0.5),
+             "Thigh_R": ("X", 12 if 0.3 < t < 0.65 else 0), "Thigh_L": ("X", -8 if 0.3 < t < 0.65 else 0)}, 0.0)
+
+
 def bless(t):                           # left arm (+X, the free hand) raised in blessing, held, lowered
     up = math.sin(math.pi * min(1.0, t * 1.15)) ** 0.6 if t < 0.87 else 0.0
     return ({"UpperArm_L": ("X", -60 * up * BLESS), "ForeArm_L": ("X", -35 * up * BLESS), "Head": ("X", -4 * up),
@@ -170,7 +231,10 @@ def bless(t):                           # left arm (+X, the free hand) raised in
 
 make("idle", 72, idle)
 make("walk", 24, walk)
+make("run", 16, run)
 make("bless", 72, bless, loop=False)
+if PROFILE == "kalki":
+    make("slash", 24, slash, loop=False)
 bpy.ops.object.mode_set(mode="OBJECT")
 mesh.hide_viewport = False
 bpy.context.scene.frame_set(1)

@@ -28,8 +28,10 @@ if ratio < 1.0:
         d = o.modifiers.new("dec", "DECIMATE"); d.ratio = ratio
         bpy.ops.object.modifier_apply(modifier=d.name)
 for img in bpy.data.images:
-    if max(img.size) > TEX:
-        img.scale(TEX, TEX)
+    # colour and normal maps keep TEX; metal/roughness/emissive maps barely show, so they get half (size budget)
+    lim = TEX // 2 if any(k in img.name.lower() for k in ("metal", "rough", "emiss")) else TEX
+    if max(img.size) > lim:
+        img.scale(lim, lim)
 lo = mathutils.Vector((1e9,) * 3); hi = mathutils.Vector((-1e9,) * 3)
 for o in meshes:
     for v in o.data.vertices:

@@ -6,7 +6,7 @@
       "name": "Kalki",
       "role": "Avatar / playable protagonist",
       "tier": "A+B",
-      "model_slot_or_asset": "kalki (adult), kalki_teen, kalki_child, kalki_baby"
+      "model_slot_or_asset": "kalki (delivered, rigged: idle/walk/run/slash/bless, no sword), kalki_baby (delivered); kalki_child, kalki_teen pending; sword: char_sword.glb"
     },
     {
       "id": "CHAR_VISHNUYASHAS",
@@ -34,14 +34,14 @@
       "name": "Shiva (Shankara)",
       "role": "Divine benefactor; gives horse, bird, sword; never an enemy",
       "tier": "B",
-      "model_slot_or_asset": "shiva"
+      "model_slot_or_asset": "shiva (delivered, rigged)"
     },
     {
       "id": "CHAR_PARVATI",
       "name": "Parvati",
       "role": "Divine presence beside Shiva",
       "tier": "B",
-      "model_slot_or_asset": "parvati"
+      "model_slot_or_asset": "parvati (delivered, rigged)"
     },
     {
       "id": "MOUNT_DEVADATTA",
@@ -55,7 +55,7 @@
       "name": "Shuka the parrot",
       "role": "Messenger / companion",
       "tier": "B",
-      "model_slot_or_asset": ""
+      "model_slot_or_asset": "shuka (delivered, static green parrot with jewelled collar)"
     },
     {
       "id": "CHAR_PADMA",
@@ -209,7 +209,7 @@
       "name": "Brahma",
       "role": "Divine adviser; appeal of the gods",
       "tier": "B",
-      "model_slot_or_asset": "brahma"
+      "model_slot_or_asset": "brahma (delivered, rigged)"
     },
     {
       "id": "CHAR_VISHNU",
@@ -326,7 +326,7 @@
     {
       "key": "WPN_SWORD",
       "text_support": "Sword (Bhagavata 12.2.19); gem-handled sword from Shiva (K1 I.3)",
-      "rule": "Melee/mounted attacks are game mechanics, not prescribed move lists"
+      "rule": "Melee/mounted attacks are game mechanics, not prescribed move lists; model delivered as assets/models/char_sword.glb (separate from Kalki; Props.arm_with_sword attaches it to Hand_R)"
     },
     {
       "key": "MOUNT_DEVADATTA",
