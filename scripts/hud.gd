@@ -66,9 +66,26 @@ func _ready() -> void:
 		pillar_labels[p["id"]] = l
 
 	# --- top-right: animation test
+	var bar := HBoxContainer.new()
+	bar.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	bar.position = Vector2(-190, 10)
+	root.add_child(bar)
+	var anim_btn := Button.new()
+	anim_btn.text = "Anim (T)"
+	anim_btn.focus_mode = Control.FOCUS_NONE
+	anim_btn.pressed.connect(func(): anim_panel.visible = not anim_panel.visible)
+	bar.add_child(anim_btn)
+	var snd_btn := Button.new()
+	snd_btn.text = "Sound"
+	snd_btn.focus_mode = Control.FOCUS_NONE
+	snd_btn.pressed.connect(func():
+		Sfx.set_muted(not Sfx.muted)
+		snd_btn.text = "Muted" if Sfx.muted else "Sound")
+	bar.add_child(snd_btn)
 	anim_panel = PanelContainer.new()
+	anim_panel.visible = false
 	anim_panel.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	anim_panel.position = Vector2(-190, 14)
+	anim_panel.position = Vector2(-190, 56)
 	anim_panel.custom_minimum_size = Vector2(176, 0)
 	root.add_child(anim_panel)
 	var av := VBoxContainer.new()
@@ -82,13 +99,6 @@ func _ready() -> void:
 		b.focus_mode = Control.FOCUS_NONE
 		b.pressed.connect(func(): if player: player.test_play(a))
 		av.add_child(b)
-	var snd := Button.new()
-	snd.text = "Sound: ON  (M)"
-	snd.focus_mode = Control.FOCUS_NONE
-	snd.pressed.connect(func():
-		Sfx.set_muted(not Sfx.muted)
-		snd.text = "Sound: OFF (M)" if Sfx.muted else "Sound: ON  (M)")
-	av.add_child(snd)
 	var free := Button.new()
 	free.text = "Back to play"
 	free.focus_mode = Control.FOCUS_NONE
@@ -98,8 +108,9 @@ func _ready() -> void:
 	# --- bottom: subtitle
 	subtitle_panel = PanelContainer.new()
 	subtitle_panel.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
-	subtitle_panel.position = Vector2(-440, -150)
-	subtitle_panel.custom_minimum_size = Vector2(880, 0)
+	var touch := DisplayServer.is_touchscreen_available() or OS.has_feature("mobile") or OS.get_environment("KALKI_TOUCH") != ""
+	subtitle_panel.position = Vector2(-310, -150) if touch else Vector2(-440, -150)
+	subtitle_panel.custom_minimum_size = Vector2(620, 0) if touch else Vector2(880, 0)
 	subtitle_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	subtitle_panel.visible = false
 	root.add_child(subtitle_panel)
@@ -188,6 +199,8 @@ func _process(_delta: float) -> void:
 	if player:
 		astra_bar.value = 100.0 * (1.0 - player.special_cd / player.special_cd_max)
 		anim_title.text = "ANIMATION TEST  (T)%s" % ("  ON: " + player.test_name if player.anim_test else "")
+		if player.anim_test and not anim_panel.visible:
+			anim_panel.visible = true
 		anim_title.modulate = Color(1, 0.9, 0.4) if player.anim_test else Color(1, 1, 1)
 
 

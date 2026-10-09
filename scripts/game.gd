@@ -18,10 +18,11 @@ var dialogue: Dictionary = {}
 var dharma: float = 0.0
 var kills: int = 0
 var finished: bool = false
+var boss_defeated: bool = false
 var restored: Array = []
 var demo: bool = false
 var last_said: Dictionary = {}
-const MIN_GAP := {"player_hurt": 12.0, "banner_down": 5.0}
+const MIN_GAP := {"player_hurt": 12.0, "banner_down": 5.0, "boss_down": 8.0}
 var skip_title: bool = false   # set on restart so the title only shows once
 
 
@@ -45,6 +46,7 @@ func reset() -> void:
 	dharma = 0.0
 	kills = 0
 	finished = false
+	boss_defeated = false
 	restored.clear()
 	# debug hook for screenshots: KALKI_DHARMA=100 previews the Satya Yuga world
 	var preset := OS.get_environment("KALKI_DHARMA")
@@ -55,7 +57,8 @@ func reset() -> void:
 func add_dharma(amount: float) -> void:
 	if finished:
 		return
-	dharma = clampf(dharma + amount, 0.0, 100.0)
+	# Satya cannot be fully restored while Kali's twin generals still stand.
+	dharma = clampf(dharma + amount, 0.0, 100.0 if boss_defeated else 95.0)
 	dharma_changed.emit(dharma)
 	for p in world_cfg.get("pillars", []):
 		if dharma >= float(p["threshold"]) and not restored.has(p["id"]):

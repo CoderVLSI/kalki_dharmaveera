@@ -9,6 +9,7 @@ var narayana: Node3D
 var spawn_timer: float = 2.0
 var rng := RandomNumberGenerator.new()
 var seed_counter: int = 100
+var boss_spawned: bool = false
 
 
 func _ready() -> void:
@@ -99,6 +100,8 @@ func _process(delta: float) -> void:
 		get_tree().reload_current_scene()
 	if Game.finished or player.state == "dead":
 		return
+	if not boss_spawned and Game.dharma >= 80.0:
+		_spawn_twins()
 	_spawner(delta)
 
 
@@ -117,7 +120,8 @@ func _spawner(delta: float) -> void:
 		if Game.dharma >= float(r["from"]):
 			rule = r
 	spawn_timer = float(rule["interval"])
-	if get_tree().get_nodes_in_group("enemies").size() >= int(rule["max_alive"]):
+	var cap := 3 if get_tree().get_nodes_in_group("boss").size() > 0 else int(rule["max_alive"])
+	if get_tree().get_nodes_in_group("enemies").size() >= cap:
 		return
 	var weights: Dictionary = rule["weights"]
 	var total := 0.0
@@ -133,7 +137,16 @@ func _spawner(delta: float) -> void:
 	_spawn(kind, rng.randf_range(32.0, 46.0))
 
 
-func _spawn(kind: String, dist: float) -> void:
+func _spawn_twins() -> void:
+	boss_spawned = true
+	var a := _spawn("koka", 34.0)
+	var b := _spawn("vikoka", 38.0)
+	a.twin = b
+	b.twin = a
+	Game.say("boss_intro")
+
+
+func _spawn(kind: String, dist: float) -> Enemy:
 	var a := rng.randf() * TAU
 	var pos := player.global_position + Vector3(cos(a), 0, sin(a)) * dist
 	var flat := Vector2(pos.x, pos.z)
@@ -144,3 +157,4 @@ func _spawn(kind: String, dist: float) -> void:
 	seed_counter += 1
 	e.setup(kind, pos, player, seed_counter)
 	add_child(e)
+	return e

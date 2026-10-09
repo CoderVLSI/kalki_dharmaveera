@@ -28,6 +28,8 @@ var visual: Node3D
 var aim_marker: MeshInstance3D
 var base_color: Color
 var strike_done: bool = false
+var twin: Enemy
+var down_t: float = 0.0
 
 
 func setup(k: String, pos: Vector3, p: Node3D, seed_value: int) -> void:
@@ -44,6 +46,8 @@ func setup(k: String, pos: Vector3, p: Node3D, seed_value: int) -> void:
 
 func _ready() -> void:
 	add_to_group("enemies")
+	if kind == "koka" or kind == "vikoka":
+		add_to_group("boss")
 	_build_visual()
 	_update_label()
 
@@ -162,7 +166,7 @@ func _build_visual() -> void:
 
 	label = Label3D.new()
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.position.y = 3.2 * float(cfg["scale"])
+	label.position.y = 3.2 * float(cfg["scale"]) + float(get_instance_id() % 3) * 0.55
 	label.pixel_size = 0.012
 	label.font_size = 28
 	label.outline_size = 8
@@ -170,6 +174,10 @@ func _build_visual() -> void:
 
 
 func _update_label() -> void:
+	if state == "downed":
+		var other: String = twin.cfg["name"] if is_instance_valid(twin) else "his brother"
+		label.text = "%s has fallen\nstrike %s NOW" % [cfg["name"], other]
+		return
 	var n := int(round(clampf(hp / max_hp, 0.0, 1.0) * 8.0))
 	label.text = "%s\n%s%s" % [cfg["name"], "▰".repeat(n), "▱".repeat(8 - n)]
 
@@ -178,6 +186,11 @@ func _physics_process(delta: float) -> void:
 	if state == "dead" or player == null:
 		return
 	cd = maxf(0.0, cd - delta)
+	if state == "downed":
+		_downed(delta)
+		return
+	var pd := global_position.distance_to(player.global_position)
+	label.visible = pd < 24.0 or hp < max_hp or is_in_group("boss")
 	# knockback decays
 	if knock.length() > 0.1:
 		global_position += knock * delta
@@ -248,7 +261,7 @@ func _chase(to: Vector3, dist: float, speed: float, delta: float) -> void:
 		flee_t = 3.0
 		return
 	match kind:
-		"raider":
+		"raider", "koka", "vikoka":
 			if dist > rng_attack:
 				_step(to.normalized(), speed, delta)
 			else:
@@ -288,7 +301,7 @@ func _strike(dist: float) -> void:
 	cd = float(cfg["recover"]) + 0.4
 	arm_pivot.rotation.x = 1.0
 	aim_marker.visible = false
-	if kind == "raider":
+	if kind == "raider" or kind == "koka" or kind == "vikoka":
 		if dist <= float(cfg["attack_range"]) * 1.4:
 			player.take_damage(float(cfg["damage"]), global_position)
 	elif kind == "archer":
@@ -316,7 +329,7 @@ func _face(dir: Vector3, delta: float) -> void:
 
 
 func take_damage(amount: float, from: Vector3, knockback: float = 6.0, stun_time: float = 0.35) -> void:
-	if state == "dead":
+	if state == "dead" or state == "downed":
 		return
 	hp -= amount
 	var away := global_position - from
@@ -334,7 +347,49 @@ func take_damage(amount: float, from: Vector3, knockback: float = 6.0, stun_time
 	Sfx.play("hit", -1.0, 0.1)
 	_update_label()
 	if hp <= 0.0:
+		if _is_twin() and is_instance_valid(twin) and twin.state != "dead":
+			_fall()
+		else:
+			_die()
+
+
+func _is_twin() -> bool:
+	return kind == "koka" or kind == "vikoka"
+
+
+## Canon rule: each twin revives unless both are brought down together.
+func _fall() -> void:
+	hp = 0.0
+	if twin.state == "downed":
+		# both are down at once: slain for good
+		Game.boss_defeated = true
+		var brother := twin
 		_die()
+		brother._die()
+		Game.say("boss_dead")
+		return
+	state = "downed"
+	down_t = float(cfg["revive_window"])
+	aim_marker.visible = false
+	var tw := create_tween()
+	tw.tween_property(visual, "rotation:x", deg_to_rad(-80.0), 0.3)
+	_update_label()
+	Game.say("boss_down")
+	Game.add_dharma(0.0)
+
+
+func _downed(delta: float) -> void:
+	down_t -= delta
+	if not is_instance_valid(twin) or twin.state == "dead":
+		_die()
+		return
+	if down_t <= 0.0:
+		hp = max_hp * 0.6
+		state = "chase"
+		var tw := create_tween()
+		tw.tween_property(visual, "rotation:x", 0.0, 0.3)
+		_update_label()
+		Sfx.play("boom", -8.0, 0.05)
 
 
 func _hit_flash() -> void:

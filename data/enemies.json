@@ -3,22 +3,103 @@
   "raider": {
     "name": "Raider of Kali",
     "tier": "invented",
-    "hp": 60, "speed": 5.2, "damage": 9, "notice": 26, "attack_range": 2.6,
-    "windup": 0.55, "recover": 0.8, "flee_hp_frac": 0.25, "dharma": 6,
-    "scale": 1.0, "color": [0.45, 0.12, 0.10]
+    "hp": 60,
+    "speed": 5.2,
+    "damage": 9,
+    "notice": 26,
+    "attack_range": 2.6,
+    "windup": 0.55,
+    "recover": 0.8,
+    "flee_hp_frac": 0.25,
+    "dharma": 6,
+    "scale": 1.0,
+    "color": [
+      0.45,
+      0.12,
+      0.1
+    ]
   },
   "archer": {
     "name": "Archer of Kali",
     "tier": "invented",
-    "hp": 38, "speed": 4.4, "damage": 8, "notice": 34, "attack_range": 24,
-    "preferred_range": 15, "windup": 1.0, "recover": 2.2, "flee_hp_frac": 0.0, "dharma": 8,
-    "scale": 0.95, "color": [0.30, 0.16, 0.34]
+    "hp": 38,
+    "speed": 4.4,
+    "damage": 8,
+    "notice": 34,
+    "attack_range": 24,
+    "preferred_range": 15,
+    "windup": 1.0,
+    "recover": 2.2,
+    "flee_hp_frac": 0.0,
+    "dharma": 8,
+    "scale": 0.95,
+    "color": [
+      0.3,
+      0.16,
+      0.34
+    ]
   },
   "banner": {
     "name": "Banner-bearer",
     "tier": "invented",
-    "hp": 90, "speed": 3.8, "damage": 0, "notice": 40, "attack_range": 0,
-    "buff_radius": 14, "buff_speed": 1.3, "windup": 1.0, "recover": 1.0, "flee_hp_frac": 0.0,
-    "dharma": 14, "scale": 1.15, "color": [0.55, 0.05, 0.05]
+    "hp": 90,
+    "speed": 3.8,
+    "damage": 0,
+    "notice": 40,
+    "attack_range": 0,
+    "buff_radius": 14,
+    "buff_speed": 1.3,
+    "windup": 1.0,
+    "recover": 1.0,
+    "flee_hp_frac": 0.0,
+    "dharma": 14,
+    "scale": 1.15,
+    "color": [
+      0.55,
+      0.05,
+      0.05
+    ]
+  },
+  "koka": {
+    "tier": "canon-adapted",
+    "hp": 150,
+    "speed": 5.8,
+    "damage": 14,
+    "notice": 80,
+    "attack_range": 3.6,
+    "windup": 0.7,
+    "recover": 1.0,
+    "flee_hp_frac": 0.0,
+    "dharma": 10,
+    "scale": 1.7,
+    "revive_window": 6.0,
+    "ref": "Kalki Purana: twin generals Koka and Vikoka revive each other; slain only if struck together [VERIFY]",
+    "name": "Koka",
+    "color": [
+      0.32,
+      0.08,
+      0.4
+    ]
+  },
+  "vikoka": {
+    "tier": "canon-adapted",
+    "hp": 150,
+    "speed": 5.8,
+    "damage": 14,
+    "notice": 80,
+    "attack_range": 3.6,
+    "windup": 0.7,
+    "recover": 1.0,
+    "flee_hp_frac": 0.0,
+    "dharma": 10,
+    "scale": 1.7,
+    "revive_window": 6.0,
+    "ref": "Kalki Purana: twin generals Koka and Vikoka revive each other; slain only if struck together [VERIFY]",
+    "name": "Vikoka",
+    "color": [
+      0.08,
+      0.22,
+      0.38
+    ]
   }
 }

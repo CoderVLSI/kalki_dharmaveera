@@ -62,5 +62,26 @@
     "ref": "Bhagavata 12.2 [VERIFY]",
     "text": "Kali is cast down. The Satya Yuga dawns.",
     "voice_text": "Kali is cast down. The Satya Yuga dawns."
+  },
+  "boss_intro": {
+    "speaker": "Shuka",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana: Koka and Vikoka [VERIFY]",
+    "text": "Koka and Vikoka, Kali's twin generals! One rises when the other falls. Strike them both down together, my Lord!",
+    "voice_text": "Koka and Vikoka, Kali's twin generals! One rises when the other falls. Strike them both down together, my Lord!"
+  },
+  "boss_down": {
+    "speaker": "Shuka",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana [VERIFY]",
+    "text": "One twin has fallen! Strike the other before he rises!",
+    "voice_text": "One twin has fallen! Strike the other before he rises!"
+  },
+  "boss_dead": {
+    "speaker": "Shuka",
+    "tier": "canon-adapted",
+    "ref": "Kalki Purana [VERIFY]",
+    "text": "Both are slain, and for good! Kali stands alone, my Lord.",
+    "voice_text": "Both are slain, and for good! Kali stands alone, my Lord."
   }
 }
