@@ -253,7 +253,7 @@ func _glow(c: Color) -> StandardMaterial3D:
 func _say(id: String) -> float:
 	var line: Dictionary = Game.dialogue.get(id, {})
 	_sub.text = "%s:  %s" % [line.get("speaker", ""), line.get("text", "")]
-	_tier.text = "[%s]" % line.get("tier", "")
+	_tier.text = "[%s]" % Game.tier_label(line)
 	_panel.visible = true
 	Game.voice_line.emit(id)
 	var path := Sfx.VOICE_DIR % id

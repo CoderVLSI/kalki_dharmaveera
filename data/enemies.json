@@ -95,7 +95,7 @@
     "dharma": 10,
     "scale": 1.7,
     "revive_window": 6.0,
-    "ref": "Kalki Purana: twin generals Koka and Vikoka revive each other; slain only if struck together [VERIFY]",
+    "ref": "Koka and Vikoka are named adversaries in Kalki Purana III.6-8 [B]; the twin-revive rule and boss phases are G game design, not scripture",
     "name": "Koka",
     "color": [
       0.32,
@@ -125,7 +125,7 @@
     "dharma": 10,
     "scale": 1.7,
     "revive_window": 6.0,
-    "ref": "Kalki Purana: twin generals Koka and Vikoka revive each other; slain only if struck together [VERIFY]",
+    "ref": "Koka and Vikoka are named adversaries in Kalki Purana III.6-8 [B]; the twin-revive rule and boss phases are G game design, not scripture",
     "name": "Vikoka",
     "color": [
       0.08,

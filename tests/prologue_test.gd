@@ -10,6 +10,13 @@ func _ready() -> void:
 		check(Game.dialogue.has(id) and ResourceLoader.exists(Sfx.VOICE_DIR % id), "line + voice for " + id)
 	check(Props.character("nonexistent_slot", 1.8) == null, "empty character slot falls back to null")
 	check(Props.parts("tree_dead").size() > 0 and Props.parts("tree_alive").size() > 0, "tree models load")
+	for id in Game.dialogue:
+		if not id.begins_with("_"):
+			var l: Dictionary = Game.dialogue[id]
+			check(l.has("source_tier") and l.has("speech_type") and l.has("locator"), "dialogue %s carries source_tier/speech_type/locator" % id)
+	for f in ["missions", "characters"]:
+		check(not Game._load_json("res://data/%s.json" % f).is_empty(), "data/%s.json loads" % f)
+	check(Game._load_json("res://data/missions.json")["missions"].size() == 18, "18 missions M00-M17")
 	var p := Prologue.new()
 	add_child(p)
 	var done := [false]

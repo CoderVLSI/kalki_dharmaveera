@@ -71,6 +71,13 @@ func add_dharma(amount: float) -> void:
 		victory.emit()
 
 
+## Subtitle tag per the reference protocol: source tier (A/B/G) plus an explicit adapted-dialogue mark.
+static func tier_label(line: Dictionary) -> String:
+	if line.get("speech_type", "") == "DRAMATIZED_ADAPTATION":
+		return "%s · ADAPTED DIALOGUE - NOT A VERSE" % line.get("source_tier", line.get("tier", ""))
+	return str(line.get("source_tier", line.get("tier", "")))
+
+
 func say(line_id: String) -> void:
 	var line: Dictionary = dialogue.get(line_id, {})
 	if line.is_empty():
@@ -79,5 +86,5 @@ func say(line_id: String) -> void:
 	if MIN_GAP.has(line_id) and now - float(last_said.get(line_id, -999.0)) < float(MIN_GAP[line_id]):
 		return
 	last_said[line_id] = now
-	message.emit(line["speaker"], line["text"], line["tier"])
+	message.emit(line["speaker"], line["text"], tier_label(line))
 	voice_line.emit(line_id)

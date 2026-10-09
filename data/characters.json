@@ -1,0 +1,351 @@
+{
+  "_note": "Registry from docs/sources/Kalki_Purana_Game_Reference.pdf sections 7-8. Use these asset IDs without renaming. Names are literary figures, not identity labels. The PDF mentions a companion Kalki_Game_Agent_Data.json that was not supplied; this file is rebuilt from the PDF text.",
+  "characters": [
+    {
+      "id": "CHAR_KALKI",
+      "name": "Kalki",
+      "role": "Avatar / playable protagonist",
+      "tier": "A+B",
+      "model_slot_or_asset": "kalki (adult), kalki_teen, kalki_child, kalki_baby"
+    },
+    {
+      "id": "CHAR_VISHNUYASHAS",
+      "name": "Vishnuyashas",
+      "role": "Father / Vedic elder",
+      "tier": "A+B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_SUMATI",
+      "name": "Sumati",
+      "role": "Mother",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_PARASHURAMA",
+      "name": "Parashurama",
+      "role": "Guru / warrior-sage",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_SHIVA",
+      "name": "Shiva (Shankara)",
+      "role": "Divine benefactor; gives horse, bird, sword; never an enemy",
+      "tier": "B",
+      "model_slot_or_asset": "shiva"
+    },
+    {
+      "id": "CHAR_PARVATI",
+      "name": "Parvati",
+      "role": "Divine presence beside Shiva",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "MOUNT_DEVADATTA",
+      "name": "Devadatta",
+      "role": "Horse / mount (white by tradition, colour not in Bhagavata)",
+      "tier": "A+B",
+      "model_slot_or_asset": "kalki_devadatta_rigged.glb (existing)"
+    },
+    {
+      "id": "COMP_SHUKA",
+      "name": "Shuka the parrot",
+      "role": "Messenger / companion",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_PADMA",
+      "name": "Padma / Padmavati",
+      "role": "Lakshmi manifestation / consort",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_BRHADRATHA",
+      "name": "Brhadratha",
+      "role": "King of Simhala, Padma's father",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_KAUMUDI",
+      "name": "Kaumudi",
+      "role": "Padma's mother",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_VISAKHAYUPA",
+      "name": "Vishakhayupa",
+      "role": "Righteous ruler / ally",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_KAVI",
+      "name": "Kavi",
+      "role": "Elder brother",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_PRAJNA",
+      "name": "Prajna",
+      "role": "Elder brother",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_SUMANTRA",
+      "name": "Sumantra / Sumantraka",
+      "role": "Elder brother",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_MARU",
+      "name": "Maru",
+      "role": "Restorer of Solar dynasty",
+      "tier": "A+B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_DEVAPI",
+      "name": "Devapi",
+      "role": "Restorer of Lunar dynasty",
+      "tier": "A+B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_KALI",
+      "name": "Kali (personified age)",
+      "role": "Main adversary; NOT the goddess Kali; embodies adharma as actions",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_DHARMA",
+      "name": "Dharma",
+      "role": "Personified dharma; appeals to Kalki",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_KRITA",
+      "name": "Krita Yuga personified",
+      "role": "Embodiment of restored age; gives turning-point prophecy",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "BOSS_KUTHODARI",
+      "name": "Kuthodari",
+      "role": "Himalayan demoness; large-scale boss",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "BOSS_VIKANJA",
+      "name": "Vikanja",
+      "role": "Kuthodari's child / adversary; brahmastra confrontation",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "BOSS_KOKA",
+      "name": "Koka",
+      "role": "Paired war adversary",
+      "tier": "B",
+      "model_slot_or_asset": "enemy_general (placeholder model)"
+    },
+    {
+      "id": "BOSS_VIKOKA",
+      "name": "Vikoka",
+      "role": "Paired war adversary",
+      "tier": "B",
+      "model_slot_or_asset": "enemy_general (placeholder model)"
+    },
+    {
+      "id": "CHAR_SHASHIDHVAJA",
+      "name": "Shashidhvaja",
+      "role": "King of Bhallata; opponent becomes ally",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_SHUSHANTA",
+      "name": "Shushanta",
+      "role": "Shashidhvaja's wife, devotee; recognizes divinity",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_RAMA",
+      "name": "Rama (Kalki's consort)",
+      "role": "Shashidhvaja's daughter; distinguish from Lord Rama and Balarama",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_SULOCANA",
+      "name": "Sulocana",
+      "role": "Cursed maiden in Kanchanapuri; rescue, not a kill objective",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_NARADA",
+      "name": "Narada",
+      "role": "Sage and guide",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_BRAHMA",
+      "name": "Brahma",
+      "role": "Divine adviser; appeal of the gods",
+      "tier": "B",
+      "model_slot_or_asset": "brahma"
+    },
+    {
+      "id": "CHAR_VISHNU",
+      "name": "Vishnu / Narayana",
+      "role": "Source identity and final form",
+      "tier": "A+B",
+      "model_slot_or_asset": "narayana.glb (existing)"
+    },
+    {
+      "id": "CHAR_YAJNAVALKYA",
+      "name": "Yajnavalkya",
+      "role": "Priestly figure; Agni 16.8 only; cameo needs script review",
+      "tier": "A",
+      "model_slot_or_asset": ""
+    },
+    {
+      "id": "CHAR_ANANTA_RISHI",
+      "name": "Sage Ananta",
+      "role": "Teacher of Maya narrative; not automatically Shesha",
+      "tier": "B",
+      "model_slot_or_asset": ""
+    }
+  ],
+  "regions": [
+    {
+      "id": "REG_SHAMBHALA",
+      "place": "Shambhala [A]",
+      "level_use": "Village/home, training hub, final restored capital"
+    },
+    {
+      "id": "REG_MAHENDRA",
+      "place": "Mahendra mountain [B]",
+      "level_use": "Parashurama hermitage and training"
+    },
+    {
+      "id": "REG_BILVODAKESVARA",
+      "place": "Bilvodakeshvara shrine [B]",
+      "level_use": "Shiva worship and gifts"
+    },
+    {
+      "id": "REG_SIMHALA",
+      "place": "Simhala / Karumati [B]",
+      "level_use": "Padma story and wedding"
+    },
+    {
+      "id": "REG_MAHISMATI",
+      "place": "Mahishmati [B]",
+      "level_use": "Vishakhayupa polity; not necessarily visitable"
+    },
+    {
+      "id": "REG_KIKATA",
+      "place": "Kikata [B]",
+      "level_use": "Late sectarian chapter; consider codex-only"
+    },
+    {
+      "id": "REG_HIMALAYA",
+      "place": "Himalayas [B]",
+      "level_use": "Kuthodari, rishis, Maru/Devapi"
+    },
+    {
+      "id": "REG_KALAPA",
+      "place": "Kalapa [A+B]",
+      "level_use": "Dynastic survivors; exact geography unresolved"
+    },
+    {
+      "id": "REG_VISASANA",
+      "place": "Visasana / Vinasana [B]",
+      "level_use": "Kali stronghold; edition-sensitive spelling"
+    },
+    {
+      "id": "REG_BHALLATA",
+      "place": "Bhallata [B]",
+      "level_use": "Shashidhvaja court"
+    },
+    {
+      "id": "REG_KANCHANAPURI",
+      "place": "Kanchanapuri [B]",
+      "level_use": "Sulocana rescue"
+    },
+    {
+      "id": "REG_AYODHYA",
+      "place": "Ayodhya [B]",
+      "level_use": "Maru enthronement"
+    },
+    {
+      "id": "REG_MATHURA",
+      "place": "Mathura [B]",
+      "level_use": "Suryaketu enthronement"
+    },
+    {
+      "id": "REG_VARANAVATA",
+      "place": "Varanavata [B]",
+      "level_use": "Devapi territorial arrangement"
+    },
+    {
+      "id": "REG_GANGA",
+      "place": "Ganga / sacred confluence [B]",
+      "level_use": "Closure and rites"
+    },
+    {
+      "id": "REG_VAIKUNTHA",
+      "place": "Vaikuntha [B]",
+      "level_use": "Return of divine form"
+    }
+  ],
+  "equipment": [
+    {
+      "key": "WPN_SWORD",
+      "text_support": "Sword (Bhagavata 12.2.19); gem-handled sword from Shiva (K1 I.3)",
+      "rule": "Melee/mounted attacks are game mechanics, not prescribed move lists"
+    },
+    {
+      "key": "MOUNT_DEVADATTA",
+      "text_support": "Swift horse Devadatta (Bhagavata 12.2.19); Shiva's gifted horse in later account",
+      "rule": "Winged or mechanical horse variants are visual adaptation"
+    },
+    {
+      "key": "COMP_SHUKA",
+      "text_support": "Parrot granted by Shiva (K1 I.3)",
+      "rule": "Messenger identity supported; scouting camera adapted"
+    },
+    {
+      "key": "ASTRA_BRAHMASTRA",
+      "text_support": "Used against Vikanja (K1 III.2)",
+      "rule": "Late campaign only; minimal speculative VFX"
+    },
+    {
+      "key": "ASTRA_OTHER",
+      "text_support": "No complete spell inventory verified",
+      "rule": "Locked; do not attribute fantasy magic to scripture (the current 'Astra' rear-up shockwave is a G game ability)"
+    },
+    {
+      "key": "GEAR_ARMOR",
+      "text_support": "Epic parallel mentions arms/armor",
+      "rule": "Artistic, not archaeological claims"
+    }
+  ],
+  "model_slot_note": "Hand-made (Rodin) character slots live at assets/models/char_<slot>.glb; see scripts/props.gd Props.character()."
+}

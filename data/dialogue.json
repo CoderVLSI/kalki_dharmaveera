@@ -3,106 +3,166 @@
   "narayana_intro": {
     "speaker": "Narayana",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 12.2 [VERIFY]; Kalki Purana: gods petition Vishnu",
+    "ref": "K1 I.1-I.2 (Earth and gods appeal; Vishnu announces descent) [B]; Bhagavata 12.2 [A]",
     "text": "Dharma stands on a single leg and Kali rules the age. Go, Kalki. Ride out from Shambhala and end it.",
-    "voice_text": "Dharma stands on a single leg, and Kali rules the age. Go, Kalki. Ride out from Shambhala, and end it."
+    "voice_text": "Dharma stands on a single leg, and Kali rules the age. Go, Kalki. Ride out from Shambhala, and end it.",
+    "source_tier": "B",
+    "locator": "K1 I.1-I.2",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "shuka_start": {
     "speaker": "Shuka",
     "tier": "canon-adapted",
     "ref": "Kalki Purana (Shuka the parrot) [VERIFY]",
     "text": "Raiders of Kali's host, my Lord! Ride them down. Q and E turn the camera.",
-    "voice_text": "Raiders of Kali's host, my Lord! Ride them down!"
+    "voice_text": "Raiders of Kali's host, my Lord! Ride them down!",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "pillar_tapas": {
     "speaker": "Narrator",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 1.17 [VERIFY]",
+    "ref": "Bhagavata 12.2.1 lists dharma, satya, shaucha, kshama, daya declining [A]; the four-pillars device is G",
     "text": "TAPAS is restored. Austerity returns to the land.",
-    "voice_text": "Tapas is restored. Austerity returns to the land."
+    "voice_text": "Tapas is restored. Austerity returns to the land.",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "pillar_shaucha": {
     "speaker": "Narrator",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 1.17 [VERIFY]",
+    "ref": "Bhagavata 12.2.1 lists dharma, satya, shaucha, kshama, daya declining [A]; the four-pillars device is G",
     "text": "SHAUCHA is restored. The rivers run clean.",
-    "voice_text": "Shaucha is restored. The rivers run clean."
+    "voice_text": "Shaucha is restored. The rivers run clean.",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "pillar_daya": {
     "speaker": "Narrator",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 1.17 [VERIFY]",
+    "ref": "Bhagavata 12.2.1 lists dharma, satya, shaucha, kshama, daya declining [A]; the four-pillars device is G",
     "text": "DAYA is restored. Compassion returns to the hearts of men.",
-    "voice_text": "Daya is restored. Compassion returns to the hearts of men."
+    "voice_text": "Daya is restored. Compassion returns to the hearts of men.",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "pillar_satya": {
     "speaker": "Narrator",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 1.17 [VERIFY]",
+    "ref": "Bhagavata 12.2.1 lists dharma, satya, shaucha, kshama, daya declining [A]; the four-pillars device is G",
     "text": "SATYA is restored. Dharma stands on all four legs.",
-    "voice_text": "Satya is restored. Dharma stands on all four legs."
+    "voice_text": "Satya is restored. Dharma stands on all four legs.",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "banner_down": {
     "speaker": "Shuka",
     "tier": "invented",
     "ref": "",
     "text": "The banner falls! Their host loses heart.",
-    "voice_text": "The banner falls! Their host loses heart."
+    "voice_text": "The banner falls! Their host loses heart.",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "player_hurt": {
     "speaker": "Shuka",
     "tier": "invented",
     "ref": "",
     "text": "Mind your guard, my Lord! Dash with SPACE.",
-    "voice_text": "Mind your guard, my Lord!"
+    "voice_text": "Mind your guard, my Lord!",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "victory": {
     "speaker": "Narayana",
     "tier": "canon-adapted",
-    "ref": "Bhagavata 12.2 [VERIFY]",
+    "ref": "Bhagavata 12.2.23 (Krita begins with Kalki present) [A]",
     "text": "Kali is cast down. The Satya Yuga dawns.",
-    "voice_text": "Kali is cast down. The Satya Yuga dawns."
+    "voice_text": "Kali is cast down. The Satya Yuga dawns.",
+    "source_tier": "A",
+    "locator": "B3 12.2.23",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "boss_intro": {
     "speaker": "Shuka",
     "tier": "canon-adapted",
     "ref": "Kalki Purana: Koka and Vikoka [VERIFY]",
     "text": "Koka and Vikoka, Kali's twin generals! One rises when the other falls. Strike them both down together, my Lord!",
-    "voice_text": "Koka and Vikoka, Kali's twin generals! One rises when the other falls. Strike them both down together, my Lord!"
+    "voice_text": "Koka and Vikoka, Kali's twin generals! One rises when the other falls. Strike them both down together, my Lord!",
+    "source_tier": "B",
+    "locator": "K1 III.6-8",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "boss_down": {
     "speaker": "Shuka",
     "tier": "canon-adapted",
     "ref": "Kalki Purana [VERIFY]",
     "text": "One twin has fallen! Strike the other before he rises!",
-    "voice_text": "One twin has fallen! Strike the other before he rises!"
+    "voice_text": "One twin has fallen! Strike the other before he rises!",
+    "source_tier": "G",
+    "locator": "",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "boss_dead": {
     "speaker": "Shuka",
     "tier": "canon-adapted",
     "ref": "Kalki Purana [VERIFY]",
     "text": "Both are slain, and for good! Kali stands alone, my Lord.",
-    "voice_text": "Both are slain, and for good! Kali stands alone, my Lord."
+    "voice_text": "Both are slain, and for good! Kali stands alone, my Lord.",
+    "source_tier": "B",
+    "locator": "K1 III.6-8",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "prologue_plea": {
     "speaker": "Brahma",
     "tier": "canon-adapted",
-    "ref": "Kalki Purana 1.2-1.3 (devas and Earth petition Vishnu; he vows to be born in Shambhala to Vishnuyasha and Sumati) [VERIFY]",
+    "ref": "K1 I.1-I.2 (Brahma and the gods appeal; Vishnu vows incarnation in Shambhala to Vishnuyashas and Sumati) [B]",
     "text": "Lord, Kali has seized the age. Dharma totters, the earth groans under Kali's host, and the devatas have no refuge but You.",
-    "voice_text": "Lord, Kali has seized the age. Dharma totters, the earth groans under Kali's host, and the devatas have no refuge but You."
+    "voice_text": "Lord, Kali has seized the age. Dharma totters, the earth groans under Kali's host, and the devatas have no refuge but You.",
+    "source_tier": "B",
+    "locator": "K1 I.1-I.2",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "prologue_vow": {
     "speaker": "Narayana",
     "tier": "canon-adapted",
-    "ref": "Kalki Purana 1.2-1.3 (devas and Earth petition Vishnu; he vows to be born in Shambhala to Vishnuyasha and Sumati) [VERIFY]",
+    "ref": "K1 I.1-I.2 (Brahma and the gods appeal; Vishnu vows incarnation in Shambhala to Vishnuyashas and Sumati) [B]",
     "text": "Fear not. I shall descend to the earth in Shambhala, born as Kalki, son of Vishnuyasha and Sumati, and with the sword I shall end Kali's reign.",
-    "voice_text": "Fear not. I shall descend to the earth in Shambhala, born as Kalki, son of Vishnuyasha and Sumati. With the sword, I shall end Kali's reign."
+    "voice_text": "Fear not. I shall descend to the earth in Shambhala, born as Kalki, son of Vishnuyasha and Sumati. With the sword, I shall end Kali's reign.",
+    "source_tier": "B",
+    "locator": "K1 I.2",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   },
   "prologue_birth": {
     "speaker": "Narrator",
     "tier": "canon-adapted",
-    "ref": "Kalki Purana 1.2 (birth in Shambhala) [VERIFY]",
+    "ref": "Bhagavata 12.2.18 (birth in Shambhala) [A]; K1 I.2 [B]",
     "text": "And so, in the village of Shambhala, a child was born, and the age of Kali began to count its last days.",
-    "voice_text": "And so, in the village of Shambhala, a child was born, and the age of Kali began to count its last days."
+    "voice_text": "And so, in the village of Shambhala, a child was born, and the age of Kali began to count its last days.",
+    "source_tier": "A+B",
+    "locator": "B3 12.2.18; K1 I.2",
+    "language": "en",
+    "speech_type": "DRAMATIZED_ADAPTATION"
   }
 }

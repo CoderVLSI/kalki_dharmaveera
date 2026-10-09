@@ -1,0 +1,204 @@
+{
+  "_note": "From docs/sources/Kalki_Purana_Game_Reference.pdf section 6 (research edition 1.0, 9 Oct 2026). Source tags: A=Bhagavata/Vishnu/Agni, B=Kalki Purana expanded account, G=game adaptation. Playable design, encounters and abilities are G. Order: M00..M17 (M09 is codex-first).",
+  "missions": [
+    {
+      "id": "M00",
+      "title": "The Age Fractures",
+      "tier": "A+B",
+      "source": "B3 12.2.1-17; H1 I.1",
+      "scriptural_event": "Explore moral collapse, save refugees, witness corrupt kings.",
+      "playable_design": "Environmental storytelling; investigation; civilian protection.",
+      "encounters": "Corrupt officials, raiders by deed; not identity groups.",
+      "integrity_gate": "World-state levels pre-planned; symbolic UI for truth, safety, protection.",
+      "status": "partial: Dharma world-state flip exists in the arena prototype"
+    },
+    {
+      "id": "M01",
+      "title": "Council of the Gods",
+      "tier": "B",
+      "source": "K1 I.1-I.2",
+      "scriptural_event": "Earth appeals; Vishnu announces descent.",
+      "playable_design": "Cinematic non-combat council; establish prophecy.",
+      "encounters": "None.",
+      "integrity_gate": "Optional portrait of divine assembly.",
+      "status": "implemented: prologue (Brahma and devatas petition Narayana; light columns until Rodin models arrive)"
+    },
+    {
+      "id": "M02",
+      "title": "The House in Shambhala",
+      "tier": "A+B",
+      "source": "B3 12.2.18; K1 I.2",
+      "scriptural_event": "Birth, parents, naming, elder brothers.",
+      "playable_design": "Home village traversal, family interactions, early dharma themes.",
+      "encounters": "None.",
+      "integrity_gate": "Do not claim Shambhala is a known modern city.",
+      "status": "partial: village props placed; no playable chapter"
+    },
+    {
+      "id": "M03",
+      "title": "Parashurama's Gurukula",
+      "tier": "B",
+      "source": "K1 I.3",
+      "scriptural_event": "Study Vedas, arts and Dhanurveda with Parashurama.",
+      "playable_design": "Melee tutorial, archery, nonlethal practice, scripted lessons.",
+      "encounters": "Training constructs / volunteer sparring only.",
+      "integrity_gate": "Revalidate any earlier Parashurama model import (rig and licence).",
+      "status": "not started"
+    },
+    {
+      "id": "M04",
+      "title": "Three Gifts of Mahadeva",
+      "tier": "B",
+      "source": "K1 I.3",
+      "scriptural_event": "Worship Shiva; obtain horse, Shuka parrot, jewel-hilted sword.",
+      "playable_design": "Devotional approach, equipping gear, mounted movement trial.",
+      "encounters": "No invented Shiva combat boss.",
+      "integrity_gate": "Shiva is giver; not defeated by Kalki.",
+      "status": "not started"
+    },
+    {
+      "id": "M05",
+      "title": "The Parrot of Simhala",
+      "tier": "B",
+      "source": "K1 I.4-7",
+      "scriptural_event": "Meet Vishakhayupa; learn of Padma; messenger exchanges.",
+      "playable_design": "Exploration, dialogue puzzles, parrot camera/scouting.",
+      "encounters": "None.",
+      "integrity_gate": "Scout mode is an adaptation, not in the Purana.",
+      "status": "not started"
+    },
+    {
+      "id": "M06",
+      "title": "The Lotus of Simhala",
+      "tier": "B",
+      "source": "K1 II.1-3",
+      "scriptural_event": "Cross to Simhala; meet Padma; wedding and restoration.",
+      "playable_design": "Travel, ceremonies, city visit, ritual choreography.",
+      "encounters": "No combat needed.",
+      "integrity_gate": "Respect Padma agency and text version.",
+      "status": "not started"
+    },
+    {
+      "id": "M07",
+      "title": "The Teaching of Ananta",
+      "tier": "B",
+      "source": "K1 II.4-5",
+      "scriptural_event": "Discussion of Maya, devotion and liberation.",
+      "playable_design": "Short interactive parable/vision with clear paraphrase labels.",
+      "encounters": "None.",
+      "integrity_gate": "Sage Ananta is not automatically Sheshanaga.",
+      "status": "not started"
+    },
+    {
+      "id": "M08",
+      "title": "Return to Shambhala",
+      "tier": "B",
+      "source": "K1 II.6",
+      "scriptural_event": "Return with Padma; meet family; prepare campaign.",
+      "playable_design": "Companion-base development and council.",
+      "encounters": "None.",
+      "integrity_gate": "No grinding as a replacement for story.",
+      "status": "not started"
+    },
+    {
+      "id": "M09",
+      "title": "The Disputed Kikata Narrative",
+      "tier": "B",
+      "source": "K1 II.6-7; III.1",
+      "scriptural_event": "Later text conflict and subsequent spiritual teaching.",
+      "playable_design": "Textual codex and moral dialogue; optional battle against identified violent aggressors, labelled ADAPTATION.",
+      "encounters": "Do not assign hostile alignment from Buddhist, Jain, ethnic, caste or other present-day identities.",
+      "integrity_gate": "Later sectarian content; label adaptation clearly. Codex-only is acceptable.",
+      "status": "not started"
+    },
+    {
+      "id": "M10",
+      "title": "The Giantess of the North",
+      "tier": "B",
+      "source": "K1 III.2",
+      "scriptural_event": "Rishis request help; overcome Kuthodari and Vikanja.",
+      "playable_design": "Mountain riding, huge creature battle, brahmastra finale.",
+      "encounters": "Demonic entities named in the source.",
+      "integrity_gate": "Stage geographical scale as legendary.",
+      "status": "not started (vertical-slice target with M03, M04)"
+    },
+    {
+      "id": "M11",
+      "title": "Two Dynasties Await",
+      "tier": "A+B",
+      "source": "B3 12.2.37-39; K1 III.3-4",
+      "scriptural_event": "Discover Maru and Devapi; hear Suryavamsa and Chandravamsa.",
+      "playable_design": "Quest for alliances; lore visualizer; twin chariot gifts.",
+      "encounters": "Threats to refugees / roads.",
+      "integrity_gate": "Compare dynasty details per editions.",
+      "status": "not started"
+    },
+    {
+      "id": "M12",
+      "title": "Dharma Without a Throne",
+      "tier": "B",
+      "source": "K1 III.5-7",
+      "scriptural_event": "Dharma appears in distress; Krita personified; march on Visasana.",
+      "playable_design": "Army formation planning with cinematic escort.",
+      "encounters": "Kali's fictionalized agents of tyranny.",
+      "integrity_gate": "Do not turn historical people labels into monster species.",
+      "status": "not started"
+    },
+    {
+      "id": "M13",
+      "title": "The Siege of Kali",
+      "tier": "B",
+      "source": "K1 III.6-8",
+      "scriptural_event": "Overcome Kali and Koka/Vikoka.",
+      "playable_design": "Multi-stage war; mounted combat; duo-boss fight; public safety objectives.",
+      "encounters": "Named mythic adversaries.",
+      "integrity_gate": "Source supports war/characters, not exact boss phases (twin-revive rule is G).",
+      "status": "partial: arena prototype with Koka and Vikoka twin boss"
+    },
+    {
+      "id": "M14",
+      "title": "The King Who Recognized Him",
+      "tier": "B",
+      "source": "K1 III.9-13",
+      "scriptural_event": "Confront Shashidhvaja; defeat to reconciliation; Shushanta intervenes.",
+      "playable_design": "Honourable duel, dramatic captivity scene, peace dialogue.",
+      "encounters": "Shashidhvaja temporarily, then ally.",
+      "integrity_gate": "Kalki fainting is textual; avoid framing as casual player death.",
+      "status": "not started"
+    },
+    {
+      "id": "M15",
+      "title": "The City of the Poison Curse",
+      "tier": "B",
+      "source": "K1 III.14",
+      "scriptural_event": "Kalki enters Kanchanapuri alone; Sulocana is released.",
+      "playable_design": "No-kill puzzle/exploration and rescue with Devadatta and Shuka.",
+      "encounters": "The curse, not Sulocana.",
+      "integrity_gate": "One of the clearest mercy-centred chapters.",
+      "status": "not started"
+    },
+    {
+      "id": "M16",
+      "title": "The Throne Is Restored",
+      "tier": "A+B",
+      "source": "K1 III.14-16; V1",
+      "scriptural_event": "Maru, Devapi and others receive duties; rituals and healing of society.",
+      "playable_design": "Restoration states for towns, reforms, festivals, renunciation of abuse.",
+      "encounters": "Remaining predatory rulers only.",
+      "integrity_gate": "Restoration is the mandatory win condition.",
+      "status": "partial: four Dharma pillars rise as Dharma is restored"
+    },
+    {
+      "id": "M17",
+      "title": "Dawn of Krita Yuga",
+      "tier": "A+B",
+      "source": "B3 12.2.21-24; A1 16.9-10; K1 III.18-21",
+      "scriptural_event": "Dharma returns; farewell and Vishnu form; Satya Yuga dawns.",
+      "playable_design": "Long-form ending cinematics; nonviolent epilogue; codex completion.",
+      "encounters": "None.",
+      "integrity_gate": "Keep variant departure details in an optional tradition appendix.",
+      "status": "partial: victory shift to Satya Yuga world and Narayana appearance"
+    }
+  ],
+  "progression": "M00 M01 M02 M03 M04 M05 M06 M07 M08 M09 M10 M11 M12 M13 M14 M15 M16 M17"
+}
