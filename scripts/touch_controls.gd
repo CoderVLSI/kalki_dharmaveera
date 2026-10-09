@@ -26,6 +26,7 @@ func _ready() -> void:
 	layer = 50
 	canvas = Control.new()
 	canvas.set_anchors_preset(Control.PRESET_FULL_RECT)
+	Game.skin(canvas)
 	canvas.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	canvas.draw.connect(_draw_ui)
 	add_child(canvas)
@@ -135,6 +136,6 @@ func _draw_ui() -> void:
 		var on: bool = btn_ids.values().has(a) or (a == "gallop" and gallop_on)
 		canvas.draw_circle(c, float(BTN[a]["r"]), Color(col.r, col.g, col.b, 0.55 if on else 0.28))
 		canvas.draw_arc(c, float(BTN[a]["r"]), 0, TAU, 40, Color(col.r, col.g, col.b, 0.9), 3.0)
-		var txt: String = BTN[a]["label"]
+		var txt: String = Game.t("btn_" + str(BTN[a]["label"]).to_lower())
 		var sz := font.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 16)
 		canvas.draw_string(font, c - Vector2(sz.x * 0.5, -5), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(1, 1, 1, 0.95))

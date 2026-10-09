@@ -26,16 +26,17 @@ func _ready() -> void:
 	root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(root)
+	Game.skin(root)
 
 	# --- top-left: HP + Astra
 	var tl := VBoxContainer.new()
 	tl.position = Vector2(20, 16)
 	tl.custom_minimum_size = Vector2(300, 0)
 	root.add_child(tl)
-	tl.add_child(_title("KALKI"))
+	tl.add_child(_title(Game.t("kalki")))
 	hp_bar = _bar(Color(0.85, 0.15, 0.15), 300, 22)
 	tl.add_child(hp_bar)
-	var al := _title("ASTRA  (F)")
+	var al := _title("%s  (F)" % Game.t("astra"))
 	al.add_theme_font_size_override("font_size", 13)
 	tl.add_child(al)
 	astra_bar = _bar(Color(0.95, 0.78, 0.25), 300, 12)
@@ -48,7 +49,7 @@ func _ready() -> void:
 	tc.custom_minimum_size = Vector2(520, 0)
 	tc.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(tc)
-	dharma_label = _title("DHARMA 0%")
+	dharma_label = _title("%s 0%%" % Game.t("dharma"))
 	dharma_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	tc.add_child(dharma_label)
 	dharma_bar = _bar(Color(0.98, 0.8, 0.2), 520, 22)
@@ -59,7 +60,7 @@ func _ready() -> void:
 	tc.add_child(row)
 	for p in Game.world_cfg.get("pillars", []):
 		var l := Label.new()
-		l.text = "%s (%d)" % [p["name"], int(p["threshold"])]
+		l.text = "%s (%d)" % [Game.t("pillar_" + str(p["id"])), int(p["threshold"])]
 		l.add_theme_font_size_override("font_size", 14)
 		l.modulate = Color(0.5, 0.5, 0.5)
 		row.add_child(l)
@@ -68,20 +69,30 @@ func _ready() -> void:
 	# --- top-right: animation test
 	var bar := HBoxContainer.new()
 	bar.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	bar.position = Vector2(-190, 10)
+	bar.position = Vector2(-330, 10)
 	root.add_child(bar)
 	var anim_btn := Button.new()
-	anim_btn.text = "Anim (T)"
+	anim_btn.text = Game.t("anim_btn")
 	anim_btn.focus_mode = Control.FOCUS_NONE
 	anim_btn.pressed.connect(func(): anim_panel.visible = not anim_panel.visible)
 	bar.add_child(anim_btn)
 	var snd_btn := Button.new()
-	snd_btn.text = "Sound"
+	snd_btn.text = Game.t("sound")
 	snd_btn.focus_mode = Control.FOCUS_NONE
 	snd_btn.pressed.connect(func():
 		Sfx.set_muted(not Sfx.muted)
-		snd_btn.text = "Muted" if Sfx.muted else "Sound")
+		snd_btn.text = Game.t("muted") if Sfx.muted else Game.t("sound"))
 	bar.add_child(snd_btn)
+	var lang_btn := Button.new()
+	lang_btn.text = Game.LANGS[Game.lang]
+	lang_btn.focus_mode = Control.FOCUS_NONE
+	lang_btn.pressed.connect(func():   # cycle English / Hindi / Telugu; the scene rebuilds in the new language
+		var codes := Game.LANGS.keys()
+		Game.set_lang(codes[(codes.find(Game.lang) + 1) % codes.size()])
+		Game.reset()
+		Game.skip_title = true
+		get_tree().reload_current_scene())
+	bar.add_child(lang_btn)
 	anim_panel = PanelContainer.new()
 	anim_panel.visible = false
 	anim_panel.set_anchors_preset(Control.PRESET_TOP_RIGHT)
@@ -100,7 +111,7 @@ func _ready() -> void:
 		b.pressed.connect(func(): if player: player.test_play(a))
 		av.add_child(b)
 	var free := Button.new()
-	free.text = "Back to play"
+	free.text = Game.t("back_to_play")
 	free.focus_mode = Control.FOCUS_NONE
 	free.pressed.connect(func(): if player: player.set_anim_test(false))
 	av.add_child(free)
@@ -127,7 +138,7 @@ func _ready() -> void:
 
 	# --- bottom-left: controls
 	var help := Label.new()
-	help.text = "WASD move  ·  Shift gallop  ·  Ctrl walk  ·  LMB/J slash  ·  F astra (rear-up)  ·  Space dash  ·  Q/E or RMB-drag camera  ·  wheel zoom  ·  T anim test  ·  R restart"
+	help.text = Game.t("help")
 	help.add_theme_font_size_override("font_size", 12)
 	help.modulate = Color(1, 1, 1, 0.75)
 	help.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
@@ -207,7 +218,7 @@ func _process(_delta: float) -> void:
 func _on_dharma(v: float) -> void:
 	var tw := create_tween()
 	tw.tween_property(dharma_bar, "value", v, 0.5)
-	dharma_label.text = "DHARMA %d%%" % int(v)
+	dharma_label.text = "%s %d%%" % [Game.t("dharma"), int(v)]
 
 
 func _on_hp(hp: float, max_hp: float) -> void:
@@ -234,12 +245,12 @@ func _on_message(speaker: String, text: String, tier: String) -> void:
 
 func _on_victory() -> void:
 	await get_tree().create_timer(1.5).timeout
-	overlay.text = "SATYA YUGA\nDharma stands on all four legs.\n\nPress R to ride again"
+	overlay.text = Game.t("overlay_win")
 	overlay.add_theme_color_override("font_color", Color(1.0, 0.88, 0.4))
 	overlay.visible = true
 
 
 func _on_died() -> void:
-	overlay.text = "Kali's age endures...\n\nPress R to rise again"
+	overlay.text = Game.t("overlay_lose")
 	overlay.add_theme_color_override("font_color", Color(0.95, 0.4, 0.35))
 	overlay.visible = true

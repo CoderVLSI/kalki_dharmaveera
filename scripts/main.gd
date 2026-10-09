@@ -32,10 +32,6 @@ func _ready() -> void:
 	rig.global_position = Vector3(0, 2, 8)
 	player.shake.connect(rig.add_shake)
 
-	hud = Hud.new()
-	hud.player = player
-	add_child(hud)
-
 	if DisplayServer.is_touchscreen_available() or OS.has_feature("mobile") or OS.get_environment("KALKI_TOUCH") != "":
 		var touch := TouchControls.new()
 		add_child(touch)
@@ -56,6 +52,9 @@ func _ready() -> void:
 			await pro.finished
 		get_tree().paused = false
 	Game.skip_title = true
+	hud = Hud.new()   # built after the title so it uses the language chosen there
+	hud.player = player
+	add_child(hud)
 	await get_tree().create_timer(0.8).timeout
 	Game.say("narayana_intro")
 	await get_tree().create_timer(7.0).timeout

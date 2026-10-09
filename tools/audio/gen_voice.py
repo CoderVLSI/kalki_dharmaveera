@@ -11,29 +11,37 @@ out_dir = os.path.join(ROOT, "assets", "audio", "voice"); os.makedirs(out_dir, e
 man_path = os.path.join(out_dir, "manifest.json")
 manifest = json.load(open(man_path)) if os.path.exists(man_path) else {}
 dry = "--dry-run" in sys.argv
-key = os.environ.get("ELEVENLABS_API_KEY", "")
-if not key and not dry:
+api_key = os.environ.get("ELEVENLABS_API_KEY", "")
+if not api_key and not dry:
     sys.exit("ELEVENLABS_API_KEY not set")
 total = 0
+# Hindi/Telugu need eleven_v4_turbo (Flash lacks Telugu); both models bill 0.5 credit/char.
+LANG_MODEL = {"en": cfg["model_id"], "hi": "eleven_v4_turbo", "te": "eleven_v4_turbo"}
+jobs = []
 for line_id, line in dialogue.items():
     if line_id.startswith("_"): continue
-    text = line.get("voice_text", line["text"]); voice = cfg["voices"][line["speaker"]]["voice_id"]
-    h = hashlib.sha256(f'{text}|{voice}|{cfg["model_id"]}'.encode()).hexdigest()[:16]
-    path = os.path.join(out_dir, line_id + ".mp3")
-    if manifest.get(line_id) == h and os.path.exists(path):
-        print("skip ", line_id); continue
+    for lang in line.get("voiced_langs", ["en"]):
+        text = line.get("voice_text", line["text"]) if lang == "en" else line.get("voice_text_" + lang, line.get("text_" + lang))
+        if text: jobs.append((line_id, lang, text, line))
+for line_id, lang, text, line in jobs:
+    voice = cfg["voices"][line["speaker"]]["voice_id"]; model = LANG_MODEL[lang]
+    h = hashlib.sha256(f'{text}|{voice}|{model}'.encode()).hexdigest()[:16]
+    key = line_id if lang == "en" else f"{line_id}.{lang}"
+    path = os.path.join(out_dir, key + ".mp3")
+    if manifest.get(key) == h and os.path.exists(path):
+        print("skip ", key); continue
     total += len(text)
-    if dry: print("would generate", line_id, len(text), "chars"); continue
-    body = json.dumps({"text": text, "model_id": cfg["model_id"],
+    if dry: print("would generate", key, len(text), "chars"); continue
+    body = json.dumps({"text": text, "model_id": model,
                        "voice_settings": {"stability": 0.5, "similarity_boost": 0.75, "style": 0.25}}).encode()
     req = urllib.request.Request(
         f'https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format={cfg["output_format"]}', data=body,
-        headers={"xi-api-key": key, "Content-Type": "application/json", "Accept": "audio/mpeg"})
+        headers={"xi-api-key": api_key, "Content-Type": "application/json", "Accept": "audio/mpeg"})
     try:
         with urllib.request.urlopen(req, timeout=60) as r: audio = r.read()
     except urllib.error.HTTPError as e:
-        sys.exit(f"{line_id}: HTTP {e.code} {e.read()[:200]!r}")
-    open(path, "wb").write(audio); manifest[line_id] = h
+        sys.exit(f"{key}: HTTP {e.code} {e.read()[:200]!r}")
+    open(path, "wb").write(audio); manifest[key] = h
     json.dump(manifest, open(man_path, "w"), indent=2)
-    print("wrote", line_id, len(audio), "bytes")
+    print("wrote", key, len(audio), "bytes")
 print("characters billed this run:", total, f"(~{total // 2} credits at flash rate)")

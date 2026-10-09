@@ -1,5 +1,5 @@
 {
-  "_note": "Tier = canon | canon-adapted | invented. Refs are from memory and must be checked (PLAN.md section 3).",
+  "_note": "Tier = canon | canon-adapted | invented. text = English; text_hi / text_te = Hindi / Telugu (adapted dialogue, same meaning). voiced_langs = languages with generated voice (hi/te voiced only for the key story lines to save ElevenLabs credits; other lines are subtitle-only in hi/te).",
   "narayana_intro": {
     "speaker": "Narayana",
     "tier": "canon-adapted",
@@ -9,7 +9,14 @@
     "source_tier": "B",
     "locator": "K1 I.1-I.2",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "धर्म एक ही पैर पर खड़ा है और कलि का युग चल रहा है। जाओ, कल्कि। शम्भल से निकलो और इसका अंत करो।",
+    "text_te": "ధర్మం ఒంటి కాలి మీద నిలిచి ఉంది, కలి యుగాన్ని ఏలుతున్నాడు. వెళ్ళు, కల్కీ. శంభల నుండి బయలుదేరి దీనిని అంతం చేయి.",
+    "voiced_langs": [
+      "en",
+      "hi",
+      "te"
+    ]
   },
   "shuka_start": {
     "speaker": "Shuka",
@@ -20,7 +27,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "प्रभु, कलि की सेना के लुटेरे! उन्हें घोड़े से रौंद डालिए। कैमरा घुमाने के लिए Q और E दबाइए।",
+    "text_te": "ప్రభూ, కలి సేన దోపిడీదారులు! గుర్రంతో వారిని తొక్కేయండి. కెమెరా తిప్పడానికి Q, E నొక్కండి.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "pillar_tapas": {
     "speaker": "Narrator",
@@ -31,7 +43,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "तपस् की पुनर्स्थापना हुई। तपस्या का भाव धरती पर लौट आया।",
+    "text_te": "తపస్సు పునరుద్ధరించబడింది. తపోభావం నేలపై తిరిగి వచ్చింది.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "pillar_shaucha": {
     "speaker": "Narrator",
@@ -42,7 +59,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "शौच की पुनर्स्थापना हुई। नदियाँ फिर निर्मल बहती हैं।",
+    "text_te": "శౌచం పునరుద్ధరించబడింది. నదులు మళ్ళీ నిర్మలంగా ప్రవహిస్తున్నాయి.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "pillar_daya": {
     "speaker": "Narrator",
@@ -53,7 +75,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "दया की पुनर्स्थापना हुई। मनुष्यों के हृदय में करुणा लौट आई।",
+    "text_te": "దయ పునరుద్ధరించబడింది. మనుషుల హృదయాల్లో కరుణ తిరిగి వచ్చింది.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "pillar_satya": {
     "speaker": "Narrator",
@@ -64,7 +91,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "सत्य की पुनर्स्थापना हुई। धर्म फिर चारों पैरों पर खड़ा है।",
+    "text_te": "సత్యం పునరుద్ధరించబడింది. ధర్మం మళ్ళీ నాలుగు పాదాలపై నిలిచింది.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "banner_down": {
     "speaker": "Shuka",
@@ -75,7 +107,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "ध्वज गिर गया! उनकी सेना का साहस टूट गया।",
+    "text_te": "జెండా కూలింది! వారి సేన ధైర్యం కోల్పోయింది.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "player_hurt": {
     "speaker": "Shuka",
@@ -86,7 +123,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "सावधान रहिए, प्रभु! SPACE से झटके से बचिए।",
+    "text_te": "జాగ్రత్త ప్రభూ! SPACE తో తప్పించుకోండి.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "victory": {
     "speaker": "Narayana",
@@ -97,7 +139,14 @@
     "source_tier": "A",
     "locator": "B3 12.2.23",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "कलि का पतन हुआ। सत्ययुग का उदय हो रहा है।",
+    "text_te": "కలి పతనమయ్యాడు. సత్యయుగం ఉదయిస్తోంది.",
+    "voiced_langs": [
+      "en",
+      "hi",
+      "te"
+    ]
   },
   "boss_intro": {
     "speaker": "Shuka",
@@ -108,7 +157,12 @@
     "source_tier": "B",
     "locator": "K1 III.6-8",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "कोक और विकोक, कलि के जुड़वाँ सेनापति! एक गिरता है तो दूसरा उसे उठा देता है। प्रभु, दोनों को एक साथ गिराइए!",
+    "text_te": "కోకుడు, వికోకుడు, కలి కవల సేనానులు! ఒకడు కూలితే మరొకడు లేపుతాడు. ప్రభూ, ఇద్దరినీ ఒకేసారి కూల్చండి!",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "boss_down": {
     "speaker": "Shuka",
@@ -119,7 +173,12 @@
     "source_tier": "G",
     "locator": "",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "एक जुड़वाँ गिर गया! उठने से पहले दूसरे पर वार कीजिए!",
+    "text_te": "ఒక కవల కూలాడు! అతడు లేవక ముందే రెండోవాడిని కొట్టండి!",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "boss_dead": {
     "speaker": "Shuka",
@@ -130,7 +189,12 @@
     "source_tier": "B",
     "locator": "K1 III.6-8",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "दोनों मारे गए, सदा के लिए! अब कलि अकेला है, प्रभु।",
+    "text_te": "ఇద్దరూ హతమయ్యారు, శాశ్వతంగా! ఇప్పుడు కలి ఒంటరివాడు, ప్రభూ.",
+    "voiced_langs": [
+      "en"
+    ]
   },
   "prologue_plea": {
     "speaker": "Brahma",
@@ -141,7 +205,14 @@
     "source_tier": "B",
     "locator": "K1 I.1-I.2",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "प्रभु, कलि ने युग पर अधिकार कर लिया है। धर्म डगमगा रहा है, कलि की सेना के भार से धरती कराह रही है, और देवताओं को आपके सिवा कोई शरण नहीं।",
+    "text_te": "ప్రభూ, కలి యుగాన్ని ఆక్రమించాడు. ధర్మం తడబడుతోంది, కలి సేన భారానికి భూమి మూల్గుతోంది, దేవతలకు మీరే తప్ప శరణు లేదు.",
+    "voiced_langs": [
+      "en",
+      "hi",
+      "te"
+    ]
   },
   "prologue_vow": {
     "speaker": "Narayana",
@@ -152,7 +223,14 @@
     "source_tier": "B",
     "locator": "K1 I.2",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "डरो मत। मैं पृथ्वी पर शम्भल ग्राम में कल्कि बनकर अवतरित होऊँगा, विष्णुयश और सुमति का पुत्र, और खड्ग से कलि के राज का अंत करूँगा।",
+    "text_te": "భయపడకండి. నేను భూమిపై శంభల గ్రామంలో కల్కిగా అవతరిస్తాను, విష్ణుయశుడు, సుమతి కుమారుడిగా; ఖడ్గంతో కలి పాలనను అంతం చేస్తాను.",
+    "voiced_langs": [
+      "en",
+      "hi",
+      "te"
+    ]
   },
   "prologue_birth": {
     "speaker": "Narrator",
@@ -163,6 +241,13 @@
     "source_tier": "A+B",
     "locator": "B3 12.2.18; K1 I.2",
     "language": "en",
-    "speech_type": "DRAMATIZED_ADAPTATION"
+    "speech_type": "DRAMATIZED_ADAPTATION",
+    "text_hi": "और इस प्रकार शम्भल ग्राम में एक बालक का जन्म हुआ, और कलियुग अपने अंतिम दिन गिनने लगा।",
+    "text_te": "ఆ విధంగా శంభల గ్రామంలో ఒక బాలుడు జన్మించాడు, కలియుగం తన చివరి రోజులు లెక్కించడం మొదలుపెట్టింది.",
+    "voiced_langs": [
+      "en",
+      "hi",
+      "te"
+    ]
   }
 }

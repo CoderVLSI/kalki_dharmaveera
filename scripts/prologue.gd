@@ -42,6 +42,7 @@ func _ready() -> void:
 
 	var ui := Control.new()
 	ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+	Game.skin(ui)
 	ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(ui)
 	_fade = ColorRect.new()
@@ -68,7 +69,7 @@ func _ready() -> void:
 	_tier.modulate = Color(0.8, 0.8, 0.6, 0.8)
 	v.add_child(_tier)
 	var skip := Label.new()
-	skip.text = "tap / Enter to skip"
+	skip.text = Game.t("skip_hint")
 	skip.add_theme_font_size_override("font_size", 14)
 	skip.modulate = Color(1, 1, 1, 0.6)
 	skip.set_anchors_preset(Control.PRESET_TOP_RIGHT)
@@ -259,13 +260,13 @@ func _glow(c: Color) -> StandardMaterial3D:
 
 func _say(id: String) -> float:
 	var line: Dictionary = Game.dialogue.get(id, {})
-	_sub.text = "%s:  %s" % [line.get("speaker", ""), line.get("text", "")]
+	_sub.text = "%s:  %s" % [Game.speaker_name(line), Game.line_text(line)]
 	_tier.text = "[%s]" % Game.tier_label(line)
 	_panel.visible = true
 	Game.voice_line.emit(id)
-	var path := Sfx.VOICE_DIR % id
-	var len := 4.0
-	if ResourceLoader.exists(path):
+	var path := Sfx.voice_path(id)
+	var len := 4.0 + float(Game.line_text(line).length()) * 0.03   # no voice file: read time
+	if path != "":
 		len = (load(path) as AudioStream).get_length()
 	return len + 0.8
 

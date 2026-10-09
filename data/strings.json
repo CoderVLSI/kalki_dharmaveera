@@ -1,0 +1,167 @@
+{
+  "kalki": {
+    "en": "KALKI",
+    "hi": "कल्कि",
+    "te": "కల్కి"
+  },
+  "astra": {
+    "en": "ASTRA",
+    "hi": "अस्त्र",
+    "te": "అస్త్రం"
+  },
+  "dharma": {
+    "en": "DHARMA",
+    "hi": "धर्म",
+    "te": "ధర్మం"
+  },
+  "anim_btn": {
+    "en": "Anim (T)",
+    "hi": "एनिम (T)",
+    "te": "యానిమ్ (T)"
+  },
+  "sound": {
+    "en": "Sound",
+    "hi": "ध्वनि",
+    "te": "ధ్వని"
+  },
+  "muted": {
+    "en": "Muted",
+    "hi": "मौन",
+    "te": "మ్యూట్"
+  },
+  "back_to_play": {
+    "en": "Back to play",
+    "hi": "खेल पर लौटें",
+    "te": "ఆటకు తిరిగి"
+  },
+  "language": {
+    "en": "Language",
+    "hi": "भाषा",
+    "te": "భాష"
+  },
+  "help": {
+    "en": "WASD move  ·  Shift gallop  ·  Ctrl walk  ·  LMB/J slash  ·  F astra (rear-up)  ·  Space dash  ·  Q/E or RMB-drag camera  ·  wheel zoom  ·  T anim test  ·  R restart",
+    "hi": "WASD चलें  ·  Shift सरपट  ·  Ctrl धीमे  ·  LMB/J वार  ·  F अस्त्र  ·  Space झपट  ·  Q/E कैमरा  ·  R पुनः आरंभ",
+    "te": "WASD కదలిక  ·  Shift దౌడు  ·  Ctrl నడక  ·  LMB/J ఖడ్గం  ·  F అస్త్రం  ·  Space దూకు  ·  Q/E కెమెరా  ·  R మళ్ళీ మొదలు"
+  },
+  "ride_out": {
+    "en": "RIDE OUT",
+    "hi": "कूच करें",
+    "te": "బయలుదేరు"
+  },
+  "title_sub": {
+    "en": "Prototype  ·  Enter / Space / click",
+    "hi": "प्रोटोटाइप  ·  Enter / Space / क्लिक",
+    "te": "ప్రోటోటైప్  ·  Enter / Space / క్లిక్"
+  },
+  "skip_hint": {
+    "en": "tap / Enter to skip",
+    "hi": "छोड़ने के लिए टैप / Enter",
+    "te": "దాటవేయడానికి టాప్ / Enter"
+  },
+  "adapted": {
+    "en": "ADAPTED DIALOGUE - NOT A VERSE",
+    "hi": "रूपांतरित संवाद - श्लोक नहीं",
+    "te": "అనుసృజన సంభాషణ - శ్లోకం కాదు"
+  },
+  "overlay_win": {
+    "en": "SATYA YUGA\nDharma stands on all four legs.\n\nPress R to ride again",
+    "hi": "सत्ययुग\nधर्म चारों पैरों पर खड़ा है।\n\nफिर से खेलने के लिए R दबाएँ",
+    "te": "సత్యయుగం\nధర్మం నాలుగు పాదాలపై నిలిచింది.\n\nమళ్ళీ ఆడటానికి R నొక్కండి"
+  },
+  "overlay_lose": {
+    "en": "Kali's age endures...\n\nPress R to rise again",
+    "hi": "कलि का युग टिका है...\n\nफिर उठने के लिए R दबाएँ",
+    "te": "కలి యుగం కొనసాగుతోంది...\n\nమళ్ళీ లేవడానికి R నొక్కండి"
+  },
+  "pillar_tapas": {
+    "en": "Tapas",
+    "hi": "तपस्",
+    "te": "తపస్సు"
+  },
+  "pillar_shaucha": {
+    "en": "Shaucha",
+    "hi": "शौच",
+    "te": "శౌచం"
+  },
+  "pillar_daya": {
+    "en": "Daya",
+    "hi": "दया",
+    "te": "దయ"
+  },
+  "pillar_satya": {
+    "en": "Satya",
+    "hi": "सत्य",
+    "te": "సత్యం"
+  },
+  "enemy_raider": {
+    "en": "Raider of Kali",
+    "hi": "कलि का लुटेरा",
+    "te": "కలి దోపిడీదారు"
+  },
+  "enemy_archer": {
+    "en": "Archer of Kali",
+    "hi": "कलि का धनुर्धर",
+    "te": "కలి విలుకాడు"
+  },
+  "enemy_banner": {
+    "en": "Banner-bearer",
+    "hi": "ध्वजवाहक",
+    "te": "పతాకధారి"
+  },
+  "enemy_koka": {
+    "en": "Koka",
+    "hi": "कोक",
+    "te": "కోకుడు"
+  },
+  "enemy_vikoka": {
+    "en": "Vikoka",
+    "hi": "विकोक",
+    "te": "వికోకుడు"
+  },
+  "twin_fallen": {
+    "en": "%s has fallen\nstrike %s NOW",
+    "hi": "%s गिर गया\nअभी %s पर वार करें",
+    "te": "%s కూలాడు\nఇప్పుడే %s ని కొట్టండి"
+  },
+  "speaker_Narayana": {
+    "en": "Narayana",
+    "hi": "नारायण",
+    "te": "నారాయణుడు"
+  },
+  "speaker_Brahma": {
+    "en": "Brahma",
+    "hi": "ब्रह्मा",
+    "te": "బ్రహ్మ"
+  },
+  "speaker_Narrator": {
+    "en": "Narrator",
+    "hi": "सूत्रधार",
+    "te": "సూత్రధారి"
+  },
+  "speaker_Shuka": {
+    "en": "Shuka",
+    "hi": "शुक",
+    "te": "శుకుడు"
+  },
+  "btn_slash": {
+    "en": "SLASH",
+    "hi": "वार",
+    "te": "ఖడ్గం"
+  },
+  "btn_astra": {
+    "en": "ASTRA",
+    "hi": "अस्त्र",
+    "te": "అస్త్రం"
+  },
+  "btn_dash": {
+    "en": "DASH",
+    "hi": "झपट",
+    "te": "దూకు"
+  },
+  "btn_run": {
+    "en": "RUN",
+    "hi": "दौड़",
+    "te": "పరుగు"
+  }
+}

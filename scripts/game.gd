@@ -10,10 +10,16 @@ signal enemy_killed(kind: String)
 signal victory
 signal voice_line(line_id: String)
 signal player_died
+signal lang_changed
 
 var enemies_cfg: Dictionary = {}
 var world_cfg: Dictionary = {}
 var dialogue: Dictionary = {}
+var strings: Dictionary = {}
+const LANGS := {"en": "English", "hi": "हिन्दी", "te": "తెలుగు"}
+const SETTINGS := "user://settings.cfg"
+var lang: String = "en"
+var _fonts: Dictionary = {}
 
 var dharma: float = 0.0
 var kills: int = 0
@@ -30,7 +36,75 @@ func _ready() -> void:
 	enemies_cfg = _load_json("res://data/enemies.json")
 	world_cfg = _load_json("res://data/world.json")
 	dialogue = _load_json("res://data/dialogue.json")
+	strings = _load_json("res://data/strings.json")
+	_init_lang()
 	demo = OS.get_environment("KALKI_DEMO") != ""
+
+
+## Language: saved choice, else the device language if we have it, else English.
+func _init_lang() -> void:
+	var cf := ConfigFile.new()
+	var want := OS.get_locale_language()
+	if cf.load(SETTINGS) == OK:
+		want = str(cf.get_value("game", "lang", want))
+	if OS.get_environment("KALKI_LANG") != "":   # test hook: KALKI_LANG=hi|te|en
+		want = OS.get_environment("KALKI_LANG")
+	lang = want if LANGS.has(want) else "en"
+	_apply_font()
+
+
+func set_lang(code: String) -> void:
+	if not LANGS.has(code) or code == lang:
+		return
+	lang = code
+	var cf := ConfigFile.new()
+	cf.load(SETTINGS)
+	cf.set_value("game", "lang", code)
+	cf.save(SETTINGS)
+	_apply_font()
+	lang_changed.emit()
+
+
+## Hindi/Telugu need Noto fonts (the built-in UI font has no Devanagari/Telugu glyphs). One font
+## per language, with the built-in font only as the Latin fallback: mixing the two Indic fonts
+## in one fallback chain breaks conjunct shaping.
+func ui_font() -> Font:
+	if lang == "en":
+		return null
+	if _fonts.has(lang):
+		return _fonts[lang]
+	var f := FontFile.new()
+	f.load_dynamic_font("res://assets/fonts/%s-Regular.ttf" % ("NotoSansDevanagari" if lang == "hi" else "NotoSansTelugu"))
+	f.fallbacks = [ThemeDB.fallback_font]
+	_fonts[lang] = f
+	return f
+
+
+## A CanvasLayer stops theme inheritance, so every UI root Control calls Game.skin(self).
+func skin(c: Control) -> void:
+	var th: Theme = null
+	if lang != "en":
+		th = Theme.new()
+		th.default_font = ui_font()
+	c.theme = th
+
+
+func _apply_font() -> void:
+	pass   # fonts are applied per UI root via skin()
+
+
+func t(key: String) -> String:
+	var e: Dictionary = strings.get(key, {})
+	return str(e.get(lang, e.get("en", key)))
+
+
+func line_text(line: Dictionary) -> String:
+	return str(line.get("text_" + lang, line.get("text", "")))
+
+
+func speaker_name(line: Dictionary) -> String:
+	var k := "speaker_" + str(line.get("speaker", ""))
+	return t(k) if strings.has(k) else str(line.get("speaker", ""))
 
 
 func _load_json(path: String) -> Dictionary:
@@ -72,9 +146,9 @@ func add_dharma(amount: float) -> void:
 
 
 ## Subtitle tag per the reference protocol: source tier (A/B/G) plus an explicit adapted-dialogue mark.
-static func tier_label(line: Dictionary) -> String:
+func tier_label(line: Dictionary) -> String:
 	if line.get("speech_type", "") == "DRAMATIZED_ADAPTATION":
-		return "%s · ADAPTED DIALOGUE - NOT A VERSE" % line.get("source_tier", line.get("tier", ""))
+		return "%s · %s" % [line.get("source_tier", line.get("tier", "")), t("adapted")]
 	return str(line.get("source_tier", line.get("tier", "")))
 
 
@@ -86,5 +160,5 @@ func say(line_id: String) -> void:
 	if MIN_GAP.has(line_id) and now - float(last_said.get(line_id, -999.0)) < float(MIN_GAP[line_id]):
 		return
 	last_said[line_id] = now
-	message.emit(line["speaker"], line["text"], tier_label(line))
+	message.emit(speaker_name(line), line_text(line), tier_label(line))
 	voice_line.emit(line_id)

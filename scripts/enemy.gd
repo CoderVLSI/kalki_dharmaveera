@@ -129,6 +129,8 @@ func _build_visual() -> void:
 
 	label = Label3D.new()
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	if Game.ui_font():
+		label.font = Game.ui_font()
 	label.position.y = 3.2 * float(cfg["scale"]) + float(get_instance_id() % 3) * 0.55
 	label.pixel_size = 0.012
 	label.font_size = 28
@@ -277,11 +279,11 @@ func _process(delta: float) -> void:
 
 func _update_label() -> void:
 	if state == "downed":
-		var other: String = twin.cfg["name"] if is_instance_valid(twin) else "his brother"
-		label.text = "%s has fallen\nstrike %s NOW" % [cfg["name"], other]
+		var other: String = Game.t("enemy_" + twin.kind) if is_instance_valid(twin) else "?"
+		label.text = Game.t("twin_fallen") % [Game.t("enemy_" + kind), other]
 		return
 	var n := int(round(clampf(hp / max_hp, 0.0, 1.0) * 8.0))
-	label.text = "%s\n%s%s" % [cfg["name"], "▰".repeat(n), "▱".repeat(8 - n)]
+	label.text = "%s\n%s%s" % [Game.t("enemy_" + kind), "▰".repeat(n), "▱".repeat(8 - n)]
 
 
 func _physics_process(delta: float) -> void:

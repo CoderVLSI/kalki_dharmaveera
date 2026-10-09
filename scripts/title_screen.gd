@@ -14,6 +14,7 @@ func _ready() -> void:
 	var root := Control.new()
 	_root = root
 	root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	Game.skin(root)
 	add_child(root)
 	var bg := ColorRect.new()
 	bg.color = Color(0.03, 0.03, 0.06)
@@ -29,7 +30,7 @@ func _ready() -> void:
 	tex.texture = load(path)
 
 	var hint := Button.new()
-	hint.text = "RIDE OUT"
+	hint.text = Game.t("ride_out")
 	hint.add_theme_font_size_override("font_size", 30)
 	hint.custom_minimum_size = Vector2(260, 64)
 	hint.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
@@ -41,13 +42,29 @@ func _ready() -> void:
 	tw.tween_property(hint, "modulate:a", 0.55, 0.9)
 	tw.tween_property(hint, "modulate:a", 1.0, 0.9)
 	var sub := Label.new()
-	sub.text = "Prototype v0.1  ·  Enter / Space / click"
+	sub.text = Game.t("title_sub")
 	sub.add_theme_font_size_override("font_size", 14)
 	sub.add_theme_color_override("font_outline_color", Color(0, 0, 0))
 	sub.add_theme_constant_override("outline_size", 6)
 	sub.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	sub.position = Vector2(-120, -108 if vp.x > vp.y else -62)
 	root.add_child(sub)
+	# language picker: relabels the title in place; the game itself rebuilds in the chosen language
+	var langs := HBoxContainer.new()
+	langs.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	langs.position = Vector2(-150, 18)
+	langs.add_theme_constant_override("separation", 8)
+	root.add_child(langs)
+	for code in Game.LANGS:
+		var b := Button.new()
+		b.text = Game.LANGS[code]
+		b.focus_mode = Control.FOCUS_NONE
+		b.custom_minimum_size = Vector2(92, 40)
+		b.pressed.connect(func():
+			Game.set_lang(code)
+			hint.text = Game.t("ride_out")
+			sub.text = Game.t("title_sub"))
+		langs.add_child(b)
 
 
 func _unhandled_input(event: InputEvent) -> void:

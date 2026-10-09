@@ -28,6 +28,19 @@ func _ready() -> void:
 	await get_tree().process_frame
 	check(sh.model != null and sh.anim != null, "Shuka companion loads and animates")
 	sh.queue_free()
+	for id in Game.dialogue:
+		if not id.begins_with("_"):
+			var l: Dictionary = Game.dialogue[id]
+			check(str(l.get("text_hi", "")) != "" and str(l.get("text_te", "")) != "", "dialogue %s has Hindi and Telugu text" % id)
+			for lg in l.get("voiced_langs", ["en"]):
+				Game.lang = lg
+				check(Sfx.voice_path(id) != "", "voice file %s.%s exists" % [id, lg])
+	Game.lang = "hi"
+	check(Sfx.voice_path("pillar_tapas") == "", "unvoiced hi line has no audio (subtitle only)")
+	for k in Game.strings:
+		var e: Dictionary = Game.strings[k]
+		check(e.has("en") and e.has("hi") and e.has("te"), "ui string %s in en/hi/te" % k)
+	Game.lang = "en"
 	var p := Prologue.new()
 	add_child(p)
 	var done := [false]

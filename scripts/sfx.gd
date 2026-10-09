@@ -80,9 +80,16 @@ func play(sfx_name: String, vol_db: float = 0.0, pitch_var: float = 0.07) -> voi
 	chosen.play()
 
 
+## Voice file for a line in the current language; "" if none (hi/te voice only the key story lines).
+func voice_path(line_id: String) -> String:
+	var path := VOICE_DIR % (line_id if Game.lang == "en" else "%s.%s" % [line_id, Game.lang])
+	return path if ResourceLoader.exists(path) else ""
+
+
 func _on_voice(line_id: String) -> void:
-	var path := VOICE_DIR % line_id
-	if not ResourceLoader.exists(path):
+	var path := voice_path(line_id)
+	if path == "":
+		voice_player.stop()
 		return
 	voice_player.stream = load(path)
 	voice_player.play()
