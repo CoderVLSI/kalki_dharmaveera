@@ -163,5 +163,725 @@
     "en": "RUN",
     "hi": "दौड़",
     "te": "పరుగు"
+  },
+  "game_title": {
+    "en": "KALKI DHARMAVEERA",
+    "hi": "कल्कि धर्मवीर",
+    "te": "కల్కి ధర్మవీర"
+  },
+  "missions": {
+    "en": "Missions",
+    "hi": "अभियान",
+    "te": "మిషన్లు"
+  },
+  "btn_continue": {
+    "en": "Continue",
+    "hi": "जारी रखें",
+    "te": "కొనసాగించు"
+  },
+  "btn_begin": {
+    "en": "Begin the campaign",
+    "hi": "अभियान आरंभ करें",
+    "te": "ప్రచారం ప్రారంభించు"
+  },
+  "btn_newgame": {
+    "en": "New campaign",
+    "hi": "नया अभियान",
+    "te": "కొత్త ప్రచారం"
+  },
+  "btn_codex": {
+    "en": "Codex",
+    "hi": "कोडेक्स",
+    "te": "కోడెక్స్"
+  },
+  "btn_freeride": {
+    "en": "Free ride (arena)",
+    "hi": "मुक्त सवारी (अखाड़ा)",
+    "te": "స్వేచ్ఛా స్వారీ (అరేనా)"
+  },
+  "btn_next": {
+    "en": "Next mission",
+    "hi": "अगला अभियान",
+    "te": "తదుపరి మిషన్"
+  },
+  "btn_replay": {
+    "en": "Replay",
+    "hi": "फिर खेलें",
+    "te": "మళ్ళీ ఆడు"
+  },
+  "btn_retry": {
+    "en": "Try again",
+    "hi": "फिर प्रयास करें",
+    "te": "మళ్ళీ ప్రయత్నించు"
+  },
+  "btn_menu": {
+    "en": "Menu",
+    "hi": "मेनू",
+    "te": "మెనూ"
+  },
+  "btn_resume": {
+    "en": "Resume",
+    "hi": "जारी रखें",
+    "te": "కొనసాగించు"
+  },
+  "btn_close": {
+    "en": "Close",
+    "hi": "बंद करें",
+    "te": "మూసివేయి"
+  },
+  "btn_talk": {
+    "en": "TALK",
+    "hi": "बात",
+    "te": "మాట"
+  },
+  "mission_complete": {
+    "en": "Mission complete",
+    "hi": "अभियान पूर्ण",
+    "te": "మిషన్ పూర్తయింది"
+  },
+  "mission_failed": {
+    "en": "Kalki has fallen. The age is not yet lost.",
+    "hi": "कल्कि गिर गए। युग अभी खोया नहीं है।",
+    "te": "కల్కి పడిపోయాడు. యుగం ఇంకా కోల్పోలేదు."
+  },
+  "paused": {
+    "en": "Paused",
+    "hi": "विराम",
+    "te": "విరామం"
+  },
+  "prompt_talk": {
+    "en": "[G] Talk to %s",
+    "hi": "[G] %s से बात करें",
+    "te": "[G] %s తో మాట్లాడండి"
+  },
+  "codex": {
+    "en": "Codex",
+    "hi": "कोडेक्स",
+    "te": "కోడెక్స్"
+  },
+  "codex_empty": {
+    "en": "No entries yet. Entries appear as you meet them in the story.",
+    "hi": "अभी कोई प्रविष्टि नहीं। कथा में मिलते ही प्रविष्टियाँ जुड़ेंगी।",
+    "te": "ఇంకా ఎంట్రీలు లేవు. కథలో ఎదురైనప్పుడు ఎంట్రీలు చేరుతాయి."
+  },
+  "adapted_note": {
+    "en": "Source tier and citation as in the reference PDF; game text is adapted.",
+    "hi": "स्रोत-स्तर और संदर्भ संदर्भ-पीडीएफ के अनुसार; खेल का पाठ रूपांतरित है।",
+    "te": "మూల స్థాయి, ఉదహరింపు రిఫరెన్స్ PDF ప్రకారం; ఆట పాఠ్యం అనుసృజన."
+  },
+  "paraphrase": {
+    "en": "PARAPHRASE OF THE TEXT",
+    "hi": "पाठ का सार",
+    "te": "పాఠ్య సారాంశం"
+  },
+  "satya_dawn": {
+    "en": "SATYA YUGA DAWNS",
+    "hi": "सत्ययुग का उदय",
+    "te": "సత్య యుగోదయం"
+  },
+  "yields": {
+    "en": "yields with honour",
+    "hi": "सम्मान सहित हार मानता है",
+    "te": "గౌరవంగా లొంగాడు"
+  },
+  "speaker_Kalki": {
+    "en": "Kalki",
+    "hi": "कल्कि",
+    "te": "కల్కి"
+  },
+  "npc_kalki": {
+    "en": "Kalki",
+    "hi": "कल्कि",
+    "te": "కల్కి"
+  },
+  "speaker_Vishnuyashas": {
+    "en": "Vishnuyashas",
+    "hi": "विष्णुयश",
+    "te": "విష్ణుయశుడు"
+  },
+  "npc_vishnuyashas": {
+    "en": "Vishnuyashas",
+    "hi": "विष्णुयश",
+    "te": "విష్ణుయశుడు"
+  },
+  "speaker_Sumati": {
+    "en": "Sumati",
+    "hi": "सुमति",
+    "te": "సుమతి"
+  },
+  "npc_sumati": {
+    "en": "Sumati",
+    "hi": "सुमति",
+    "te": "సుమతి"
+  },
+  "speaker_Parashurama": {
+    "en": "Parashurama",
+    "hi": "परशुराम",
+    "te": "పరశురాముడు"
+  },
+  "npc_parashurama": {
+    "en": "Parashurama",
+    "hi": "परशुराम",
+    "te": "పరశురాముడు"
+  },
+  "speaker_Shiva": {
+    "en": "Shiva",
+    "hi": "शिव",
+    "te": "శివుడు"
+  },
+  "npc_shiva": {
+    "en": "Shiva",
+    "hi": "शिव",
+    "te": "శివుడు"
+  },
+  "speaker_Parvati": {
+    "en": "Parvati",
+    "hi": "पार्वती",
+    "te": "పార్వతి"
+  },
+  "npc_parvati": {
+    "en": "Parvati",
+    "hi": "पार्वती",
+    "te": "పార్వతి"
+  },
+  "speaker_Padmavati": {
+    "en": "Padmavati",
+    "hi": "पद्मावती",
+    "te": "పద్మావతి"
+  },
+  "npc_padmavati": {
+    "en": "Padmavati",
+    "hi": "पद्मावती",
+    "te": "పద్మావతి"
+  },
+  "speaker_Ramadevi": {
+    "en": "Ramadevi",
+    "hi": "रमादेवी",
+    "te": "రమాదేవి"
+  },
+  "npc_ramadevi": {
+    "en": "Ramadevi",
+    "hi": "रमादेवी",
+    "te": "రమాదేవి"
+  },
+  "speaker_Yajnavalkya": {
+    "en": "Yajnavalkya",
+    "hi": "याज्ञवल्क्य",
+    "te": "యాజ్ఞవల్క్యుడు"
+  },
+  "npc_yajnavalkya": {
+    "en": "Yajnavalkya",
+    "hi": "याज्ञवल्क्य",
+    "te": "యాజ్ఞవల్క్యుడు"
+  },
+  "speaker_Ananta": {
+    "en": "Sage Ananta",
+    "hi": "ऋषि अनन्त",
+    "te": "ఋషి అనంతుడు"
+  },
+  "npc_ananta": {
+    "en": "Sage Ananta",
+    "hi": "ऋषि अनन्त",
+    "te": "ఋషి అనంతుడు"
+  },
+  "speaker_Vishakhayupa": {
+    "en": "King Vishakhayupa",
+    "hi": "राजा विशाखयूप",
+    "te": "రాజు విశాఖయూపుడు"
+  },
+  "npc_vishakhayupa": {
+    "en": "King Vishakhayupa",
+    "hi": "राजा विशाखयूप",
+    "te": "రాజు విశాఖయూపుడు"
+  },
+  "speaker_Brhadratha": {
+    "en": "King Brhadratha",
+    "hi": "राजा बृहद्रथ",
+    "te": "రాజు బృహద్రథుడు"
+  },
+  "npc_brhadratha": {
+    "en": "King Brhadratha",
+    "hi": "राजा बृहद्रथ",
+    "te": "రాజు బృహద్రథుడు"
+  },
+  "speaker_Maru": {
+    "en": "Maru",
+    "hi": "मरु",
+    "te": "మరువు"
+  },
+  "npc_maru": {
+    "en": "Maru",
+    "hi": "मरु",
+    "te": "మరువు"
+  },
+  "speaker_Devapi": {
+    "en": "Devapi",
+    "hi": "देवापि",
+    "te": "దేవాపి"
+  },
+  "npc_devapi": {
+    "en": "Devapi",
+    "hi": "देवापि",
+    "te": "దేవాపి"
+  },
+  "speaker_Dharma": {
+    "en": "Dharma",
+    "hi": "धर्म",
+    "te": "ధర్మం"
+  },
+  "npc_dharma": {
+    "en": "Dharma",
+    "hi": "धर्म",
+    "te": "ధర్మం"
+  },
+  "speaker_Krita": {
+    "en": "Krita Yuga",
+    "hi": "कृतयुग",
+    "te": "కృత యుగం"
+  },
+  "npc_krita": {
+    "en": "Krita Yuga",
+    "hi": "कृतयुग",
+    "te": "కృత యుగం"
+  },
+  "speaker_Kali": {
+    "en": "Kali, the age",
+    "hi": "कलि, युग-पुरुष",
+    "te": "కలి, యుగ పురుషుడు"
+  },
+  "npc_kali": {
+    "en": "Kali, the age",
+    "hi": "कलि, युग-पुरुष",
+    "te": "కలి, యుగ పురుషుడు"
+  },
+  "speaker_Kuthodari": {
+    "en": "Kuthodari",
+    "hi": "कुथोदरी",
+    "te": "కుథోదరి"
+  },
+  "npc_kuthodari": {
+    "en": "Kuthodari",
+    "hi": "कुथोदरी",
+    "te": "కుథోదరి"
+  },
+  "speaker_Vikanja": {
+    "en": "Vikanja",
+    "hi": "विकंज",
+    "te": "వికంజుడు"
+  },
+  "npc_vikanja": {
+    "en": "Vikanja",
+    "hi": "विकंज",
+    "te": "వికంజుడు"
+  },
+  "speaker_Koka": {
+    "en": "Koka",
+    "hi": "कोक",
+    "te": "కోకుడు"
+  },
+  "npc_koka": {
+    "en": "Koka",
+    "hi": "कोक",
+    "te": "కోకుడు"
+  },
+  "speaker_Shashidhvaja": {
+    "en": "King Shashidhvaja",
+    "hi": "राजा शशिध्वज",
+    "te": "రాజు శశిధ్వజుడు"
+  },
+  "npc_shashidhvaja": {
+    "en": "King Shashidhvaja",
+    "hi": "राजा शशिध्वज",
+    "te": "రాజు శశిధ్వజుడు"
+  },
+  "speaker_Shushanta": {
+    "en": "Queen Shushanta",
+    "hi": "रानी सुशान्ता",
+    "te": "రాణి సుశాంత"
+  },
+  "npc_shushanta": {
+    "en": "Queen Shushanta",
+    "hi": "रानी सुशान्ता",
+    "te": "రాణి సుశాంత"
+  },
+  "speaker_Sulocana": {
+    "en": "Sulocana",
+    "hi": "सुलोचना",
+    "te": "సులోచన"
+  },
+  "npc_sulocana": {
+    "en": "Sulocana",
+    "hi": "सुलोचना",
+    "te": "సులోచన"
+  },
+  "speaker_Refugee": {
+    "en": "Refugee",
+    "hi": "शरणार्थी",
+    "te": "శరణార్థి"
+  },
+  "npc_refugee": {
+    "en": "Refugee",
+    "hi": "शरणार्थी",
+    "te": "శరణార్థి"
+  },
+  "speaker_Surya": {
+    "en": "Surya Deva",
+    "hi": "सूर्यदेव",
+    "te": "సూర్యదేవుడు"
+  },
+  "npc_surya": {
+    "en": "Surya Deva",
+    "hi": "सूर्यदेव",
+    "te": "సూర్యదేవుడు"
+  },
+  "npc_toll": {
+    "en": "Toll-keeper",
+    "hi": "चुंगी अधिकारी",
+    "te": "సుంకం అధికారి"
+  },
+  "enemy_construct": {
+    "en": "Training pillar",
+    "hi": "प्रशिक्षण-स्तंभ",
+    "te": "శిక్షణ స్తంభం"
+  },
+  "enemy_android": {
+    "en": "Iron soldier of Kali",
+    "hi": "कलि का लौह सैनिक",
+    "te": "కలి ఇనుప సైనికుడు"
+  },
+  "enemy_guru": {
+    "en": "Parashurama (practice)",
+    "hi": "परशुराम (अभ्यास)",
+    "te": "పరశురాముడు (అభ్యాసం)"
+  },
+  "enemy_king": {
+    "en": "King Shashidhvaja",
+    "hi": "राजा शशिध्वज",
+    "te": "రాజు శశిధ్వజుడు"
+  },
+  "enemy_kuthodari": {
+    "en": "Kuthodari",
+    "hi": "कुथोदरी",
+    "te": "కుథోదరి"
+  },
+  "enemy_vikanja": {
+    "en": "Vikanja",
+    "hi": "विकंज",
+    "te": "వికంజుడు"
+  },
+  "enemy_kali": {
+    "en": "Kali",
+    "hi": "कलि",
+    "te": "కలి"
+  },
+  "obj_talk_refugee": {
+    "en": "Speak with the refugee elder",
+    "hi": "शरणार्थी बुज़ुर्ग से बात करें",
+    "te": "శరణార్థి పెద్దతో మాట్లాడండి"
+  },
+  "obj_protect": {
+    "en": "Protect the refugees: stop the robbers",
+    "hi": "शरणार्थियों की रक्षा करें: लुटेरों को रोकें",
+    "te": "శరణార్థులను కాపాడండి: దొంగలను ఆపండి"
+  },
+  "obj_toll": {
+    "en": "Reach the toll post",
+    "hi": "चुंगी चौकी तक पहुँचें",
+    "te": "సుంకం కేంద్రానికి చేరండి"
+  },
+  "obj_tollkeepers": {
+    "en": "Stop the toll-keepers who rob by deed",
+    "hi": "कर्म से लूटने वाले चुंगी अधिकारियों को रोकें",
+    "te": "చేతల్లో దోచే సుంకం అధికారులను ఆపండి"
+  },
+  "obj_talk_father": {
+    "en": "Speak with your father, Vishnuyashas",
+    "hi": "अपने पिता विष्णुयश से बात करें",
+    "te": "మీ తండ్రి విష్ణుయశునితో మాట్లాడండి"
+  },
+  "obj_talk_mother": {
+    "en": "Speak with your mother, Sumati",
+    "hi": "अपनी माता सुमति से बात करें",
+    "te": "మీ తల్లి సుమతితో మాట్లాడండి"
+  },
+  "obj_naming": {
+    "en": "Go to the sacred fire for your naming",
+    "hi": "नामकरण के लिए पवित्र अग्नि के पास जाएँ",
+    "te": "నామకరణం కోసం పవిత్ర అగ్ని దగ్గరకు వెళ్ళండి"
+  },
+  "obj_talk_guru": {
+    "en": "Speak with Parashurama",
+    "hi": "परशुराम से बात करें",
+    "te": "పరశురాముడితో మాట్లాడండి"
+  },
+  "obj_pillars": {
+    "en": "Strike the training pillars",
+    "hi": "प्रशिक्षण-स्तंभों पर प्रहार करें",
+    "te": "శిక్షణ స్తంభాలను కొట్టండి"
+  },
+  "obj_astra": {
+    "en": "Strike the distant targets with your Astra (F)",
+    "hi": "अपने अस्त्र (F) से दूर के लक्ष्यों को भेदें",
+    "te": "మీ అస్త్రంతో (F) దూరపు లక్ష్యాలను కొట్టండి"
+  },
+  "obj_spar": {
+    "en": "Spar with Parashurama (practice only)",
+    "hi": "परशुराम के साथ अभ्यास-युद्ध करें",
+    "te": "పరశురాముడితో అభ్యాస పోరు చేయండి"
+  },
+  "obj_shrine": {
+    "en": "Walk to Mahadeva's shrine",
+    "hi": "महादेव के मंदिर तक चलें",
+    "te": "మహాదేవుని ఆలయం వరకు నడవండి"
+  },
+  "obj_approach": {
+    "en": "Approach the shrine of Bilvodakeshvara",
+    "hi": "बिल्वोदकेश्वर के मंदिर के पास जाएँ",
+    "te": "బిల్వోదకేశ్వర ఆలయానికి చేరండి"
+  },
+  "obj_talk_shiva": {
+    "en": "Worship and speak with Mahadeva",
+    "hi": "महादेव की आराधना कर बात करें",
+    "te": "మహాదేవుని ఆరాధించి మాట్లాడండి"
+  },
+  "obj_mount": {
+    "en": "Mount Devadatta",
+    "hi": "देवदत्त पर आरूढ़ हों",
+    "te": "దేవదత్తుడిపై ఎక్కండి"
+  },
+  "obj_rings": {
+    "en": "Ride through the rings (Devadatta trial)",
+    "hi": "वलयों में से सवारी करें (देवदत्त परीक्षा)",
+    "te": "వలయాల గుండా స్వారీ చేయండి (దేవదత్త పరీక్ష)"
+  },
+  "obj_gate_mahishmati": {
+    "en": "Ride to the gate of Mahishmati",
+    "hi": "माहिष्मती के द्वार तक सवारी करें",
+    "te": "మాహిష్మతి ద్వారం వరకు స్వారీ చేయండి"
+  },
+  "obj_talk_vish": {
+    "en": "Speak with King Vishakhayupa",
+    "hi": "राजा विशाखयूप से बात करें",
+    "te": "రాజు విశాఖయూపుడితో మాట్లాడండి"
+  },
+  "obj_scout": {
+    "en": "Shuka scouts Simhala",
+    "hi": "शुक सिंहल की टोह लेता है",
+    "te": "శుకుడు సింహళాన్ని వేగు చూస్తాడు"
+  },
+  "obj_gate_simhala": {
+    "en": "Walk to the palace of Simhala",
+    "hi": "सिंहल के महल तक चलें",
+    "te": "సింహళ రాజభవనం వరకు నడవండి"
+  },
+  "obj_talk_padma": {
+    "en": "Speak with Padmavati",
+    "hi": "पद्मावती से बात करें",
+    "te": "పద్మావతితో మాట్లాడండి"
+  },
+  "obj_lotus": {
+    "en": "Gather lotuses from the three ponds",
+    "hi": "तीनों सरोवरों से कमल एकत्र करें",
+    "te": "మూడు సరస్సుల నుండి కమలాలు సేకరించండి"
+  },
+  "obj_fire": {
+    "en": "Walk around the sacred fire four times",
+    "hi": "पवित्र अग्नि की चार परिक्रमा करें",
+    "te": "పవిత్ర అగ్ని చుట్టూ నాలుగు ప్రదక్షిణలు చేయండి"
+  },
+  "obj_talk_ananta": {
+    "en": "Listen to the sage Ananta",
+    "hi": "ऋषि अनन्त को सुनें",
+    "te": "ఋషి అనంతుని వినండి"
+  },
+  "obj_choice": {
+    "en": "Answer the sage",
+    "hi": "ऋषि को उत्तर दें",
+    "te": "ఋషికి జవాబు చెప్పండి"
+  },
+  "obj_lotus_white": {
+    "en": "Walk to the white lotus",
+    "hi": "श्वेत कमल तक चलें",
+    "te": "తెల్ల కమలం వరకు నడవండి"
+  },
+  "obj_talk_family": {
+    "en": "Receive blessings from your family",
+    "hi": "परिवार से आशीर्वाद लें",
+    "te": "కుటుంబం నుండి ఆశీర్వాదాలు పొందండి"
+  },
+  "obj_council": {
+    "en": "Gather at the council fire",
+    "hi": "सभा की अग्नि पर एकत्र हों",
+    "te": "సభా అగ్ని వద్ద చేరండి"
+  },
+  "obj_codex": {
+    "en": "Read the codex entry",
+    "hi": "कोडेक्स की प्रविष्टि पढ़ें",
+    "te": "కోడెక్స్ ఎంట్రీ చదవండి"
+  },
+  "obj_pilgrims": {
+    "en": "Defend the pilgrims from armed raiders",
+    "hi": "सशस्त्र लुटेरों से तीर्थयात्रियों की रक्षा करें",
+    "te": "సాయుధ దోపిడీదారుల నుండి యాత్రికులను కాపాడండి"
+  },
+  "obj_talk_rishi": {
+    "en": "Speak with the rishi",
+    "hi": "ऋषि से बात करें",
+    "te": "ఋషితో మాట్లాడండి"
+  },
+  "obj_ascend": {
+    "en": "Ride up the white mountain",
+    "hi": "श्वेत पर्वत पर सवारी करें",
+    "te": "తెల్ల పర్వతం పైకి స్వారీ చేయండి"
+  },
+  "obj_kuthodari": {
+    "en": "Defeat Kuthodari and Vikanja",
+    "hi": "कुथोदरी और विकंज को पराजित करें",
+    "te": "కుథోదరి, వికంజుడిని ఓడించండి"
+  },
+  "obj_reach_kalapa": {
+    "en": "Ride to Kalapa village",
+    "hi": "कलाप ग्राम तक सवारी करें",
+    "te": "కలాప గ్రామం వరకు స్వారీ చేయండి"
+  },
+  "obj_talk_devapi": {
+    "en": "Speak with Devapi",
+    "hi": "देवापि से बात करें",
+    "te": "దేవాపితో మాట్లాడండి"
+  },
+  "obj_talk_maru": {
+    "en": "Speak with Maru",
+    "hi": "मरु से बात करें",
+    "te": "మరువుతో మాట్లాడండి"
+  },
+  "obj_defend_road": {
+    "en": "Drive off the raiders at the pass",
+    "hi": "दर्रे पर लुटेरों को भगाएँ",
+    "te": "కనుమ దగ్గర దోపిడీదారులను తరిమేయండి"
+  },
+  "obj_talk_dharma": {
+    "en": "Speak with Dharma",
+    "hi": "धर्म से बात करें",
+    "te": "ధర్మంతో మాట్లాడండి"
+  },
+  "obj_talk_krita": {
+    "en": "Speak with Krita Yuga",
+    "hi": "कृतयुग से बात करें",
+    "te": "కృత యుగంతో మాట్లాడండి"
+  },
+  "obj_march": {
+    "en": "March toward Visasana",
+    "hi": "विसासन की ओर कूच करें",
+    "te": "విసాసనం వైపు సాగండి"
+  },
+  "obj_patrol": {
+    "en": "Break the iron patrol",
+    "hi": "लौह गश्ती दल को तोड़ें",
+    "te": "ఇనుప గస్తీని ఛేదించండి"
+  },
+  "obj_gate_guards": {
+    "en": "Break the gate guard",
+    "hi": "द्वार रक्षकों को तोड़ें",
+    "te": "ద్వార రక్షకులను ఛేదించండి"
+  },
+  "obj_twins": {
+    "en": "Strike Koka and Vikoka together",
+    "hi": "कोक और विकोक पर एक साथ प्रहार करें",
+    "te": "కోకుడు, వికోకుడిపై ఒకేసారి కొట్టండి"
+  },
+  "obj_kali": {
+    "en": "Defeat Kali",
+    "hi": "कलि को पराजित करें",
+    "te": "కలిని ఓడించండి"
+  },
+  "obj_gate_bhallata": {
+    "en": "Walk to the court of Bhallata",
+    "hi": "भल्लाट के दरबार तक चलें",
+    "te": "భల్లాట సభ వరకు నడవండి"
+  },
+  "obj_talk_shashidhvaja": {
+    "en": "Speak with King Shashidhvaja",
+    "hi": "राजा शशिध्वज से बात करें",
+    "te": "రాజు శశిధ్వజుడితో మాట్లాడండి"
+  },
+  "obj_duel": {
+    "en": "Honourable duel: yield nothing, kill no one",
+    "hi": "सम्मानपूर्ण द्वंद्व: न झुकें, किसी को न मारें",
+    "te": "గౌరవ ద్వంద్వం: లొంగకండి, ఎవరినీ చంపకండి"
+  },
+  "obj_talk_ramadevi": {
+    "en": "Speak with Ramadevi",
+    "hi": "रमादेवी से बात करें",
+    "te": "రమాదేవితో మాట్లాడండి"
+  },
+  "obj_lotus_shrines": {
+    "en": "Light the lotus shrines (avoid the poison mist)",
+    "hi": "कमल-मंदिरों को जलाएँ (विषैले कोहरे से बचें)",
+    "te": "కమల మందిరాలను వెలిగించండి (విష పొగమంచును తప్పించండి)"
+  },
+  "obj_talk_sulocana": {
+    "en": "Speak with Sulocana",
+    "hi": "सुलोचना से बात करें",
+    "te": "సులోచనతో మాట్లాడండి"
+  },
+  "obj_restore": {
+    "en": "Restore the towns",
+    "hi": "नगरों को पुनः स्थापित करें",
+    "te": "పట్టణాలను పునఃస్థాపించండి"
+  },
+  "obj_predators": {
+    "en": "Stop the last predatory rulers' men",
+    "hi": "अंतिम शिकारी शासकों के सैनिकों को रोकें",
+    "te": "చివరి దోపిడీ పాలకుల మనుషులను ఆపండి"
+  },
+  "obj_ganga": {
+    "en": "Walk to the sacred confluence",
+    "hi": "पवित्र संगम तक चलें",
+    "te": "పవిత్ర సంగమం వరకు నడవండి"
+  },
+  "obj_farewell": {
+    "en": "Speak with your companions",
+    "hi": "अपने साथियों से बात करें",
+    "te": "మీ సహచరులతో మాట్లాడండి"
+  },
+  "obj_talk_narayana": {
+    "en": "Speak with the Lord",
+    "hi": "प्रभु से बात करें",
+    "te": "ప్రభువుతో మాట్లాడండి"
+  },
+  "opt_m07_a": {
+    "en": "Hold harder to what the world gives.",
+    "hi": "संसार जो देता है उसे और कसकर पकड़ो।",
+    "te": "లోకం ఇచ్చినదాన్ని మరింత గట్టిగా పట్టుకో."
+  },
+  "opt_m07_b": {
+    "en": "Remember the Lord within, and act without clinging.",
+    "hi": "भीतर के प्रभु को स्मरण करो और आसक्ति रहित कर्म करो।",
+    "te": "లోపల ఉన్న ప్రభువును స్మరించి అంటిపెట్టుకోకుండా కర్మ చేయి."
+  },
+  "opt_m07_c": {
+    "en": "Run away from the world.",
+    "hi": "संसार से भाग जाओ।",
+    "te": "లోకం నుండి పారిపో."
+  },
+  "obj_talk_brhadratha": {
+    "en": "Speak with King Brhadratha",
+    "hi": "राजा बृहद्रथ से बात करें",
+    "te": "రాజు బృహద్రథుడితో మాట్లాడండి"
+  },
+  "obj_talk_shushanta": {
+    "en": "Speak with Queen Shushanta",
+    "hi": "रानी सुशान्ता से बात करें",
+    "te": "రాణి సుశాంతతో మాట్లాడండి"
+  },
+  "npc_narayana": {
+    "en": "Lord Narayana",
+    "hi": "प्रभु नारायण",
+    "te": "శ్రీమన్నారాయణుడు"
+  },
+  "npc_shuka": {
+    "en": "Shuka",
+    "hi": "शुक",
+    "te": "శుకుడు"
   }
 }

@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dathl48txqgi0"
-path="res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.ctex"
+path.s3tc="res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.s3tc.ctex"
+path.etc2="res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "0170bad1422e149e353af430d4bb433c"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/kalki_devadatta_rigged_texture_normal.jpg"
-dest_files=["res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.ctex"]
+dest_files=["res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.s3tc.ctex", "res://.godot/imported/kalki_devadatta_rigged_texture_normal.jpg-eaf90f60f4916c24e870cc387a885ee8.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

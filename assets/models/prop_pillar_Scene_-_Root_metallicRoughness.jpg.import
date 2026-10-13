@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg45m2s6jgn6t"
-path="res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.ctex"
+path.s3tc="res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d1e493699649cd84f3704a6ab0a486cd"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_pillar_Scene_-_Root_metallicRoughness.jpg"
-dest_files=["res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.ctex"]
+dest_files=["res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.s3tc.ctex", "res://.godot/imported/prop_pillar_Scene_-_Root_metallicRoughness.jpg-88a967b5163e8eeafc5a45ac99790753.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

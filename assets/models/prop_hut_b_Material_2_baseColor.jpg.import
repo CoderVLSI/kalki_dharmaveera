@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0md7fhs26ckh"
-path="res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.ctex"
+path.s3tc="res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "e44d97372a87c452cbaf8cc654e6c0ce"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_hut_b_Material_2_baseColor.jpg"
-dest_files=["res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.ctex"]
+dest_files=["res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.s3tc.ctex", "res://.godot/imported/prop_hut_b_Material_2_baseColor.jpg-ea8fa4b0143e390d94338000986f3602.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

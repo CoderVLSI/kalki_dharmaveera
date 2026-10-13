@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpkp3vyk2p8ns"
-path="res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.ctex"
+path.s3tc="res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.s3tc.ctex"
+path.etc2="res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "732f0fd2cced86cd77871386964a5079"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/enemy_demon_defaultMat_normal.jpg"
-dest_files=["res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.ctex"]
+dest_files=["res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.s3tc.ctex", "res://.godot/imported/enemy_demon_defaultMat_normal.jpg-72bf894ad40c04c4b5d15cd5324b5f27.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

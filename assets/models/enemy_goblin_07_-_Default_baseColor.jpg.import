@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf2kydys3123j"
-path="res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.ctex"
+path.s3tc="res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.s3tc.ctex"
+path.etc2="res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "dd52a2646b6c345dbc3dd0ff18fe778f"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/enemy_goblin_07_-_Default_baseColor.jpg"
-dest_files=["res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.ctex"]
+dest_files=["res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.s3tc.ctex", "res://.godot/imported/enemy_goblin_07_-_Default_baseColor.jpg-558c938f0079ff86b892b9cf83e7b200.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

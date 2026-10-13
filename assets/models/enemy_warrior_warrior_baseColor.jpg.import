@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjsekhr37x8x2"
-path="res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.ctex"
+path.s3tc="res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.s3tc.ctex"
+path.etc2="res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "e3e90551e6c8d7126b8ac53402e62bc2"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/enemy_warrior_warrior_baseColor.jpg"
-dest_files=["res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.ctex"]
+dest_files=["res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.s3tc.ctex", "res://.godot/imported/enemy_warrior_warrior_baseColor.jpg-c99d852eec5d15c2f4fe10463c54d5e8.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

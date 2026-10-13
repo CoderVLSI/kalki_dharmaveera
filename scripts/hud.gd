@@ -19,6 +19,15 @@ var anim_panel: PanelContainer
 var anim_title: Label
 var fps_label: Label
 var sub_token: int = 0
+var show_dharma: bool = true
+var objective_label: Label
+var prompt_label: Label
+var banner: Label
+var result_panel: PanelContainer
+var result_title: Label
+var result_box: HBoxContainer
+var tc_dharma: Control
+signal result_choice(choice: String)
 
 
 func _ready() -> void:
@@ -154,6 +163,59 @@ func _ready() -> void:
 	fps_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(fps_label)
 
+	objective_label = Label.new()
+	objective_label.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	objective_label.position = Vector2(-380, 96)
+	objective_label.custom_minimum_size = Vector2(760, 0)
+	objective_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	objective_label.add_theme_font_size_override("font_size", 20)
+	objective_label.add_theme_color_override("font_color", Color(1.0, 0.9, 0.55))
+	objective_label.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	objective_label.add_theme_constant_override("outline_size", 6)
+	objective_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(objective_label)
+	prompt_label = Label.new()
+	prompt_label.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	prompt_label.position = Vector2(-300, -260)
+	prompt_label.custom_minimum_size = Vector2(600, 0)
+	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	prompt_label.add_theme_font_size_override("font_size", 26)
+	prompt_label.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	prompt_label.add_theme_constant_override("outline_size", 8)
+	prompt_label.visible = false
+	prompt_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(prompt_label)
+	banner = Label.new()
+	banner.set_anchors_preset(Control.PRESET_CENTER)
+	banner.position = Vector2(-450, -150)
+	banner.custom_minimum_size = Vector2(900, 0)
+	banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	banner.add_theme_font_size_override("font_size", 44)
+	banner.add_theme_color_override("font_color", Color(1.0, 0.88, 0.45))
+	banner.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	banner.add_theme_constant_override("outline_size", 12)
+	banner.modulate.a = 0.0
+	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(banner)
+	result_panel = PanelContainer.new()
+	result_panel.set_anchors_preset(Control.PRESET_CENTER)
+	result_panel.position = Vector2(-300, -120)
+	result_panel.custom_minimum_size = Vector2(600, 0)
+	result_panel.visible = false
+	root.add_child(result_panel)
+	var rv := VBoxContainer.new()
+	result_panel.add_child(rv)
+	result_title = Label.new()
+	result_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	result_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_title.add_theme_font_size_override("font_size", 30)
+	rv.add_child(result_title)
+	result_box = HBoxContainer.new()
+	result_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	result_box.add_theme_constant_override("separation", 14)
+	rv.add_child(result_box)
+	tc_dharma = tc
+
 	overlay = Label.new()
 	overlay.set_anchors_preset(Control.PRESET_CENTER)
 	overlay.position = Vector2(-420, -80)
@@ -176,6 +238,53 @@ func _ready() -> void:
 		_on_hp(player.hp, player.max_hp)
 	_on_dharma(Game.dharma)
 	dharma_bar.value = Game.dharma
+
+
+func set_objective(text: String, cur: int = 0, total: int = 0, extra: String = "") -> void:
+	if text == "":
+		objective_label.text = ""
+		return
+	objective_label.text = "◆ %s%s%s" % [text, ("  (%d/%d)" % [cur, total]) if total > 1 else "", ("   ·   " + extra) if extra != "" else ""]
+
+
+func set_prompt(text: String) -> void:
+	prompt_label.text = text
+	prompt_label.visible = text != ""
+
+
+func show_banner(text: String, secs: float = 2.6) -> void:
+	banner.text = text
+	var tw := create_tween()
+	tw.tween_property(banner, "modulate:a", 1.0, 0.6)
+	tw.tween_interval(secs)
+	tw.tween_property(banner, "modulate:a", 0.0, 0.9)
+
+
+## Result panel: title plus buttons [{id, text}]; emits result_choice(id).
+func show_result(title: String, buttons: Array) -> void:
+	result_title.text = title
+	for c in result_box.get_children():
+		c.queue_free()
+	for b in buttons:
+		var btn := Button.new()
+		btn.text = str(b["text"])
+		btn.add_theme_font_size_override("font_size", 22)
+		btn.focus_mode = Control.FOCUS_NONE
+		btn.custom_minimum_size = Vector2(170, 54)
+		var id: String = str(b["id"])
+		btn.pressed.connect(func(): result_choice.emit(id))
+		result_box.add_child(btn)
+	result_panel.visible = true
+
+
+func hide_result() -> void:
+	result_panel.visible = false
+
+
+func set_dharma_visible(on: bool) -> void:
+	show_dharma = on
+	if tc_dharma:
+		tc_dharma.visible = on
 
 
 func _title(t: String) -> Label:

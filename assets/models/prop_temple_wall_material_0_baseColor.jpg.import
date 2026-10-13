@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgxq253m272qt"
-path="res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.ctex"
+path.s3tc="res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b54a0abfa2dee9a0e8c66cc4587942ff"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_temple_wall_material_0_baseColor.jpg"
-dest_files=["res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.ctex"]
+dest_files=["res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.s3tc.ctex", "res://.godot/imported/prop_temple_wall_material_0_baseColor.jpg-dcd9d297d442968d0583973c029e6c8e.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

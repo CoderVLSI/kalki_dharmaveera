@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clq0n0uxv2e1k"
-path="res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.ctex"
+path.s3tc="res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.s3tc.ctex"
+path.etc2="res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d442970c130644d1c4feb02f5559a8fa"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/tree_alive_Bark_normal.jpg"
-dest_files=["res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.ctex"]
+dest_files=["res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.s3tc.ctex", "res://.godot/imported/tree_alive_Bark_normal.jpg-30664a5cf98584e5a37613d95e75de5f.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

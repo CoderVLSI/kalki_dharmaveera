@@ -52,7 +52,7 @@ func setup(k: String, pos: Vector3, p: Node3D, seed_value: int) -> void:
 
 func _ready() -> void:
 	add_to_group("enemies")
-	if kind == "koka" or kind == "vikoka":
+	if kind == "koka" or kind == "vikoka" or bool(cfg.get("boss", false)):
 		add_to_group("boss")
 	_build_visual()
 	_update_label()
@@ -357,6 +357,17 @@ func _near_banner() -> bool:
 	return false
 
 
+## Behaviour family: cfg.ai, else by kind. melee / ranged / banner / still.
+func _ai() -> String:
+	if cfg.has("ai"):
+		return str(cfg["ai"])
+	match kind:
+		"archer": return "ranged"
+		"banner": return "banner"
+		"raider", "koka", "vikoka": return "melee"
+	return "still"
+
+
 func _chase(to: Vector3, dist: float, speed: float, delta: float) -> void:
 	var rng_attack := float(cfg["attack_range"])
 	# morale rule: raiders break below 25% hp unless a banner steadies them
@@ -364,15 +375,15 @@ func _chase(to: Vector3, dist: float, speed: float, delta: float) -> void:
 		state = "flee"
 		flee_t = 3.0
 		return
-	match kind:
-		"raider", "koka", "vikoka":
+	match _ai():
+		"melee":
 			if dist > rng_attack:
 				_step(to.normalized(), speed, delta)
 			else:
 				_face(to, delta)
 				if cd <= 0.0:
 					_begin_windup()
-		"archer":
+		"ranged":
 			var pref := float(cfg["preferred_range"])
 			if dist < pref - 4.0:
 				_step(-to.normalized(), speed, delta)
@@ -395,7 +406,7 @@ func _begin_windup() -> void:
 	state = "windup"
 	timer = float(cfg["windup"])
 	strike_done = false
-	if kind == "archer":
+	if _ai() == "ranged":
 		aim_marker.visible = true
 
 
@@ -405,10 +416,14 @@ func _strike(dist: float) -> void:
 	cd = float(cfg["recover"]) + 0.4
 	arm_pivot.rotation.x = 1.0
 	aim_marker.visible = false
-	if kind == "raider" or kind == "koka" or kind == "vikoka":
-		if dist <= float(cfg["attack_range"]) * 1.4:
+	if _ai() == "melee":
+		if cfg.has("aoe_radius"):      # slam: hits everything near, telegraphed by the windup tint
+			if dist <= float(cfg["aoe_radius"]):
+				player.take_damage(float(cfg["damage"]), global_position)
+			_slam_ring(float(cfg["aoe_radius"]))
+		elif dist <= float(cfg["attack_range"]) * 1.4:
 			player.take_damage(float(cfg["damage"]), global_position)
-	elif kind == "archer":
+	elif _ai() == "ranged":
 		Sfx.play("twang", -4.0, 0.1)
 		var arrow := Projectile.new()
 		get_parent().add_child(arrow)
@@ -450,11 +465,47 @@ func take_damage(amount: float, from: Vector3, knockback: float = 6.0, stun_time
 	_sparks()
 	Sfx.play("hit", -1.0, 0.1)
 	_update_label()
+	if bool(cfg.get("spar", false)) and hp <= max_hp * float(cfg.get("yield_frac", 0.4)):
+		_yield()
+		return
 	if hp <= 0.0:
 		if _is_twin() and is_instance_valid(twin) and twin.state != "dead":
 			_fall()
 		else:
 			_die()
+
+
+## A sparring opponent (guru, honourable duel) never dies: at the threshold he yields.
+func _yield() -> void:
+	state = "yield"
+	hp = max_hp * float(cfg.get("yield_frac", 0.4))
+	remove_from_group("enemies")
+	aim_marker.visible = false
+	label.text = "%s\n%s" % [Game.t("enemy_" + kind), Game.t("yields")]
+	Sfx.play("chime", -4.0)
+	Game.enemy_killed.emit(kind)
+
+
+func _slam_ring(radius: float) -> void:
+	var m := MeshInstance3D.new()
+	var t := TorusMesh.new()
+	t.inner_radius = 0.9
+	t.outer_radius = 1.0
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(1.0, 0.35, 0.2, 0.8)
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	t.material = mat
+	m.mesh = t
+	get_parent().add_child(m)
+	m.global_position = global_position + Vector3(0, 0.15, 0)
+	m.scale = Vector3.ONE * 0.4
+	var tw := m.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(m, "scale", Vector3(radius, 1.0, radius), 0.35)
+	tw.tween_property(mat, "albedo_color:a", 0.0, 0.35)
+	tw.chain().tween_callback(m.queue_free)
+	Sfx.play("boom", -6.0, 0.05)
 
 
 func _is_twin() -> bool:

@@ -5,7 +5,7 @@ config_version=5
 
 config/name="Kalki Dharmaveera"
 config/description="Prototype: Kalki on Devadatta restores dharma. Mounted-combat vertical slice."
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/art/icon.png"
 boot_splash/bg_color=Color(0.03, 0.03, 0.06, 1)
@@ -15,6 +15,7 @@ boot_splash/fullsize=true
 [autoload]
 
 Game="*res://scripts/game.gd"
+Campaign="*res://scripts/campaign.gd"
 Sfx="*res://scripts/sfx.gd"
 
 [display]

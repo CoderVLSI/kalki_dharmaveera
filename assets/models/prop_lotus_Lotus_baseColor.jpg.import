@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1hu2fqwrnw05"
-path="res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.ctex"
+path.s3tc="res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "48e07e1f2961b71f219b7a753ffe8f75"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_lotus_Lotus_baseColor.jpg"
-dest_files=["res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.ctex"]
+dest_files=["res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.s3tc.ctex", "res://.godot/imported/prop_lotus_Lotus_baseColor.jpg-18da47b9eee87f848d10d6cda4db4e02.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ek8jikj64ik7"
-path="res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.ctex"
+path.s3tc="res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.s3tc.ctex"
+path.etc2="res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "17a2c13deca146a3d924d66b095ba98e"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg"
-dest_files=["res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.ctex"]
+dest_files=["res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.s3tc.ctex", "res://.godot/imported/kalki_devadatta_rigged_texture_metallic-texture_roughness.jpg-7daea104d8545b4d2de6b7ec96e6a538.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

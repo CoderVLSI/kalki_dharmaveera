@@ -23,5 +23,6 @@ cd "$REPO_DIR"
 godot --headless --path . --import >/dev/null 2>&1 || true
 mkdir -p build/android dist
 godot --headless --path . --export-release "Android"
-cp build/android/KalkiDharmaveera.apk dist/KalkiDharmaveera-v0.8.1-android.apk
+VER=$(grep -m1 'version/name' export_presets.cfg | cut -d'"' -f2)
+cp build/android/KalkiDharmaveera.apk "dist/KalkiDharmaveera-v${VER}-android.apk"
 sha256sum dist/*.apk

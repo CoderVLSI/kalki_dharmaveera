@@ -3,19 +3,52 @@ extends Node3D
 ## Builds the arena and applies the world-state rule table:
 ## Dharma 0 (Kali Yuga: ash, red haze, dead trees) -> 100 (Satya Yuga: gold light, green, bloom).
 
-const DEAD := {
+const DEAD_DEFAULT := {
 	"sky_top": Color(0.17, 0.08, 0.08), "sky_horizon": Color(0.55, 0.27, 0.17),
 	"ground": Color(0.50, 0.42, 0.34), "fog": Color(0.42, 0.24, 0.17), "fog_density": 0.011,
 	"light": Color(1.0, 0.62, 0.46), "light_energy": 1.0, "ambient": 0.7,
 	"crown": Color(0.20, 0.16, 0.14), "mountain": Color(0.28, 0.22, 0.22),
 }
-const ALIVE := {
+const ALIVE_DEFAULT := {
 	"sky_top": Color(0.28, 0.55, 0.95), "sky_horizon": Color(1.0, 0.90, 0.66),
 	"ground": Color(0.50, 0.68, 0.30), "fog": Color(0.95, 0.88, 0.70), "fog_density": 0.003,
 	"light": Color(1.0, 0.96, 0.82), "light_energy": 1.5, "ambient": 1.0,
 	"crown": Color(0.30, 0.65, 0.25), "mountain": Color(0.80, 0.78, 0.74),
 }
 
+## Per-region looks (PDF section 8). Only the colours that differ from the defaults are listed.
+const BIOMES := {
+	"shambhala": {"dead": {"sky_top": Color(0.35, 0.28, 0.3), "sky_horizon": Color(0.85, 0.6, 0.4), "ground": Color(0.55, 0.5, 0.36), "fog": Color(0.7, 0.55, 0.4), "fog_density": 0.006},
+		"alive": {"ground": Color(0.46, 0.66, 0.28)}},
+	"mahendra": {"dead": {"sky_top": Color(0.3, 0.38, 0.5), "sky_horizon": Color(0.8, 0.75, 0.65), "ground": Color(0.42, 0.46, 0.38), "fog": Color(0.7, 0.72, 0.72), "fog_density": 0.012, "mountain": Color(0.42, 0.42, 0.45)},
+		"alive": {"ground": Color(0.38, 0.58, 0.34), "mountain": Color(0.55, 0.56, 0.6)}},
+	"shrine": {"dead": {"sky_top": Color(0.45, 0.3, 0.3), "sky_horizon": Color(1.0, 0.7, 0.35), "ground": Color(0.66, 0.55, 0.38), "fog": Color(0.9, 0.65, 0.4), "fog_density": 0.007},
+		"alive": {"ground": Color(0.62, 0.62, 0.34)}},
+	"court": {"dead": {"sky_top": Color(0.3, 0.45, 0.65), "sky_horizon": Color(0.95, 0.85, 0.7), "ground": Color(0.7, 0.62, 0.48), "fog": Color(0.85, 0.8, 0.7), "fog_density": 0.005},
+		"alive": {"ground": Color(0.5, 0.7, 0.4)}},
+	"simhala": {"dead": {"sky_top": Color(0.2, 0.5, 0.75), "sky_horizon": Color(0.9, 0.95, 0.9), "ground": Color(0.72, 0.68, 0.52), "fog": Color(0.8, 0.9, 0.9), "fog_density": 0.004},
+		"alive": {"ground": Color(0.42, 0.72, 0.5)}},
+	"vision": {"dead": {"sky_top": Color(0.55, 0.5, 0.75), "sky_horizon": Color(1.0, 0.95, 0.8), "ground": Color(0.85, 0.8, 0.7), "fog": Color(1.0, 0.95, 0.85), "fog_density": 0.018, "light_energy": 1.3},
+		"alive": {"ground": Color(0.9, 0.85, 0.7), "fog_density": 0.012}},
+	"himalaya": {"dead": {"sky_top": Color(0.3, 0.42, 0.65), "sky_horizon": Color(0.85, 0.9, 0.95), "ground": Color(0.86, 0.9, 0.95), "fog": Color(0.8, 0.86, 0.92), "fog_density": 0.011, "mountain": Color(0.9, 0.92, 0.97), "light": Color(0.9, 0.93, 1.0)},
+		"alive": {"ground": Color(0.9, 0.94, 0.98), "mountain": Color(0.95, 0.96, 1.0)}},
+	"kalapa": {"dead": {"sky_top": Color(0.3, 0.5, 0.6), "sky_horizon": Color(0.85, 0.82, 0.65), "ground": Color(0.5, 0.58, 0.34), "fog": Color(0.7, 0.75, 0.6), "fog_density": 0.007},
+		"alive": {"ground": Color(0.4, 0.68, 0.3)}},
+	"visasana": {"dead": {"sky_top": Color(0.06, 0.03, 0.05), "sky_horizon": Color(0.4, 0.1, 0.08), "ground": Color(0.22, 0.17, 0.16), "fog": Color(0.25, 0.08, 0.06), "fog_density": 0.02, "light": Color(1.0, 0.4, 0.3), "light_energy": 0.8, "mountain": Color(0.14, 0.1, 0.1)},
+		"alive": {"ground": Color(0.45, 0.5, 0.3)}},
+	"bhallata": {"dead": {"sky_top": Color(0.4, 0.3, 0.3), "sky_horizon": Color(0.95, 0.7, 0.4), "ground": Color(0.6, 0.5, 0.36), "fog": Color(0.8, 0.6, 0.4), "fog_density": 0.008},
+		"alive": {"ground": Color(0.55, 0.65, 0.34)}},
+	"kanchana": {"dead": {"sky_top": Color(0.1, 0.2, 0.15), "sky_horizon": Color(0.5, 0.7, 0.4), "ground": Color(0.3, 0.38, 0.26), "fog": Color(0.4, 0.6, 0.35), "fog_density": 0.028, "light": Color(0.7, 1.0, 0.6), "light_energy": 0.9},
+		"alive": {"ground": Color(0.4, 0.62, 0.34), "fog_density": 0.006}},
+	"restored": {"dead": {"ground": Color(0.5, 0.58, 0.34), "sky_top": Color(0.4, 0.55, 0.8), "sky_horizon": Color(1.0, 0.9, 0.7), "fog_density": 0.005},
+		"alive": {}},
+	"vaikuntha": {"dead": {"sky_top": Color(0.6, 0.65, 0.95), "sky_horizon": Color(1.0, 0.95, 0.8), "ground": Color(0.95, 0.9, 0.75), "fog": Color(1.0, 0.96, 0.85), "fog_density": 0.014, "light": Color(1.0, 0.95, 0.8), "light_energy": 1.6},
+		"alive": {"ground": Color(0.95, 0.92, 0.8), "fog_density": 0.01}},
+}
+
+var config: Dictionary = {}     # biome, trees (bool), mountains (bool), village (bool), pillars (bool), props [...]
+var dead: Dictionary = {}
+var alive: Dictionary = {}
 var env: Environment
 var sky_mat: ProceduralSkyMaterial
 var sun: DirectionalLight3D
@@ -30,12 +63,28 @@ var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	rng.seed = 1008  # seeded: reproducible world
+	dead = DEAD_DEFAULT.duplicate()
+	alive = ALIVE_DEFAULT.duplicate()
+	var b: Dictionary = BIOMES.get(str(config.get("biome", "")), {})
+	for k in b.get("dead", {}):
+		dead[k] = b["dead"][k]
+	for k in b.get("alive", {}):
+		alive[k] = b["alive"][k]
+	# alive colours default to the biome's dead ones where the biome is deliberately constant
+	for k in b.get("dead", {}):
+		if not b.get("alive", {}).has(k) and k in ["sky_top", "sky_horizon", "fog"] and config.get("constant_sky", false):
+			alive[k] = dead[k]
 	_build_environment()
 	_build_ground()
-	_build_trees()
-	_build_mountains()
-	_build_village()
-	_build_pillars()
+	if config.get("trees", true):
+		_build_trees()
+	if config.get("mountains", true):
+		_build_mountains()
+	if config.get("village", true):
+		_build_village()
+	if config.get("pillars", true):
+		_build_pillars()
+	_build_props(config.get("props", []))
 	Game.dharma_changed.connect(_on_dharma)
 	apply(Game.dharma)
 
@@ -176,6 +225,19 @@ func _build_village() -> void:
 
 
 ## The four legs of Dharma return as standing columns when each pillar is restored.
+## Mission scenery from the `play.props` list: {"model", "pos":[x,z], "rot":deg, "scale"}.
+func _build_props(list: Array) -> void:
+	for p in list:
+		var n := Props.spawn(str(p["model"]))
+		if n == null:
+			continue
+		var pos: Array = p.get("pos", [0, 0])
+		n.position = Vector3(float(pos[0]), 0.0, float(pos[1]))
+		n.rotation.y = deg_to_rad(float(p.get("rot", 0.0)))
+		n.scale = Vector3.ONE * float(p.get("scale", 1.0))
+		add_child(n)
+
+
 func _build_pillars() -> void:
 	var ids: Array = []
 	for p in Game.world_cfg.get("pillars", []):
@@ -211,16 +273,17 @@ func _on_dharma(value: float) -> void:
 func apply(dharma: float) -> void:
 	level = dharma
 	var t := smoothstep(0.0, 100.0, dharma)
-	var lerp_c := func(k: String) -> Color: return (DEAD[k] as Color).lerp(ALIVE[k], t)
+	var lerp_c := func(k: String) -> Color: return (dead[k] as Color).lerp(alive[k], t)
 	sky_mat.sky_top_color = lerp_c.call("sky_top")
 	sky_mat.sky_horizon_color = lerp_c.call("sky_horizon")
 	sky_mat.ground_horizon_color = lerp_c.call("sky_horizon")
 	sky_mat.ground_bottom_color = (lerp_c.call("sky_top") as Color).darkened(0.4)
 	env.fog_light_color = lerp_c.call("fog")
-	env.fog_density = lerpf(DEAD["fog_density"], ALIVE["fog_density"], t)
-	env.ambient_light_energy = lerpf(DEAD["ambient"], ALIVE["ambient"], t)
+	env.fog_density = lerpf(dead["fog_density"], alive["fog_density"], t)
+	env.ambient_light_energy = lerpf(dead["ambient"], alive["ambient"], t)
 	sun.light_color = lerp_c.call("light")
-	sun.light_energy = lerpf(DEAD["light_energy"], ALIVE["light_energy"], t)
+	sun.light_energy = lerpf(dead["light_energy"], alive["light_energy"], t)
 	ground_mat.albedo_color = lerp_c.call("ground")
-	mountain_mat.albedo_color = lerp_c.call("mountain")
+	if mountain_mat:
+		mountain_mat.albedo_color = lerp_c.call("mountain")
 	_place_trees(dharma)

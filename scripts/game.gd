@@ -29,7 +29,8 @@ var restored: Array = []
 var demo: bool = false
 var last_said: Dictionary = {}
 const MIN_GAP := {"player_hurt": 12.0, "banner_down": 5.0, "boss_down": 8.0}
-var skip_title: bool = false   # set on restart so the title only shows once
+var skip_title: bool = false
+var mission_mode: bool = false   # true inside campaign missions (no sandbox victory scene)   # set on restart so the title only shows once
 
 
 func _ready() -> void:
@@ -98,6 +99,10 @@ func t(key: String) -> String:
 	return str(e.get(lang, e.get("en", key)))
 
 
+func mission_title(m: Dictionary) -> String:
+	return str(m.get("title_" + lang, m.get("title", "")))
+
+
 func line_text(line: Dictionary) -> String:
 	return str(line.get("text_" + lang, line.get("text", "")))
 
@@ -132,14 +137,14 @@ func add_dharma(amount: float) -> void:
 	if finished:
 		return
 	# Satya cannot be fully restored while Kali's twin generals still stand.
-	dharma = clampf(dharma + amount, 0.0, 100.0 if boss_defeated else 95.0)
+	dharma = clampf(dharma + amount, 0.0, 100.0 if (boss_defeated or mission_mode) else 95.0)
 	dharma_changed.emit(dharma)
 	for p in world_cfg.get("pillars", []):
 		if dharma >= float(p["threshold"]) and not restored.has(p["id"]):
 			restored.append(p["id"])
 			pillar_restored.emit(p["id"])
 			say(p["line"])
-	if dharma >= 100.0:
+	if dharma >= 100.0 and not mission_mode:
 		finished = true
 		say("victory")
 		victory.emit()
@@ -149,6 +154,9 @@ func add_dharma(amount: float) -> void:
 func tier_label(line: Dictionary) -> String:
 	if line.get("speech_type", "") == "DRAMATIZED_ADAPTATION":
 		return "%s · %s" % [line.get("source_tier", line.get("tier", "")), t("adapted")]
+	if line.get("speech_type", "") == "ENGLISH_PARAPHRASE":
+		var loc := str(line.get("locator", ""))
+		return "%s · %s%s" % [line.get("source_tier", ""), t("paraphrase"), (" · " + loc) if loc != "" else ""]
 	return str(line.get("source_tier", line.get("tier", "")))
 
 

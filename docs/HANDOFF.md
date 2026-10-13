@@ -12,7 +12,16 @@ A mythic action game: **Kalki** (10th avatar of Vishnu) destroys **Kali's host (
 - Casual tone ("bro"); keep replies short and plain. They interrupt tool calls often; that is not rejection of the goal.
 - Never print or commit secrets. Never ask them to paste tokens into chat.
 
-## Current state (v0.8.1)
+## Campaign (v0.9.0): the complete game, M00-M17
+Architecture: `docs/design/CAMPAIGN.md`. Menu (`scenes/menu.tscn`, run/main_scene) -> `Campaign.start(id)` -> `scenes/main.tscn` (mission host, `scripts/main.gd`) which reads `missions.json -> play` and runs the objective list via `scripts/mission_runner.gd` (talk, reach, defeat, rings, collect, boss, cutscene, choice, survive, codex, restore, mount, wait). `Campaign.current == "SANDBOX"` is the old arena (free ride; tests use it). Progress and flags save to `user://save.cfg`.
+- **Content is generated**: edit `tools/content/{lines_a,lines_b,lines_c,ui_strings,missions_play,codex_data,build_content}.py`, then `python3 tools/content/build_content.py` (rewrites data/missions.json, dialogue.json, strings.json, enemies.json, codex.json and checks every reference). Never hand-edit those JSONs.
+- All new dialogue is DRAMATIZED_ADAPTATION or ENGLISH_PARAPHRASE with tier A/B/G and locator; no new voice audio (subtitle only), no extra ElevenLabs credits.
+- Test: `KALKI_ONLY=M05 godot --headless res://tests/campaign_test.tscn` (omit KALKI_ONLY for all 18). It runs every mission on autopilot (`Campaign.autoplay`, env `KALKI_AUTOPLAY`). Visual: `tests/mission_view.tscn` with KALKI_MISSION, KALKI_SHOT under xvfb.
+- Stand-in models (flagged `standin` in missions_play.py, tinted): Sumati=ramadevi, Maru/Vishakhayupa/Shashidhvaja=ashwatthama, Devapi/Ananta/Dharma=vyasa, Krita/Sulocana/Shushanta=lakshmi, Brhadratha=vishnuyashas, refugees=elder models, Kuthodari/Vikanja=horned_warlord (scaled, tinted), youth Kalki=scaled adult (`player_h`). Replace by dropping a rigged `char_<slot>.glb` and changing `slot` in missions_play.py.
+- Still missing from the user: Sumati, teen/child Kalki, Indra (prologue warns on char_indra), Devadatta as separate horse, Kuthodari, Vikanja, Maru, Devapi. Open questions: how Koka and Vikoka differ (currently crimson vs indigo tint), whether char_hanuman is intended (excluded from builds).
+- M01 is the existing cinematic prologue. M10 Brahmastra is the finishing cutscene after the Kuthodari fight.
+
+## Current state (v0.8.1, sandbox arena; the campaign above sits on top)
 Playable prototype in Godot 4.7.2 (GL Compatibility, GDScript):
 - Player: Kalki on Devadatta (`assets/models/kalki_devadatta_rigged.glb`, rigged/animated by `tools/blender/rig_kalki.py`; animations idle/walk/trot/gallop/slash/rear/victory). Gaits, slash, Astra (rear-up shockwave), dash.
 - Enemies from `data/enemies.json` (raider, archer, banner-bearer) and the **Koka and Vikoka twin boss** (spawns at 80% Dharma; each revives after 6 s unless both are down together; Dharma capped at 95 until both die).

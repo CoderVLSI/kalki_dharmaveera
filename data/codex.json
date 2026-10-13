@@ -1,0 +1,100 @@
+{
+  "entries": [
+    {
+      "id": "tiers",
+      "title": "Source tiers",
+      "title_hi": "स्रोत-स्तर",
+      "title_te": "మూల స్థాయిలు",
+      "tier": "G",
+      "source": "Reference PDF, section 2",
+      "text": "Every line you read is tagged. A is the principal Puranic text (Bhagavata, Vishnu, Agni). B is the Kalki Purana's expanded account. G is this game's own adaptation, such as the dialogue, the iron soldiers and the missions' puzzles. New dialogue is shown as adapted and is never presented as a verse.",
+      "text_hi": "आप जो भी पंक्ति पढ़ते हैं उस पर स्तर अंकित है। A मुख्य पौराणिक पाठ (भागवत, विष्णु, अग्नि) है। B कल्कि पुराण का विस्तृत वर्णन है। G इस खेल का अपना रूपांतरण है, जैसे संवाद, लौह सैनिक और अभियानों की पहेलियाँ। नया संवाद रूपांतरित के रूप में दिखाया जाता है, श्लोक के रूप में नहीं।",
+      "text_te": "మీరు చదివే ప్రతి వాక్యానికి స్థాయి గుర్తు ఉంటుంది. A ప్రధాన పౌరాణిక పాఠం (భాగవతం, విష్ణు, అగ్ని). B కల్కి పురాణపు విస్తృత వర్ణన. G ఈ ఆట సొంత అనుసృజన, అంటే సంభాషణలు, ఇనుప సైనికులు, మిషన్ల పజిళ్ళు. కొత్త సంభాషణ అనుసృజనగానే చూపబడుతుంది, శ్లోకంగా కాదు.",
+      "adapted": true
+    },
+    {
+      "id": "kalki_purana",
+      "title": "The Kalki Purana",
+      "title_hi": "कल्कि पुराण",
+      "title_te": "కల్కి పురాణం",
+      "tier": "B",
+      "source": "Kalki Purana, Amshas 1-3",
+      "text": "A late upapurana in three parts that tells of Kalki's birth in Shambhala, his schooling under Parashurama, the gifts of Shiva, his marriage at Simhala and his campaigns against the age of Kali. The game follows it as an expanded account; where it differs from the Bhagavata, the Bhagavata verse is treated as the principal text.",
+      "text_hi": "तीन अंशों वाला परवर्ती उपपुराण, जो शम्भल में कल्कि के जन्म, परशुराम के पास उनकी शिक्षा, शिव के उपहारों, सिंहल में विवाह और कलियुग के विरुद्ध अभियानों का वर्णन करता है। खेल इसे विस्तृत वर्णन मानकर चलता है; जहाँ यह भागवत से भिन्न है, वहाँ भागवत का श्लोक मुख्य पाठ माना गया है।",
+      "text_te": "మూడు అంశాల అనంతర ఉపపురాణం; శంభలలో కల్కి జననం, పరశురాముని వద్ద విద్య, శివుని కానుకలు, సింహళంలో వివాహం, కలియుగంపై యుద్ధాలను చెబుతుంది. ఆట దీన్ని విస్తృత వర్ణనగా అనుసరిస్తుంది; భాగవతంతో తేడా ఉన్నచోట భాగవత శ్లోకమే ప్రధాన పాఠం.",
+      "adapted": true
+    },
+    {
+      "id": "kali_age",
+      "title": "Kali, the age",
+      "title_hi": "कलि, युग",
+      "title_te": "కలి, యుగం",
+      "tier": "A",
+      "source": "Bhagavata Purana 12.2.1-17",
+      "text": "Kali here is the age of strife, and in the game its personified lord. It is not the goddess Kali. Its mark is the slow decline of truth, purity, compassion, strength and memory, and rulers who behave like thieves. Enemies in this game are defined by their deeds alone, never by religion, ethnicity or caste.",
+      "text_hi": "यहाँ कलि संघर्ष का युग है, और खेल में उसका मूर्त स्वामी। यह देवी काली नहीं है। इसका लक्षण सत्य, शौच, दया, बल और स्मृति का धीमा क्षय और चोरों जैसे शासक हैं। इस खेल में शत्रु केवल अपने कर्मों से परिभाषित होते हैं, कभी धर्म, जाति या वंश से नहीं।",
+      "text_te": "ఇక్కడ కలి అంటే కలహ యుగం, ఆటలో దాని మూర్తి రూపం. ఇతడు కాళీ దేవి కాదు. సత్యం, శౌచం, దయ, బలం, స్మృతి నెమ్మదిగా క్షీణించడం, దొంగల్లా ప్రవర్తించే పాలకులు దీని లక్షణాలు. ఈ ఆటలో శత్రువులు వారి చేతలతోనే నిర్వచించబడతారు, మతం, జాతి, కులం వల్ల ఎప్పుడూ కాదు.",
+      "adapted": true
+    },
+    {
+      "id": "shambhala",
+      "title": "Shambhala",
+      "title_hi": "शम्भल",
+      "title_te": "శంభల",
+      "tier": "A",
+      "source": "Bhagavata Purana 12.2.18",
+      "text": "The village in which Kalki will appear, in the house of the eminent Brahmin Vishnuyashas. The Bhagavata places the birth there; the Kalki Purana adds the family, the naming and the childhood the game shows in the first missions.",
+      "text_hi": "वह ग्राम जहाँ श्रेष्ठ ब्राह्मण विष्णुयश के घर कल्कि प्रकट होंगे। भागवत जन्म को वहीं रखता है; कल्कि पुराण परिवार, नामकरण और बाल्यकाल जोड़ता है, जो खेल के आरंभिक अभियानों में दिखता है।",
+      "text_te": "శ్రేష్ఠ బ్రాహ్మణుడు విష్ణుయశుని ఇంట్లో కల్కి అవతరించే గ్రామం. భాగవతం జననాన్ని అక్కడే ఉంచుతుంది; కల్కి పురాణం కుటుంబం, నామకరణం, బాల్యం కలుపుతుంది; ఆట తొలి మిషన్లలో వీటిని చూపుతుంది.",
+      "adapted": true
+    },
+    {
+      "id": "devadatta",
+      "title": "Devadatta",
+      "title_hi": "देवदत्त",
+      "title_te": "దేవదత్తుడు",
+      "tier": "B",
+      "source": "Kalki Purana I (gifts of Shiva)",
+      "text": "Kalki's swift horse. The verse names the horse; its colour is described differently in different retellings, so the game does not insist on one. Devadatta is a companion, not a weapon, and the rings trial teaches the rider and the horse to move as one.",
+      "text_hi": "कल्कि का द्रुतगामी घोड़ा। श्लोक घोड़े का नाम देता है; उसका रंग अलग-अलग कथाओं में अलग बताया गया है, इसलिए खेल किसी एक रंग पर ज़ोर नहीं देता। देवदत्त साथी है, शस्त्र नहीं।",
+      "text_te": "కల్కి వేగవంతమైన గుర్రం. శ్లోకం గుర్రం పేరు చెబుతుంది; దాని రంగు వేర్వేరు కథనాల్లో వేరుగా ఉంది, కాబట్టి ఆట ఒక రంగును నొక్కి చెప్పదు. దేవదత్తుడు సహచరుడు, ఆయుధం కాదు.",
+      "adapted": true
+    },
+    {
+      "id": "kikata",
+      "title": "Kikata (a disputed account)",
+      "title_hi": "किकट (विवादित आख्यान)",
+      "title_te": "కీకటం (వివాదాస్పద గాథ)",
+      "tier": "B",
+      "source": "Kalki Purana, later chapters (disputed)",
+      "text": "A later chapter of the Kalki Purana tells of a battle at Kikata against named sects. It is sectarian polemic written long after the events it claims, and it is presented here only as a record of the text, not as a model. In this game the only people Kalki stops at Kikata are armed raiders, and he stops them for what they do. A person is judged by deeds, never by name, birth or belief.",
+      "text_hi": "कल्कि पुराण के एक परवर्ती अध्याय में नामित संप्रदायों के विरुद्ध किकट में युद्ध का वर्णन है। यह उन घटनाओं के बहुत बाद लिखा गया सांप्रदायिक वाद-विवाद है, और यहाँ केवल पाठ के अभिलेख के रूप में रखा गया है, आदर्श के रूप में नहीं। इस खेल में कल्कि किकट में केवल सशस्त्र लुटेरों को रोकते हैं, और उनके कर्म के लिए। व्यक्ति का मूल्यांकन कर्म से होता है, नाम, जन्म या मत से नहीं।",
+      "text_te": "కల్కి పురాణపు అనంతర అధ్యాయం పేరు పెట్టిన శాఖలపై కీకటంలో యుద్ధాన్ని చెబుతుంది. ఇది అది చెప్పే ఘటనల చాలా కాలం తర్వాత రాసిన శాంప్రదాయిక వాదం, ఇక్కడ పాఠ రికార్డుగా మాత్రమే ఉంచబడింది, ఆదర్శంగా కాదు. ఈ ఆటలో కీకటంలో కల్కి ఆపేది సాయుధ దోపిడీదారులనే, వారి చేతల కోసమే. మనిషిని చేతలతో కొలుస్తారు, పేరు, పుట్టుక, నమ్మకంతో కాదు.",
+      "adapted": true
+    },
+    {
+      "id": "brahmastra",
+      "title": "The Brahmastra",
+      "title_hi": "ब्रह्मास्त्र",
+      "title_te": "బ్రహ్మాస్త్రం",
+      "tier": "B",
+      "source": "Kalki Purana (Parashurama's instruction)",
+      "text": "The weapon Parashurama teaches Kalki to hold back. It is raised only when cruelty is certain and nothing gentler will stop it. The game uses it once, against Kuthodari, who preys on pilgrims.",
+      "text_hi": "वह शस्त्र जिसे रोके रखना परशुराम कल्कि को सिखाते हैं। इसे तभी उठाया जाता है जब क्रूरता निश्चित हो और कुछ भी कोमल उसे न रोक सके। खेल इसका उपयोग केवल एक बार करता है, कुथोदरी के विरुद्ध, जो तीर्थयात्रियों को सताती है।",
+      "text_te": "పరశురాముడు కల్కికి నిగ్రహించమని బోధించే అస్త్రం. క్రూరత్వం ఖచ్చితమై, మృదువైనదేదీ ఆపలేనప్పుడే దీన్ని ఎత్తుతారు. ఆట దీన్ని ఒక్కసారే వాడుతుంది, యాత్రికులను హింసించే కుథోదరిపై.",
+      "adapted": true
+    },
+    {
+      "id": "credits",
+      "title": "Credits and sources",
+      "title_hi": "आभार और स्रोत",
+      "title_te": "కృతజ్ఞతలు, మూలాలు",
+      "tier": "G",
+      "source": "Project credits",
+      "text": "Kalki Dharmaveera. Story from the Bhagavata, Vishnu and Agni Puranas and the Kalki Purana, as laid out in the project reference PDF. Characters were modelled by the project owner; the rigging, mission design, writing and translations were done in the project pipeline. Hindi and Telugu text is a game adaptation and welcomes correction from native readers. Thank you for playing.",
+      "text_hi": "कल्कि धर्मवीर। कथा भागवत, विष्णु और अग्नि पुराणों तथा कल्कि पुराण से, जैसा परियोजना के संदर्भ-पीडीएफ में रखा गया है। पात्रों के मॉडल परियोजना-स्वामी ने बनाए; रिगिंग, अभियान-रचना, लेखन और अनुवाद परियोजना की प्रक्रिया में हुए। हिन्दी और तेलुगु पाठ खेल का रूपांतरण है, मातृभाषी पाठकों के सुधार का स्वागत है। खेलने के लिए धन्यवाद।",
+      "text_te": "కల్కి ధర్మవీర. కథ భాగవత, విష్ణు, అగ్ని పురాణాలు, కల్కి పురాణం నుండి, ప్రాజెక్ట్ రిఫరెన్స్ PDFలో ఉన్నట్లు. పాత్రల మోడళ్ళను ప్రాజెక్ట్ యజమాని తయారు చేశారు; రిగ్గింగ్, మిషన్ రూపకల్పన, రచన, అనువాదాలు ప్రాజెక్ట్ ప్రక్రియలో జరిగాయి. హిందీ, తెలుగు పాఠం ఆట అనుసృజన, స్థానిక పాఠకుల సవరణలకు స్వాగతం. ఆడినందుకు ధన్యవాదాలు.",
+      "adapted": true
+    }
+  ]
+}

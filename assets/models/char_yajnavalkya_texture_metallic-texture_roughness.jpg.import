@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d8bxp1wyn5sr"
-path="res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.ctex"
+path.s3tc="res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.s3tc.ctex"
+path.etc2="res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "1707af4b1ed8440895f3f1bbf2fa5dcb"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/char_yajnavalkya_texture_metallic-texture_roughness.jpg"
-dest_files=["res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.ctex"]
+dest_files=["res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.s3tc.ctex", "res://.godot/imported/char_yajnavalkya_texture_metallic-texture_roughness.jpg-b7f62c09adc20f61904356a2e2fee13b.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -39,5 +41,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=0
+process/size_limit=512
 detect_3d/compress_to=1

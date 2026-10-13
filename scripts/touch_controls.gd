@@ -11,6 +11,7 @@ const BTN := {
 	"special": {"label": "ASTRA", "col": Color(0.55, 0.8, 1.0),   "r": 46.0},
 	"dash":    {"label": "DASH",  "col": Color(0.7, 1.0, 0.6),    "r": 42.0},
 	"gallop":  {"label": "RUN",   "col": Color(1.0, 0.6, 0.4),    "r": 42.0},
+	"interact": {"label": "TALK",  "col": Color(1.0, 0.9, 0.4),    "r": 52.0},
 }
 
 var canvas: Control
@@ -20,6 +21,7 @@ var stick_pos: Vector2
 var cam_id: int = -1
 var btn_ids: Dictionary = {}     # touch index -> action
 var gallop_on: bool = false
+var talk_visible: bool = false     # the TALK button only shows next to something to interact with
 
 
 func _ready() -> void:
@@ -32,6 +34,12 @@ func _ready() -> void:
 	add_child(canvas)
 
 
+func set_talk(on: bool) -> void:
+	if on != talk_visible:
+		talk_visible = on
+		canvas.queue_redraw()
+
+
 func _btn_center(action: String) -> Vector2:
 	var s := get_viewport().get_visible_rect().size
 	match action:
@@ -39,11 +47,14 @@ func _btn_center(action: String) -> Vector2:
 		"special": return Vector2(s.x - 270, s.y - 90)
 		"dash": return Vector2(s.x - 110, s.y - 300)
 		"gallop": return Vector2(s.x - 270, s.y - 230)
+		"interact": return Vector2(s.x - 400, s.y - 150)
 	return Vector2.ZERO
 
 
 func _btn_at(p: Vector2) -> String:
 	for a in BTN:
+		if a == "interact" and not talk_visible:
+			continue
 		if p.distance_to(_btn_center(a)) <= float(BTN[a]["r"]) + 12.0:
 			return a
 	return ""
@@ -131,6 +142,8 @@ func _draw_ui() -> void:
 		canvas.draw_arc(hint, STICK_R, 0, TAU, 48, Color(1, 1, 1, 0.22), 3.0)
 	var font := ThemeDB.fallback_font
 	for a in BTN:
+		if a == "interact" and not talk_visible:
+			continue
 		var c := _btn_center(a)
 		var col: Color = BTN[a]["col"]
 		var on: bool = btn_ids.values().has(a) or (a == "gallop" and gallop_on)

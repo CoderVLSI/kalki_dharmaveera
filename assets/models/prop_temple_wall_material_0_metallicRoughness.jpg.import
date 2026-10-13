@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5gxli7iym808"
-path="res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.ctex"
+path.s3tc="res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "1bafd483efd4d948c6cfebb627a499d2"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_temple_wall_material_0_metallicRoughness.jpg"
-dest_files=["res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.ctex"]
+dest_files=["res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.s3tc.ctex", "res://.godot/imported/prop_temple_wall_material_0_metallicRoughness.jpg-35a79c3a5bb9d4d33e0ebf02d5fc75a9.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

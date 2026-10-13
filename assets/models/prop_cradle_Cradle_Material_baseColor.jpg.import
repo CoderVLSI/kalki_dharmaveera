@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6ewgmqrtd0h0"
-path="res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.ctex"
+path.s3tc="res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "bc6bc8f84b6a662eeca9f76170370f91"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_cradle_Cradle_Material_baseColor.jpg"
-dest_files=["res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.ctex"]
+dest_files=["res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.s3tc.ctex", "res://.godot/imported/prop_cradle_Cradle_Material_baseColor.jpg-35048b5c320f8e89719d317c3a885c5e.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtvfud38euxj2"
-path="res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.ctex"
+path.s3tc="res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "e1bab717b828297e592ff8ca3e15f69d"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_earth_earth_baseColor.jpg"
-dest_files=["res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.ctex"]
+dest_files=["res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.s3tc.ctex", "res://.godot/imported/prop_earth_earth_baseColor.jpg-24d87f0d158c9a34b0463a19b7a0ceb8.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

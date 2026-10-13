@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj30oi1176bqd"
-path="res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.ctex"
+path.s3tc="res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.s3tc.ctex"
+path.etc2="res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "71cbd0c4036cbb99167f0a2e2d38df86"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/char_kalki_baby_texture_diffuse.jpg"
-dest_files=["res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.ctex"]
+dest_files=["res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.s3tc.ctex", "res://.godot/imported/char_kalki_baby_texture_diffuse.jpg-713f6338c3191bcc00e10ee167ce9a8a.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -39,5 +41,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=0
+process/size_limit=1024
 detect_3d/compress_to=1

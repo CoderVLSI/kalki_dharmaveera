@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jq7xiqrusct2"
-path="res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.ctex"
+path.s3tc="res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "b135c8b04616b3aa7fc216d61068117a"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_pillar_Scene_-_Root_normal.jpg"
-dest_files=["res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.ctex"]
+dest_files=["res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.s3tc.ctex", "res://.godot/imported/prop_pillar_Scene_-_Root_normal.jpg-c740fe92a5e7eafb584036cc4f4b52fc.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

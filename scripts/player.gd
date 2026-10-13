@@ -14,8 +14,15 @@ const SLASH_DAMAGE := 28.0
 const SPECIAL_RADIUS := 11.0
 const SPECIAL_DAMAGE := 48.0
 const ARENA_RADIUS := 150.0
-const LOOPING := ["idle", "walk", "trot", "gallop", "victory"]
+const LOOPING := ["idle", "walk", "trot", "gallop", "victory", "run"]
+## On foot (mode "foot") the rigged Kalki model has idle/walk/run/slash/bless; the mounted gait names map onto them.
+const FOOT_SPEEDS := {"walk": 2.8, "trot": 5.6, "gallop": 8.8}
+const FOOT_MAP := {"idle": "idle", "walk": "walk", "trot": "run", "gallop": "run", "slash": "slash", "rear": "bless", "victory": "bless"}
 
+var height_override: float = 0.0   # >0: shorter stand-in for the youth Kalki (M02/M03)
+var mode: String = "mounted"      # "mounted" (Kalki on Devadatta) or "foot" (rigged Kalki, sword after M04)
+var bounds: float = 150.0
+var sword: Node3D
 var hp: float = 100.0
 var max_hp: float = 100.0
 var state: String = "free"          # free, slash, rear, dash, dead, victory
@@ -48,7 +55,7 @@ static func ensure_input() -> void:
 		"gallop": [KEY_SHIFT], "walk": [KEY_CTRL], "attack": [KEY_J],
 		"special": [KEY_F, KEY_K], "dash": [KEY_SPACE],
 		"cam_left": [KEY_Q], "cam_right": [KEY_E],
-		"anim_toggle": [KEY_T], "restart": [KEY_R],
+		"anim_toggle": [KEY_T], "restart": [KEY_R], "interact": [KEY_G],
 	}
 	for action in map:
 		if not InputMap.has_action(action):
@@ -62,11 +69,16 @@ static func ensure_input() -> void:
 func _ready() -> void:
 	add_to_group("player")
 	ensure_input()
-	var scene: PackedScene = load(MODEL_PATH)
-	model = scene.instantiate()
-	model.scale = Vector3.ONE * MODEL_SCALE
-	model.rotation.y = PI
-	add_child(model)
+	if mode == "foot":
+		model = Props.character("kalki", height_override if height_override > 0.0 else 1.8)
+		add_child(model)
+		model.rotation.y = PI
+	else:
+		var scene: PackedScene = load(MODEL_PATH)
+		model = scene.instantiate()
+		model.scale = Vector3.ONE * MODEL_SCALE
+		model.rotation.y = PI
+		add_child(model)
 	var players := model.find_children("*", "AnimationPlayer", true, false)
 	if players.size() > 0:
 		anim = players[0]
@@ -76,6 +88,8 @@ func _ready() -> void:
 			anim.get_animation(n).loop_mode = Animation.LOOP_LINEAR if base in LOOPING else Animation.LOOP_NONE
 	else:
 		push_warning("No AnimationPlayer found in model")
+	if mode == "foot" and Campaign.has_flag("has_sword"):
+		sword = Props.arm_with_sword(model)
 	_build_dust()
 	Game.pillar_restored.connect(func(_id: String): heal(25.0))
 	Game.victory.connect(_on_victory)
@@ -110,6 +124,8 @@ func _build_dust() -> void:
 
 # ------------------------------------------------------------------ animation
 func _play(base: String, blend: float = 0.2, spd: float = 1.0) -> void:
+	if mode == "foot":
+		base = FOOT_MAP.get(base, base)
 	if anim == null or not anim_names.has(base):
 		return
 	var n: String = anim_names[base]
@@ -119,6 +135,8 @@ func _play(base: String, blend: float = 0.2, spd: float = 1.0) -> void:
 
 
 func anim_length(base: String, spd: float = 1.0) -> float:
+	if mode == "foot":
+		base = FOOT_MAP.get(base, base)
 	if anim == null or not anim_names.has(base):
 		return 0.6
 	return anim.get_animation(anim_names[base]).length / spd
@@ -169,6 +187,10 @@ func _physics_process(delta: float) -> void:
 			dust.emitting = false
 
 
+func _speeds() -> Dictionary:
+	return FOOT_SPEEDS if mode == "foot" else SPEEDS
+
+
 func _facing() -> Vector3:
 	return Vector3(-sin(yaw), 0.0, -cos(yaw))
 
@@ -176,8 +198,8 @@ func _facing() -> Vector3:
 func _move(vel: Vector3, delta: float) -> void:
 	global_position += vel * delta
 	var flat := Vector2(global_position.x, global_position.z)
-	if flat.length() > ARENA_RADIUS:
-		flat = flat.normalized() * ARENA_RADIUS
+	if flat.length() > bounds:
+		flat = flat.normalized() * bounds
 		global_position = Vector3(flat.x, 0.0, flat.y)
 	global_position.y = 0.0
 	rotation.y = yaw
@@ -203,7 +225,7 @@ func _state_free(delta: float) -> void:
 		var target := atan2(-d.x, -d.z)
 		yaw = lerp_angle(yaw, target, 1.0 - exp(-float(TURN[gait]) * delta))
 		var align := maxf(0.25, _facing().dot(d))
-		speed = move_toward(speed, float(SPEEDS[gait]) * align, 40.0 * delta)
+		speed = move_toward(speed, float(_speeds()[gait]) * align, 40.0 * delta)
 	else:
 		gait = "idle"
 		speed = move_toward(speed, 0.0, 30.0 * delta)
@@ -213,20 +235,26 @@ func _state_free(delta: float) -> void:
 	elif gait == "idle":
 		_play("idle", 0.25)
 	else:
-		_play(gait, 0.18, clampf(speed / float(SPEEDS[gait]), 0.6, 1.3))
-	dust.emitting = speed > 9.0
+		_play(gait, 0.18, clampf(speed / float(_speeds()[gait]), 0.6, 1.3))
+	dust.emitting = speed > (6.5 if mode == "foot" else 9.0)
 	if speed > 1.5:
 		step_t += speed * delta
 		var stride := 2.2 if gait == "walk" else (3.2 if gait == "trot" else 4.4)
+		if mode == "foot":
+			stride *= 0.6
 		if step_t >= stride:
 			step_t = 0.0
-			Sfx.play("hoof", -7.0, 0.15)
+			Sfx.play("hoof", -16.0 if mode == "foot" else -7.0, 0.15)
 	if Input.is_action_just_pressed("attack"):
 		start_slash()
 	elif Input.is_action_just_pressed("special"):
 		start_special()
 	elif Input.is_action_just_pressed("dash"):
 		start_dash()
+
+
+func slash_range() -> float:
+	return SLASH_RANGE if mode == "mounted" else 3.4
 
 
 func start_slash() -> void:
@@ -244,7 +272,7 @@ func start_slash() -> void:
 
 func _state_slash(delta: float) -> void:
 	state_time += delta
-	var lunge := 7.0 if state_time < state_len * 0.5 else 2.0
+	var lunge := (7.0 if state_time < state_len * 0.5 else 2.0) * (1.0 if mode == "mounted" else 0.45)
 	speed = lunge
 	_move(_facing() * speed, delta)
 	if not hit_done and state_time >= state_len * 0.42:
@@ -261,10 +289,10 @@ func _slash_hit() -> void:
 		var to: Vector3 = e.global_position - global_position
 		to.y = 0.0
 		var dist := to.length()
-		if dist < SLASH_RANGE and (dist < 1.8 or fwd.dot(to.normalized()) > 0.2):
+		if dist < slash_range() and (dist < 1.8 or fwd.dot(to.normalized()) > 0.2):
 			e.take_damage(SLASH_DAMAGE, global_position, 8.0)
 			hits += 1
-	_ring(SLASH_RANGE, Color(1.0, 0.85, 0.4, 0.8), 0.25, 1.4)
+	_ring(slash_range(), Color(1.0, 0.85, 0.4, 0.8), 0.25, 1.4 if mode == "mounted" else 0.9)
 	shake.emit(0.25 if hits > 0 else 0.08)
 
 
@@ -290,9 +318,9 @@ func _state_rear(delta: float) -> void:
 		hit_done = true
 		for e in get_tree().get_nodes_in_group("enemies"):
 			var d: float = e.global_position.distance_to(global_position)
-			if d < SPECIAL_RADIUS:
+			if d < (SPECIAL_RADIUS if mode == "mounted" else 8.0):
 				e.take_damage(SPECIAL_DAMAGE, global_position, 14.0, 1.6)
-		_ring(SPECIAL_RADIUS, Color(1.0, 0.9, 0.5, 0.9), 0.7, 0.2)
+		_ring(SPECIAL_RADIUS if mode == "mounted" else 8.0, Color(1.0, 0.9, 0.5, 0.9), 0.7, 0.2)
 		Sfx.play("boom", -4.0, 0.03)
 		shake.emit(0.7)
 	if state_time >= state_len:
@@ -313,7 +341,7 @@ func start_dash() -> void:
 
 func _state_dash(delta: float) -> void:
 	state_time += delta
-	speed = 26.0
+	speed = 26.0 if mode == "mounted" else 14.0
 	_move(_facing() * speed, delta)
 	dust.emitting = true
 	if state_time >= state_len:

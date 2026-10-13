@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhxv2iimmqyan"
-path="res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.ctex"
+path.s3tc="res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.s3tc.ctex"
+path.etc2="res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "1738b727bf6db74d4efde83c726d6776"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg"
-dest_files=["res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.ctex"]
+dest_files=["res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.s3tc.ctex", "res://.godot/imported/prop_cradle_Mattress_and_Pillow_material_metallicRoughness.jpg-41d83a5e23d71b537c4c288e51e7ce14.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
